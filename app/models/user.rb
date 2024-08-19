@@ -5,8 +5,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  geocoded_by :address, if: :should_geocode?
-  after_validation :geocode, if: :will_save_change_to_address?
+  geocoded_by :address
+  after_validation :conditionally_geocode
 
   has_many_attached :photos
 
@@ -37,13 +37,17 @@ class User < ApplicationRecord
 
   private
 
-  # retrieve all matches involving a specific user, regardless of whether they are user1 or user2
   def matches_as_user
+    # retrieve all matches involving a specific user, regardless of whether they are user1 or user2
     Match.involving(self)
   end
 
-  def should_geocode?
-    latitude.blank? || longitude.blank?
+  def conditionally_geocode
+    # Check if the latitude and longitude are not set (for create)
+    # Check if the address has changed (for update)
+    return unless (latitude.blank? && longitude.blank?) || will_save_change_to_address?
+
+    geocode
   end
 
   def validate_bio
