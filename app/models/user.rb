@@ -10,27 +10,28 @@ class User < ApplicationRecord
 
   has_many_attached :photos
 
+  has_many :user_skills, dependent: :destroy
   has_many :skills, through: :user_skills
 
-  has_many :likes_as_liker, class_name: 'Like', foreign_key: 'liker_id'
-  has_many :likes_as_liked, class_name: 'Like', foreign_key: 'liker_id'
+  has_many :likes_as_liker, class_name: 'Like', foreign_key: 'liker_id', dependent: :destroy
+  has_many :likes_as_liked, class_name: 'Like', foreign_key: 'liker_id', dependent: :destroy
 
-  has_many :matches_as_user1, class_name: 'Match', foreign_key: 'user1_id'
-  has_many :matches_as_user2, class_name: 'Match', foreign_key: 'user2_id'
+  has_many :matches_as_user1, class_name: 'Match', foreign_key: 'user1_id', dependent: :destroy
+  has_many :matches_as_user2, class_name: 'Match', foreign_key: 'user2_id', dependent: :destroy
 
-  has_many :blocks_as_blocker, class_name: 'Block', foreign_key: 'blocker'
-  has_many :blocks_as_blocked, class_name: 'Block', foreign_key: 'blocked'
+  has_many :blocks_as_blocker, class_name: 'Block', foreign_key: 'blocker', dependent: :destroy
+  has_many :blocks_as_blocked, class_name: 'Block', foreign_key: 'blocked', dependent: :destroy
 
-  has_many :bookmarks_as_follower, class_name: 'Bookmark', foreign_key: 'follower_id'
-  has_many :bookmarks_as_following, class_name: 'Bookmark', foreign_key: 'following_id'
+  has_many :bookmarks_as_follower, class_name: 'Bookmark', foreign_key: 'follower_id', dependent: :destroy
+  has_many :bookmarks_as_following, class_name: 'Bookmark', foreign_key: 'following_id', dependent: :destroy
 
-  has_many :chatrooms, through: :matches
+  has_many :chatrooms, through: :matches, dependent: :destroy
 
   validates :username, presence: true, uniqueness: true
   validate :validate_bio
 
   validates :address, presence: true
-  validates :distance_preference, presence: true, default: 3, numericality: {
+  validates :distance_preference, presence: true, numericality: {
     greater_than_or_equal_to: 3, message: "must bigger than 3 km"
   }
 
