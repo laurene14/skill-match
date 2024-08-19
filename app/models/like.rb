@@ -5,9 +5,9 @@ class Like < ApplicationRecord
   after_save :check_for_match
   after_save :check_for_unmatch
 
-  validates :wanted, presence: true
+  validates :wanted, inclusion: { in: [true, false], message: "must be true or false" }
   validates :liker, uniqueness: {
-    scope: %i[liked], message: "Cannot have 2 entry for the same liker - liked group"
+    scope: %i[liked], message: "Cannot have 2 entries for the same liker - liked group"
   }
 
   private
