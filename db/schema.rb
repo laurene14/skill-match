@@ -121,7 +121,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_19_133606) do
   create_table "user_skills", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "skill_id", null: false
-    t.boolean "wanted"
+    t.boolean "wanted", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["skill_id"], name: "index_user_skills_on_skill_id"
@@ -142,7 +142,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_19_133606) do
     t.float "latitude"
     t.float "longitude"
     t.string "bio"
-    t.integer "distance_preference"
+    t.integer "distance_preference", default: 3
     t.datetime "capabilities_update", precision: nil
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
