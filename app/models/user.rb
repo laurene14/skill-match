@@ -29,6 +29,7 @@ class User < ApplicationRecord
   validates :username, presence: true, uniqueness: true
   validate :validate_bio
 
+  validates :address, presence: true
   validates :distance_preference, presence: true, default: 3, numericality: {
     greater_than_or_equal_to: 3, message: "must bigger than 3 km"
   }
