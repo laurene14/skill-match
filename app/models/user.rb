@@ -12,14 +12,14 @@ class User < ApplicationRecord
 
   has_many :skills, through: :user_skills
 
-  has_many :likes_as_liker, class_name: 'Match', add_foreign_key: 'liker_id'
-  has_many :likes_as_liked, class_name: 'Match', add_foreign_key: 'liker_id'
+  has_many :likes_as_liker, class_name: 'Like', foreign_key: 'liker_id'
+  has_many :likes_as_liked, class_name: 'Like', foreign_key: 'liker_id'
 
   has_many :matches_as_user1, class_name: 'Match', foreign_key: 'user1_id'
   has_many :matches_as_user2, class_name: 'Match', foreign_key: 'user2_id'
 
-  has_many :blocks_as_blocker, class_name: 'Blocks', foreign_key: 'blocker'
-  has_many :blocks_as_blocked, class_name: 'Blocks', foreign_key: 'blocked'
+  has_many :blocks_as_blocker, class_name: 'Block', foreign_key: 'blocker'
+  has_many :blocks_as_blocked, class_name: 'Block', foreign_key: 'blocked'
 
   has_many :bookmarks_as_follower, class_name: 'Bookmark', foreign_key: 'follower_id'
   has_many :bookmarks_as_following, class_name: 'Bookmark', foreign_key: 'following_id'
@@ -29,8 +29,9 @@ class User < ApplicationRecord
   validates :username, presence: true, uniqueness: true
   validate :validate_bio
 
+  validates :address, presence: true
   validates :distance_preference, presence: true, default: 3, numericality: {
-    gerater_than_or_equal_to: 3, message: "must bigger than 3 km"
+    greater_than_or_equal_to: 3, message: "must bigger than 3 km"
   }
 
   private
