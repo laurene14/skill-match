@@ -18,11 +18,9 @@ class Like < ApplicationRecord
 
   def check_for_unmatch
     reciprocal_like = Like.find_by(liker_id: liked_id, liked_id: liker_id)
+    return unless reciprocal_like && !wanted
 
-    if reciprocal_like && !wanted
-      match = Match.find_by(user1_id: [liker_id, liked_id].min, user2_id: [liker_id, liked_id].max)
-      match&.destroy
-    end
+    match = Match.find_by(user1_id: [liker_id, liked_id].min, user2_id: [liker_id, liked_id].max)
+    match&.destroy
   end
-
 end
