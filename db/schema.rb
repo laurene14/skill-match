@@ -10,9 +10,95 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_19_125404) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_19_132605) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "blocks", force: :cascade do |t|
+    t.bigint "blocker_id", null: false
+    t.bigint "blocked_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["blocked_id"], name: "index_blocks_on_blocked_id"
+    t.index ["blocker_id"], name: "index_blocks_on_blocker_id"
+  end
+
+  create_table "bookmarks", force: :cascade do |t|
+    t.bigint "follower_id", null: false
+    t.bigint "following_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["follower_id"], name: "index_bookmarks_on_follower_id"
+    t.index ["following_id"], name: "index_bookmarks_on_following_id"
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "chatrooms", force: :cascade do |t|
+    t.bigint "match_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["match_id"], name: "index_chatrooms_on_match_id"
+  end
+
+  create_table "likes", force: :cascade do |t|
+    t.bigint "liker_id", null: false
+    t.bigint "liked_id", null: false
+    t.boolean "wanted"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["liked_id"], name: "index_likes_on_liked_id"
+    t.index ["liker_id"], name: "index_likes_on_liker_id"
+  end
+
+  create_table "matches", force: :cascade do |t|
+    t.bigint "user1_id", null: false
+    t.bigint "user2_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user1_id"], name: "index_matches_on_user1_id"
+    t.index ["user2_id"], name: "index_matches_on_user2_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.bigint "chatroom_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["chatroom_id"], name: "index_messages_on_chatroom_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
+  create_table "skill_categories", force: :cascade do |t|
+    t.bigint "skill_id", null: false
+    t.bigint "category_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_skill_categories_on_category_id"
+    t.index ["skill_id"], name: "index_skill_categories_on_skill_id"
+  end
+
+  create_table "skills", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "user_skills", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "skill_id", null: false
+    t.boolean "wanted"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["skill_id"], name: "index_user_skills_on_skill_id"
+    t.index ["user_id"], name: "index_user_skills_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -22,8 +108,31 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_19_125404) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "username"
+    t.boolean "admin", default: false
+    t.string "address"
+    t.float "latitude"
+    t.float "longitude"
+    t.string "bio"
+    t.integer "distance_preference"
+    t.datetime "capabilities_update", precision: nil
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "blocks", "users", column: "blocked_id"
+  add_foreign_key "blocks", "users", column: "blocker_id"
+  add_foreign_key "bookmarks", "users", column: "follower_id"
+  add_foreign_key "bookmarks", "users", column: "following_id"
+  add_foreign_key "chatrooms", "matches"
+  add_foreign_key "likes", "users", column: "liked_id"
+  add_foreign_key "likes", "users", column: "liker_id"
+  add_foreign_key "matches", "users", column: "user1_id"
+  add_foreign_key "matches", "users", column: "user2_id"
+  add_foreign_key "messages", "chatrooms"
+  add_foreign_key "messages", "users"
+  add_foreign_key "skill_categories", "categories"
+  add_foreign_key "skill_categories", "skills"
+  add_foreign_key "user_skills", "skills"
+  add_foreign_key "user_skills", "users"
 end
