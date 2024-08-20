@@ -3,6 +3,12 @@ class UsersController < ApplicationController
   end
 
   def show
+    authorize @user
+  end
+
+  def new
+    @user = User.new
+    authorize @user
   end
 
   private
@@ -10,4 +16,5 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:email, :password, :username, :status, :location, :bio, :distance_preference, :photos [])
   end
+
 end
