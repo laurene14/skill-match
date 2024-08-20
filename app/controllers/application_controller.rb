@@ -31,5 +31,4 @@ class ApplicationController < ActionController::Base
     logger.debug "skip_pundit? result: #{result}"
     result
   end
-
 end
