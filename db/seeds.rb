@@ -1,31 +1,33 @@
 puts "Clear existing data"
 ActiveRecord::Base.transaction do
   # Clear Messages
-  Message.destroy_all
+  # Message.destroy_all
 
   # Clear Chatrooms
-  Chatroom.destroy_all
+  # Chatroom.destroy_all
 
   # Clear Matches
-  Match.destroy_all
+  # Match.destroy_all
 
   # Clear Bookmarks
-  Bookmark.destroy_all
+  # Bookmark.destroy_all
 
   # Clear UserSkills
-  UserSkill.destroy_all
+  # UserSkill.destroy_all
 
   # Clear Skills
   Skill.destroy_all
 
   # Clear SkillCategories
-  SkillCategory.destroy_all
+  # SkillCategory.destroy_all
 
   # Clear Users
   User.destroy_all
 
+  Category.destroy_all
+
   # Clear Blocks
-  Block.destroy_all
+  # Block.destroy_all
 end
 
 puts "Creating categories"
@@ -94,7 +96,7 @@ puts "Create Skills and assign to Categories"
 skills.each do |skill_attributes|
   skill = Skill.create(name: skill_attributes[:name], description: skill_attributes[:description])
   category = Category.find_by(name: skill_attributes[:category_name])
-  SkillCategory.create(skill: skill, category: category) if category
+  SkillCategory.create(skill: skill, category: category)
 end
 
 puts "Create Users"
