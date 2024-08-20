@@ -25,8 +25,6 @@ class User < ApplicationRecord
   has_many :bookmarks_as_follower, class_name: 'Bookmark', foreign_key: 'follower_id', dependent: :destroy
   has_many :bookmarks_as_following, class_name: 'Bookmark', foreign_key: 'following_id', dependent: :destroy
 
-  has_many :chatrooms, through: :matches, dependent: :destroy
-
   validates :username, presence: true, uniqueness: true
   validate :validate_bio
 
@@ -35,17 +33,21 @@ class User < ApplicationRecord
     greater_than_or_equal_to: 3, message: "must bigger than 3 km"
   }
 
-  private
-
   def matches_as_user
     # retrieve all matches involving a specific user, regardless of whether they are user1 or user2
     Match.involving(self)
   end
 
+  def chatrooms
+    matches_as_user.map(&:chatroom)
+  end
+
+  private
+
   def conditionally_geocode
     # Check if the latitude and longitude are not set (for create)
     # Check if the address has changed (for update)
-    return unless (latitude.blank? && longitude.blank?) || (will_save_change_to_address? && saved_change_to_id?)
+    return unless (latitude.blank? && longitude.blank?) || will_save_change_to_address?
 
     geocode
   end

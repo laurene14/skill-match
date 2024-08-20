@@ -3,7 +3,8 @@ class Match < ApplicationRecord
   belongs_to :user2, class_name: 'User'
 
   has_one :chatroom, dependent: :destroy
-  after_save :create_chatroom
+
+  after_create :create_chatroom, if: :saved_change_to_id?
 
   scope :involving, lambda { |user|
     where("user1_id = :user_id OR user2_id = :user_id", user_id: user.id)
