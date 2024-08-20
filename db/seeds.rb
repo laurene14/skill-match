@@ -1,31 +1,8 @@
 puts "Clear existing data"
 ActiveRecord::Base.transaction do
-  # Clear Messages
-  Message.destroy_all
-
-  # Clear Chatrooms
-  Chatroom.destroy_all
-
-  # Clear Matches
-  Match.destroy_all
-
-  # Clear Bookmarks
-  Bookmark.destroy_all
-
-  # Clear UserSkills
-  UserSkill.destroy_all
-
-  # Clear Skills
-  Skill.destroy_all
-
-  # Clear SkillCategories
-  SkillCategory.destroy_all
-
-  # Clear Users
   User.destroy_all
-
-  # Clear Blocks
-  Block.destroy_all
+  Category.destroy_all
+  Skill.destroy_all
 end
 
 puts "Creating categories"
@@ -90,11 +67,11 @@ skills = [
   { name: 'Fashion Design', description: 'Creating clothing and accessories', category_name: 'Design' }
 ]
 
-puts "Create Skills and assign to Categories"
+puts "Assigning Skills to Categories"
 skills.each do |skill_attributes|
   skill = Skill.create(name: skill_attributes[:name], description: skill_attributes[:description])
   category = Category.find_by(name: skill_attributes[:category_name])
-  SkillCategory.create(skill: skill, category: category) if category
+  SkillCategory.create(skill: skill, category: category)
 end
 
 puts "Create Users"
@@ -195,42 +172,9 @@ likes = [
 likes.each do |like_attributes|
   liker = User.find_by(username: like_attributes[:liker])
   liked = User.find_by(username: like_attributes[:liked])
-  UserSkill.create(user: liker, skill: liked.skill, wanted: like_attributes[:wanted])
+  UserSkill.create(user: liker, skill: liked.skills[0], wanted: like_attributes[:wanted])
 end
 
-puts "Create Matches"
-def create_match(user1, user2)
-  match = Match.create(user1: user1, user2: user2)
-  create_chatroom(match)
-end
-
-def create_chatroom(match)
-  Chatroom.create(match: match)
-end
-
-def match_status(user1, user2)
-  like1 = UserSkill.find_by(user: user1, skill: user2.skill, wanted: true)
-  like2 = UserSkill.find_by(user: user2, skill: user1.skill, wanted: true)
-
-  if like1 && like2
-    'matched'
-  elsif like1 || like2
-    'pending'
-  else
-    'not_matched'
-  end
-end
-
-users = User.all
-
-users.combination(2).each do |user1, user2|
-  next if Block.find_by(blocker: user1, blocked: user2) || Block.find_by(blocker: user2, blocked: user1)
-
-  status = match_status(user1, user2)
-  if status == 'matched' || status == 'pending'
-    create_match(user1, user2)
-  end
-end
 
 puts "Create Messages"
 messages = [
