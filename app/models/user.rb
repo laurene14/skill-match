@@ -25,6 +25,8 @@ class User < ApplicationRecord
   has_many :bookmarks_as_follower, class_name: 'Bookmark', foreign_key: 'follower_id', dependent: :destroy
   has_many :bookmarks_as_following, class_name: 'Bookmark', foreign_key: 'following_id', dependent: :destroy
 
+  has_many :notifications, dependent: :destroy
+
   validates :username, presence: true, uniqueness: true
   validate :validate_bio
 
