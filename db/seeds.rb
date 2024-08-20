@@ -1,31 +1,8 @@
 puts "Clear existing data"
 ActiveRecord::Base.transaction do
-  # Clear Messages
-  Message.destroy_all
-
-  # Clear Chatrooms
-  Chatroom.destroy_all
-
-  # Clear Matches
-  Match.destroy_all
-
-  # Clear Bookmarks
-  Bookmark.destroy_all
-
-  # Clear UserSkills
-  UserSkill.destroy_all
-
-  # Clear Skills
-  Skill.destroy_all
-
-  # Clear SkillCategories
-  SkillCategory.destroy_all
-
-  # Clear Users
   User.destroy_all
-
-  # Clear Blocks
-  Block.destroy_all
+  Category.destroy_all
+  Skill.destroy_all
 end
 
 puts "Creating categories"
@@ -90,11 +67,11 @@ skills = [
   { name: 'Fashion Design', description: 'Creating clothing and accessories', category_name: 'Design' }
 ]
 
-puts "Create Skills and assign to Categories"
+puts "Assigning Skills to Categories"
 skills.each do |skill_attributes|
   skill = Skill.create(name: skill_attributes[:name], description: skill_attributes[:description])
   category = Category.find_by(name: skill_attributes[:category_name])
-  SkillCategory.create(skill: skill, category: category) if category
+  SkillCategory.create(skill: skill, category: category)
 end
 
 puts "Create Users"
@@ -159,143 +136,110 @@ user_skills.each do |username, skill_names|
   end
 end
 
-# puts "Create User Interactions"
-# likes = [
-#   { liker: 'alice', liked: 'bob', wanted: true },
-#   { liker: 'bob', liked: 'alice', wanted: true },
+puts "Create User Interactions"
+likes = [
+  { liker: 'alice', liked: 'bob', wanted: true },
+  { liker: 'bob', liked: 'alice', wanted: true },
 
-#   { liker: 'bob', liked: 'charlie', wanted: false },
-#   { liker: 'charlie', liked: 'bob', wanted: true },
+  { liker: 'bob', liked: 'charlie', wanted: false },
+  { liker: 'charlie', liked: 'bob', wanted: true },
 
-#   { liker: 'dave', liked: 'eve', wanted: true },
-#   { liker: 'eve', liked: 'dave', wanted: true },
+  { liker: 'dave', liked: 'eve', wanted: true },
+  { liker: 'eve', liked: 'dave', wanted: true },
 
-#   { liker: 'frank', liked: 'grace', wanted: true },
-#   { liker: 'grace', liked: 'frank', wanted: false },
+  { liker: 'frank', liked: 'grace', wanted: true },
+  { liker: 'grace', liked: 'frank', wanted: false },
 
-#   { liker: 'hank', liked: 'iva', wanted: true },
-#   { liker: 'iva', liked: 'hank', wanted: true },
+  { liker: 'hank', liked: 'iva', wanted: true },
+  { liker: 'iva', liked: 'hank', wanted: true },
 
-#   { liker: 'john', liked: 'katie', wanted: false },
-#   { liker: 'katie', liked: 'john', wanted: true },
+  { liker: 'john', liked: 'katie', wanted: false },
+  { liker: 'katie', liked: 'john', wanted: true },
 
-#   { liker: 'leo', liked: 'maya', wanted: true },
-#   { liker: 'maya', liked: 'leo', wanted: true },
+  { liker: 'leo', liked: 'maya', wanted: true },
+  { liker: 'maya', liked: 'leo', wanted: true },
 
-#   { liker: 'nick', liked: 'olivia', wanted: true },
-#   { liker: 'olivia', liked: 'nick', wanted: false },
+  { liker: 'nick', liked: 'olivia', wanted: true },
+  { liker: 'olivia', liked: 'nick', wanted: false },
 
-#   { liker: 'paul', liked: 'quinn', wanted: true },
-#   { liker: 'quinn', liked: 'paul', wanted: true },
+  { liker: 'paul', liked: 'quinn', wanted: true },
+  { liker: 'quinn', liked: 'paul', wanted: true },
 
-#   { liker: 'rachel', liked: 'hank', wanted: false },
-#   { liker: 'hank', liked: 'rachel', wanted: true }
-# ]
+  { liker: 'rachel', liked: 'hank', wanted: false },
+  { liker: 'hank', liked: 'rachel', wanted: true }
+]
 
-# likes.each do |like_attributes|
-#   liker = User.find_by(username: like_attributes[:liker])
-#   liked = User.find_by(username: like_attributes[:liked])
-#   UserSkill.create(user: liker, skill: liked.skill, wanted: like_attributes[:wanted])
-# end
+likes.each do |like_attributes|
+  liker = User.find_by(username: like_attributes[:liker])
+  liked = User.find_by(username: like_attributes[:liked])
+  UserSkill.create(user: liker, skill: liked.skills[0], wanted: like_attributes[:wanted])
+end
 
-# puts "Create Matches"
-# def create_match(user1, user2)
-#   match = Match.create(user1: user1, user2: user2)
-#   create_chatroom(match)
-# end
 
-# def create_chatroom(match)
-#   Chatroom.create(match: match)
-# end
+puts "Create Messages"
+messages = [
+  { chatroom: Chatroom.find_by(match: Match.find_by(user1: User.find_by(username: 'alice'), user2: User.find_by(username: 'bob'))), user: User.find_by(username: 'alice'), content: 'Hi Bob!' },
+  { chatroom: Chatroom.find_by(match: Match.find_by(user1: User.find_by(username: 'alice'), user2: User.find_by(username: 'bob'))), user: User.find_by(username: 'bob'), content: 'Hello Alice!' },
 
-# def match_status(user1, user2)
-#   like1 = UserSkill.find_by(user: user1, skill: user2.skill, wanted: true)
-#   like2 = UserSkill.find_by(user: user2, skill: user1.skill, wanted: true)
+  { chatroom: Chatroom.find_by(match: Match.find_by(user1: User.find_by(username: 'bob'), user2: User.find_by(username: 'charlie'))), user: User.find_by(username: 'charlie'), content: 'Hey Bob, interested in a marketing project?' },
 
-#   if like1 && like2
-#     'matched'
-#   elsif like1 || like2
-#     'pending'
-#   else
-#     'not_matched'
-#   end
-# end
+  { chatroom: Chatroom.find_by(match: Match.find_by(user1: User.find_by(username: 'dave'), user2: User.find_by(username: 'eve'))), user: User.find_by(username: 'dave'), content: 'Hi Eve, let’s talk about fitness!' },
 
-# users = User.all
+  { chatroom: Chatroom.find_by(match: Match.find_by(user1: User.find_by(username: 'frank'), user2: User.find_by(username: 'grace'))), user: User.find_by(username: 'frank'), content: 'Hi Grace, need some SEO tips!' },
 
-# users.combination(2).each do |user1, user2|
-#   next if Block.find_by(blocker: user1, blocked: user2) || Block.find_by(blocker: user2, blocked: user1)
+  { chatroom: Chatroom.find_by(match: Match.find_by(user1: User.find_by(username: 'hank'), user2: User.find_by(username: 'iva'))), user: User.find_by(username: 'iva'), content: 'Hi Hank, let’s discuss UI/UX design!' },
 
-#   status = match_status(user1, user2)
-#   if status == 'matched' || status == 'pending'
-#     create_match(user1, user2)
-#   end
-# end
+  { chatroom: Chatroom.find_by(match: Match.find_by(user1: User.find_by(username: 'john'), user2: User.find_by(username: 'katie'))), user: User.find_by(username: 'john'), content: 'Hi Katie, interested in a design collaboration?' },
 
-# puts "Create Messages"
-# messages = [
-#   { chatroom: Chatroom.find_by(match: Match.find_by(user1: User.find_by(username: 'alice'), user2: User.find_by(username: 'bob'))), user: User.find_by(username: 'alice'), content: 'Hi Bob!' },
-#   { chatroom: Chatroom.find_by(match: Match.find_by(user1: User.find_by(username: 'alice'), user2: User.find_by(username: 'bob'))), user: User.find_by(username: 'bob'), content: 'Hello Alice!' },
+  { chatroom: Chatroom.find_by(match: Match.find_by(user1: User.find_by(username: 'leo'), user2: User.find_by(username: 'maya'))), user: User.find_by(username: 'maya'), content: 'Hi Leo, want to talk about Piano techniques?' },
 
-#   { chatroom: Chatroom.find_by(match: Match.find_by(user1: User.find_by(username: 'bob'), user2: User.find_by(username: 'charlie'))), user: User.find_by(username: 'charlie'), content: 'Hey Bob, interested in a marketing project?' },
+  { chatroom: Chatroom.find_by(match: Match.find_by(user1: User.find_by(username: 'nick'), user2: User.find_by(username: 'olivia'))), user: User.find_by(username: 'nick'), content: 'Hi Olivia, can we chat about fitness and music?' },
 
-#   { chatroom: Chatroom.find_by(match: Match.find_by(user1: User.find_by(username: 'dave'), user2: User.find_by(username: 'eve'))), user: User.find_by(username: 'dave'), content: 'Hi Eve, let’s talk about fitness!' },
+  { chatroom: Chatroom.find_by(match: Match.find_by(user1: User.find_by(username: 'paul'), user2: User.find_by(username: 'quinn'))), user: User.find_by(username: 'paul'), content: 'Hi Quinn, let’s discuss business strategies!' },
 
-#   { chatroom: Chatroom.find_by(match: Match.find_by(user1: User.find_by(username: 'frank'), user2: User.find_by(username: 'grace'))), user: User.find_by(username: 'frank'), content: 'Hi Grace, need some SEO tips!' },
+  { chatroom: Chatroom.find_by(match: Match.find_by(user1: User.find_by(username: 'rachel'), user2: User.find_by(username: 'hank'))), user: User.find_by(username: 'rachel'), content: 'Hi Hank, how about a project coordination meeting?' },
 
-#   { chatroom: Chatroom.find_by(match: Match.find_by(user1: User.find_by(username: 'hank'), user2: User.find_by(username: 'iva'))), user: User.find_by(username: 'iva'), content: 'Hi Hank, let’s discuss UI/UX design!' },
+  { chatroom: Chatroom.find_by(match: Match.find_by(user1: User.find_by(username: 'grace'), user2: User.find_by(username: 'maya'))), user: User.find_by(username: 'maya'), content: 'Hey Grace, I love your content marketing!' },
 
-#   { chatroom: Chatroom.find_by(match: Match.find_by(user1: User.find_by(username: 'john'), user2: User.find_by(username: 'katie'))), user: User.find_by(username: 'john'), content: 'Hi Katie, interested in a design collaboration?' },
+  { chatroom: Chatroom.find_by(match: Match.find_by(user1: User.find_by(username: 'frank'), user2: User.find_by(username: 'john'))), user: User.find_by(username: 'john'), content: 'Hi John, let’s discuss graphic design and SEO.' },
 
-#   { chatroom: Chatroom.find_by(match: Match.find_by(user1: User.find_by(username: 'leo'), user2: User.find_by(username: 'maya'))), user: User.find_by(username: 'maya'), content: 'Hi Leo, want to talk about Piano techniques?' },
+  { chatroom: Chatroom.find_by(match: Match.find_by(user1: User.find_by(username: 'katie'), user2: User.find_by(username: 'olivia'))), user: User.find_by(username: 'olivia'), content: 'Hi Katie, let’s discuss entrepreneurship and music theory!' },
 
-#   { chatroom: Chatroom.find_by(match: Match.find_by(user1: User.find_by(username: 'nick'), user2: User.find_by(username: 'olivia'))), user: User.find_by(username: 'nick'), content: 'Hi Olivia, can we chat about fitness and music?' },
+  { chatroom: Chatroom.find_by(match: Match.find_by(user1: User.find_by(username: 'quinn'), user2: User.find_by(username: 'rachel'))), user: User.find_by(username: 'quinn'), content: 'Hi Rachel, ready to talk about digital marketing?' }
+]
 
-#   { chatroom: Chatroom.find_by(match: Match.find_by(user1: User.find_by(username: 'paul'), user2: User.find_by(username: 'quinn'))), user: User.find_by(username: 'paul'), content: 'Hi Quinn, let’s discuss business strategies!' },
+messages.each do |message_attributes|
+  Message.create(message_attributes)
+end
 
-#   { chatroom: Chatroom.find_by(match: Match.find_by(user1: User.find_by(username: 'rachel'), user2: User.find_by(username: 'hank'))), user: User.find_by(username: 'rachel'), content: 'Hi Hank, how about a project coordination meeting?' },
+puts "Create Bookmarks"
+bookmarks = [
+  { follower: 'alice', following: 'bob' },
+  { follower: 'bob', following: 'charlie' },
+  { follower: 'charlie', following: 'dave' },
+  { follower: 'dave', following: 'eve' },
+  { follower: 'frank', following: 'grace' },
 
-#   { chatroom: Chatroom.find_by(match: Match.find_by(user1: User.find_by(username: 'grace'), user2: User.find_by(username: 'maya'))), user: User.find_by(username: 'maya'), content: 'Hey Grace, I love your content marketing!' },
+  { follower: 'grace', following: 'hank' },
+  { follower: 'hank', following: 'iva' },
+  { follower: 'iva', following: 'john' },
+  { follower: 'john', following: 'katie' },
+  { follower: 'katie', following: 'leo' },
 
-#   { chatroom: Chatroom.find_by(match: Match.find_by(user1: User.find_by(username: 'frank'), user2: User.find_by(username: 'john'))), user: User.find_by(username: 'john'), content: 'Hi John, let’s discuss graphic design and SEO.' },
+  { follower: 'leo', following: 'maya' },
+  { follower: 'maya', following: 'nick' },
+  { follower: 'nick', following: 'olivia' },
+  { follower: 'olivia', following: 'paul' },
+  { follower: 'paul', following: 'quinn' },
 
-#   { chatroom: Chatroom.find_by(match: Match.find_by(user1: User.find_by(username: 'katie'), user2: User.find_by(username: 'olivia'))), user: User.find_by(username: 'olivia'), content: 'Hi Katie, let’s discuss entrepreneurship and music theory!' },
+  { follower: 'quinn', following: 'rachel' },
+  { follower: 'rachel', following: 'alice' }
+]
 
-#   { chatroom: Chatroom.find_by(match: Match.find_by(user1: User.find_by(username: 'quinn'), user2: User.find_by(username: 'rachel'))), user: User.find_by(username: 'quinn'), content: 'Hi Rachel, ready to talk about digital marketing?' }
-# ]
+bookmarks.each do |bookmark_attributes|
+  follower = User.find_by(username: bookmark_attributes[:follower])
+  following = User.find_by(username: bookmark_attributes[:following])
+  Bookmark.create(follower: follower, following: following) if follower && following
+end
 
-# messages.each do |message_attributes|
-#   Message.create(message_attributes)
-# end
-
-# puts "Create Bookmarks"
-# bookmarks = [
-#   { follower: 'alice', following: 'bob' },
-#   { follower: 'bob', following: 'charlie' },
-#   { follower: 'charlie', following: 'dave' },
-#   { follower: 'dave', following: 'eve' },
-#   { follower: 'frank', following: 'grace' },
-
-#   { follower: 'grace', following: 'hank' },
-#   { follower: 'hank', following: 'iva' },
-#   { follower: 'iva', following: 'john' },
-#   { follower: 'john', following: 'katie' },
-#   { follower: 'katie', following: 'leo' },
-
-#   { follower: 'leo', following: 'maya' },
-#   { follower: 'maya', following: 'nick' },
-#   { follower: 'nick', following: 'olivia' },
-#   { follower: 'olivia', following: 'paul' },
-#   { follower: 'paul', following: 'quinn' },
-
-#   { follower: 'quinn', following: 'rachel' },
-#   { follower: 'rachel', following: 'alice' }
-# ]
-
-# bookmarks.each do |bookmark_attributes|
-#   follower = User.find_by(username: bookmark_attributes[:follower])
-#   following = User.find_by(username: bookmark_attributes[:following])
-#   Bookmark.create(follower: follower, following: following) if follower && following
-# end
-
-# puts "Seed successfully done"
+puts "Seed successfully done"
