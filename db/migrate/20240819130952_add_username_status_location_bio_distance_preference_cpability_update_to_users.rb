@@ -6,7 +6,7 @@ class AddUsernameStatusLocationBioDistancePreferenceCpabilityUpdateToUsers < Act
     add_column :users, :latitude, :float
     add_column :users, :longitude, :float
     add_column :users, :bio, :string
-    add_column :users, :distance_preference, :integer
+    add_column :users, :distance_preference, :integer, default: 3
     add_column :users, :capabilities_update, :timestamp
   end
 end
