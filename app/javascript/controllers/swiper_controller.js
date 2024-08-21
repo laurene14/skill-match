@@ -5,10 +5,12 @@ export default class extends Controller {
   static targets = ["card"]
 
   currentUserId = null;
+  csrfToken = null;
 
   connect() {
     console.log("connected");
     this.currentUserId = parseInt(document.body.dataset.currentUserId, 10);
+    this.csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
     this.initCards(true);
     this.cardTargets.forEach((card) => {
       this.initCard(card);
@@ -135,42 +137,52 @@ export default class extends Controller {
 
   handleRefuse(card) {
     const url = '/likes'
-    const options = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        "liker_id": this.currentUserId,
-        "liked_id": card.id,
-        "wanted": false
-      })
-    }
-    fetch(url, options)
-      .then(response => response.json())
-      .then(data => console.log(data))
+    const body = JSON.stringify({
+      "liker_id": this.currentUserId,
+      "liked_id": card.id,
+      "wanted": false
+    })
+    this.fetchData(url, body)
   }
 
   handleAccept(card) {
     const url = '/likes'
-    const options = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        "liker_id": this.currentUserId,
-        "liked_id": card.id,
-        "wanted": true
-      })
-    }
-    fetch(url, options)
-      .then(response => response.json())
-      .then(data => console.log(data))
-
+    const body = JSON.stringify({
+      "liker_id": this.currentUserId,
+      "liked_id": card.id,
+      "wanted": true
+    })
+    this.fetchData(url, body)
   }
 
   handleFollow(card) {
-    console.log("follow")
-    console.log(this.currentUserId)
-    console.log(card.id)
-
+    const url = '/bookmarks'
+    const body = JSON.stringify({
+      "follower_id": this.currentUserId,
+      "following_id": card.id,
+    });
+    this.fetchData(url, body)
   }
 
+  fetchData(url, body) {
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        'X-CSRF-Token': this.csrfToken
+      },
+      body
+    }
+    fetch(url, options)
+      .then(response => {
+        if (!response.ok) {
+          return response.json().then(errorData => {
+            throw new Error(JSON.stringify(errorData));
+          });
+        }
+        return response.json();
+      })
+      .then(data => console.log('Success:', data))
+      .catch(error => console.log(error))
+  }
 }

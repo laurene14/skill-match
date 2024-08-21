@@ -2,7 +2,7 @@ class LikesController < ApplicationController
   before_action :like_params, only: :create
   before_action :set_liker, only: :create
   before_action :set_liked, only: :create
-  skip_before_action :verify_authenticity_token
+  # skip_before_action :verify_authenticity_token, only: :create
 
   def index
     @users = policy_scope(User)
@@ -14,7 +14,7 @@ class LikesController < ApplicationController
     @like.liked = set_liked
     authorize @like
     respond_to do |format|
-      @like.save ? format.json { render json: @like.to_json } : format.json { render json: @like.errors.to_json }
+      @like.save ? format.json { render json: @like, status: 201 } : format.json { render json: @like.errors, status: 422 }
     end
   end
 

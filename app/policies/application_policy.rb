@@ -17,7 +17,7 @@ class ApplicationPolicy
   end
 
   def create?
-    record.liker == user
+    false
   end
 
   def new?
