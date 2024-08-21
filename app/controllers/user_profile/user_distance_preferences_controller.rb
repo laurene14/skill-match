@@ -20,7 +20,7 @@ module UserProfile
     private
 
     def user_distance_preference_params
-      params.require(:user_profile_user_distance_preference).permit(:address, :bio)
+      params.require(:user_profile_user_distance_preference).permit(:distance_preference)
     end
   end
 end

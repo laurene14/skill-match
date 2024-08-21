@@ -13,6 +13,11 @@ Rails.application.routes.draw do
 
   namespace :user_profile do
     resources :user_descriptions, only: %i[new create]
+<<<<<<< HEAD
     resources :user_distance_preferences, only: %i[new create]
+=======
+    resources :user_skill_categories, only: %i[new]
+    resources :user_skills, only: %i[new create]
+>>>>>>> b623b63c49589e98915a9e72a6d457e4455e01b9
   end
 end

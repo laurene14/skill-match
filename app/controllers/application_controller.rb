@@ -16,7 +16,6 @@ class ApplicationController < ActionController::Base
       .permit(:account_update, keys: %i[username address latitude longitude bio distance_preference])
   end
 
-
   # Pundit: allow-list approach
 
   # Uncomment when you *really understand* Pundit!
