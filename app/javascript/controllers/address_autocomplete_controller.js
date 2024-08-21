@@ -1,5 +1,3 @@
-import { Controller } from "@hotwired/stimulus"
-
 // Connects to data-controller="address-autocomplete"
 import { Controller } from "@hotwired/stimulus"
 import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder"

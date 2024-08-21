@@ -10,3 +10,47 @@
 .navbar-lewagon .navbar-brand img {
   width: 40px;
 }
+
+.navbar-bottom .grid {
+  width:100vw;
+  display: grid;
+  grid-template-columns: repeat(5, 20%);
+}
+
+.navbar-bottom div:nth-of-type(3) {
+  position: relative;
+}
+
+.navbar-bottom div:nth-of-type(3) a {
+  background-color: #151515;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  height: 4rem;
+  width: 4rem;
+  top: -2rem;
+  position: absolute;
+  border-radius: 50%;
+  display: grid;
+  align-items: center;
+}
+
+.navbar-bottom div:nth-of-type(3) a i {
+  margin: auto;
+}
+
+.navbar-avatar {
+  position: fixed;
+  top: 1.5rem;
+  left: 1.5rem;
+}
+
+.offcanvas-sidebar {
+  width: 75vw;
+  max-width: 300px;
+}
+
+.offcanvas-sidebar a {
+  display: block;
+}
