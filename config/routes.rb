@@ -10,4 +10,8 @@ Rails.application.routes.draw do
   resources :likes, only: %i[index]
   # Defines the root path route ("/")
   # root "posts#index"
+
+  namespace :user_profile do
+    resources :user_descriptions, only: %i[new create]
+  end
 end
