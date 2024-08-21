@@ -12,20 +12,16 @@ class LikesController < ApplicationController
     @like = Like.new(like_params)
     @like.liker = set_liker
     @like.liked = set_liked
+    authorize @like
     respond_to do |format|
-      if @like.save
-        format.json
-      else
-        format.json
-        format.html {redirect_to root_path, notice: "nooo" }
-      end
+      @like.save ? format.json { render json: @like.to_json } : format.json { render json: @like.errors.to_json }
     end
   end
 
   private
 
   def like_params
-    params.require(:like).permit(:wanted, :liker_id, :liked_id)
+    params.require(:like).permit(:wanted)
   end
 
   def set_liker

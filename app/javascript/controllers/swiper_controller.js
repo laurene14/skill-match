@@ -62,7 +62,7 @@ export default class extends Controller {
       var keep = Math.abs(event.deltaX) < 80 || Math.abs(event.velocityX) < 0.5;
       card.classList.toggle('removed', !keep);
 
-      this.handleRemoveStatusClass(event, !keep);
+      this.handleRemoveStatusClass(card, !keep);
       if (keep) {
         card.style.transform = '';
       } else {
@@ -85,16 +85,16 @@ export default class extends Controller {
     this.element.classList.toggle('swipe--refuse', event.deltaX < 0);
   }
 
-  handleRemoveStatusClass(event, leave) {
+  handleRemoveStatusClass(card, leave) {
     if (this.element.classList.contains('swipe--accept')) {
       this.element.classList.remove('swipe--accept');
       if (leave) {
-        this.handleAccept(event.target.parentElement);
+        this.handleAccept(card);
       }
     } else {
       this.element.classList.remove('swipe--refuse');
       if (leave) {
-        this.handleRefuse(event.target.parentElement);
+        this.handleRefuse(card);
       }
     }
   }
@@ -134,9 +134,6 @@ export default class extends Controller {
   }
 
   handleRefuse(card) {
-    console.log("refuse");
-    console.log(this.currentUserId);
-    console.log(card.id);
     const url = '/likes'
     const options = {
       method: "POST",
@@ -148,14 +145,24 @@ export default class extends Controller {
       })
     }
     fetch(url, options)
-    .then(response => response.json())
-    .then(data => console.log(data))
+      .then(response => response.json())
+      .then(data => console.log(data))
   }
 
   handleAccept(card) {
-    console.log("accept")
-    console.log(this.currentUserId)
-    console.log(card.id)
+    const url = '/likes'
+    const options = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        "liker_id": this.currentUserId,
+        "liked_id": card.id,
+        "wanted": true
+      })
+    }
+    fetch(url, options)
+      .then(response => response.json())
+      .then(data => console.log(data))
 
   }
 

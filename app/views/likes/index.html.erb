@@ -8,7 +8,7 @@
 <%= current_user.username %>
   <div class="swipe__cards">
   <% @users.each do |user| %>
-    <div class="swipe__card border border-2 shadow" data-swiper-target="card" id="<%= user.id %>">
+    <div id="<%= user.id %>" class="swipe__card border border-2 shadow" data-swiper-target="card">
       <div class="swipe__card__box">
         <%= render "shared/avatar", user: user %>
         <button class="shadow" data-swiper-target="follow" data-action="click->swiper#clickFollow"><i class="text-secondary fa-solid fa-bookmark"></i></button>
