@@ -9,7 +9,7 @@ class ApplicationPolicy
   end
 
   def index?
-    false
+    true
   end
 
   def show?
@@ -42,9 +42,9 @@ class ApplicationPolicy
       @scope = scope
     end
 
-    def resolve
-      raise NoMethodError, "You must define #resolve in #{self.class}"
-    end
+    # def resolve
+    #   raise NoMethodError, "You must define #resolve in #{self.class}"
+    # end
 
     private
 

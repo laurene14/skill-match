@@ -1,0 +1,19 @@
+<div class="navbar-avatar" data-bs-toggle="offcanvas" href="#sidbarCanvas" role="button" aria-controls="sidbarCanvas">
+    <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar", alt: "dropdown menu" %>
+</div>
+
+<div class="offcanvas offcanvas-start offcanvas-sidebar" tabindex="-1" id="sidbarCanvas" aria-labelledby="sidbarCanvasLabel">
+  <div class="offcanvas-header">
+  <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar", alt: "dropdown menu" %>
+    <h5 class="offcanvas-title" id="sidbarCanvasLabel"></h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <div>
+      <%= link_to "Profile", "#" %>
+      <%= link_to "Bookmark", "#" %>
+      <%= link_to "connect", new_user_session_path %>
+      <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete} %>
+    </div>
+  </div>
+</div>

@@ -76,6 +76,10 @@ end
 
 puts "Create Users"
 users = [
+  { username: 'xinhe', email: 'xinhe@sm.com', password: '123456', bio: 'Software Developer', address: '123 Main St', latitude: 40.7128, longitude: -74.0060 },
+  { username: 'adil', email: 'adil@sm.com', password: '123456', bio: 'Software Developer', address: '123 Main St', latitude: 40.7128, longitude: -74.0060 },
+  { username: 'laurene', email: 'laurene@sm.com', password: '123456', bio: 'Software Developer', address: '123 Main St', latitude: 40.7128, longitude: -74.0060 },
+  { username: 'severine', email: 'severine@sm.com', password: '123456', bio: 'Software Developer', address: '123 Main St', latitude: 40.7128, longitude: -74.0060 },
   { username: 'alice', email: 'alice@example.com', password: 'password123', bio: 'Software Developer', address: '123 Main St', latitude: 40.7128, longitude: -74.0060 },
   { username: 'bob', email: 'bob@example.com', password: 'password123', bio: 'Graphic Designer', address: '456 Elm St', latitude: 34.0522, longitude: -118.2437 },
   { username: 'charlie', email: 'charlie@example.com', password: 'password123', bio: 'Digital Marketer', address: '789 Maple St', latitude: 37.7749, longitude: -122.4194 },
