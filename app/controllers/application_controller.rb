@@ -31,4 +31,9 @@ class ApplicationController < ActionController::Base
     logger.debug "skip_pundit? result: #{result}"
     result
   end
+
+  # before_action :set_touch_action_style
+  # def set_touch_action_style
+  #   @touch_action_style =
+  # end
 end

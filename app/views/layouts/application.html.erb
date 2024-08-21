@@ -8,9 +8,10 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <script src="<%= asset_path 'hammer.min.js' %>"></script>
   </head>
 
-  <body>
+  <body data-current-user-id="<%= current_user ? current_user.id : "" %>" style="<%= touch_action_style %>">
     <%= render "shared/navbar_avatar" %>
     <%= render "shared/flashes" %>
     <%= yield %>
