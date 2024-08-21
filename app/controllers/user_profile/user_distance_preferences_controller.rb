@@ -6,7 +6,21 @@ module UserProfile
     end
 
     def create
+      @user_distance_preference = UserDistancePreference.new(user_distance_preference_params)
+      if @user_distance_preference.valid?
+        current_user.update(user_distance_preference_params)
+        # TODO Redirect vers la prochaine step
+        authorize @user_distance_preference
+        redirect_to root_path
+      else
+        render :new, status: :unprocessable_entity
+      end
+    end
 
+    private
+
+    def user_distance_preference_params
+      params.require(:user_profile_user_distance_preference).permit(:address, :bio)
     end
   end
 end
