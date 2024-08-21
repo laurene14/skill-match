@@ -1,9 +1,11 @@
 <div class="top">
-  <h1>Welcome <%= @user.username %> ! 👋</h1>
   <h3>Select your skill(s)</h3>
 </div>
 <div class="skills-container">
-  <%= @skills.each do |skill| %>
-  <div class="skill-tag">skill.name</div>
-  <%= end %>
+  <% @categories.each do |category| %>
+  <div class="skill-tag"><%= category.name %></div>
+  <div><% category.skills.each do |skill| %></div>
+    <div><%= skill.name %></div>
+  <% end %>
+  <% end %>
 </div>

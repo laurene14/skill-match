@@ -1,14 +1,16 @@
 module UserProfile
   class UserSkillsController < ApplicationController
-    before_action :set_category, only: %i[new,create]
-
     def new
-      @user = current_user
-      @skills = category.skills
+      @user_skill = UserSkill.new
+      authorize @user_skill
+      @categories = Category.where(id: params[:categories][:name])
+      # @skills = @categories.skills
+      # raise
     end
 
     def create
-      @skill = Skill.new(user_skill_params)
+      authorize @user_skill
+      @user_skill = UserSkill.new(user_skill_params)
     end
 
     private
@@ -18,7 +20,7 @@ module UserProfile
     end
 
     def set_category
-      @category = Category.find_by(name: params[:name])
+      @category = Category.find_by(name: params[:id])
     end
   end
 end
