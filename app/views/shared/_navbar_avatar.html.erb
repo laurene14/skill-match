@@ -1,4 +1,4 @@
-<div class="navbar-avatar" data-bs-toggle="offcanvas" href="#sidbarCanvas" role="button" aria-controls="sidbarCanvas">
+<div class="navbar-avatar <%= 'd-none' if params[:controller] == 'pages' && params[:action] == 'home'%>" data-bs-toggle="offcanvas" href="#sidbarCanvas" role="button" aria-controls="sidbarCanvas">
     <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar", alt: "dropdown menu" %>
 </div>
 
