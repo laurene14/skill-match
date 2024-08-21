@@ -9,7 +9,6 @@ module UserProfile
       @user_distance_preference = UserDistancePreference.new(user_distance_preference_params)
       if @user_distance_preference.valid?
         current_user.update(user_distance_preference_params)
-        # TODO Redirect vers la prochaine step
         authorize @user_distance_preference
         redirect_to root_path
       else
