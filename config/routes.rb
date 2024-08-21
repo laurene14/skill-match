@@ -13,5 +13,6 @@ Rails.application.routes.draw do
 
   namespace :user_profile do
     resources :user_descriptions, only: %i[new create]
+    resources :user_skills, only: %i[new create]
   end
 end

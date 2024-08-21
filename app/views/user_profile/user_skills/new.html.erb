@@ -1,0 +1,9 @@
+<div class="top">
+  <h1>Welcome <%= @user.username %> ! 👋</h1>
+  <h3>Select your skill(s)</h3>
+</div>
+<div class="skills-container">
+  <%= @skills.each do |skill| %>
+  <div class="skill-tag">skill.name</div>
+  <%= end %>
+</div>
