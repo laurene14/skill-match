@@ -9,9 +9,9 @@ module UserProfile
       @user_description = UserDescription.new(user_description_params)
       if @user_description.valid?
         current_user.update(user_description_params)
-        # TODO Redirect vers la prochaine step
         authorize @user_description
-        redirect_to root_path
+        redirect_to new_user_profile_user_skill_category_path
+        # redirect_to root_path
       else
         render :new, status: :unprocessable_entity
       end
