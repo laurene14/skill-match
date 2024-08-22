@@ -1,17 +1,17 @@
 <% links = [
-  {icon: "fa-solid fa-location-pin", path: "#"},
-  {icon: "fa-solid fa-location-pin", path: "#"},
-  {icon: "fa-solid fa-location-pin", path: "#"},
-  {icon: "fa-solid fa-location-pin", path: "#"},
-  {icon: "fa-solid fa-location-pin", path: "#"},
+  {icon: "icons/home-empty.png", path: "#"},
+  {icon: "icons/card-empty.png", path: "#"},
+  {icon: "icons/reverse.png", path: "#"},
+  {icon: "icons/chat-empty.png", path: "#"},
+  {icon: "icons/notif-empty.png", path: "#"},
 ] %>
 
-<div class="navbar fixed-bottom navbar-bottom bg-secondary">
+<div class="navbar fixed-bottom navbar-bottom bg-white rounded-top-5 shadow-sm bg-body-tertiary rounded">
   <div class="grid">
     <% links.each do |link| %>
       <div class="nav-item text-center">
         <%= link_to link[:path] do %>
-          <i class="fs-1 <%= "#{link[:icon]}" %>"></i>
+          <img src="<%= asset_path(link[:icon]) %>" alt="Icon" class="navbar-icon">
         <% end %>
       </div>
     <% end %>
