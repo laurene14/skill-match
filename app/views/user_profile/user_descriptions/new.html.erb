@@ -13,7 +13,8 @@
       data: {
         controller: "address-autocomplete",
         address_autocomplete_target: "address",
-        address_autocomplete_url_value: "https://api-adresse.data.gouv.fr/search/?q="
+        address_autocomplete_url_value: "https://api-adresse.data.gouv.fr/search/?q=",
+        action: 'input->address-autocomplete#onInput'
       },
       class: "form-control"
     }
@@ -27,7 +28,7 @@
   %>
 
   <div class="form-navigation">
-    <%= link_to '❮ PREVIOUS', "#", class: "btn btn-secondary" %>
-    <%= f.button :submit, 'NEXT ❯', class: "btn btn-primary" %>
+    <%= link_to '❮ PREVIOUS', "#", class: "btn" %>
+    <%= f.button :submit, 'NEXT ❯', class: "btn" %>
   </div>
 <% end %>
