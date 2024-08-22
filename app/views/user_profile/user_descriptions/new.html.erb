@@ -1,5 +1,15 @@
 <%= simple_form_for @user_description do |f| %>
-  <%= f.input :address %>
+  <%= f.input :address,
+  input_html: {
+    data: {
+      controller: "address-autocomplete",
+      address_autocomplete_target: "address",
+      address_autocomplete_url_value: "https://api-adresse.data.gouv.fr/search/?q=",
+      class: "d-none"
+    }
+  }
+%>
+
   <%= f.input :bio %>
   <%= f.button :submit %>
 <% end %>
