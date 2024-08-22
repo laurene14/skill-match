@@ -1,5 +1,5 @@
 module UserProfile
-  class UserSkill
+  class FormSkill
     include ActiveModel::Model
 
     attr_accessor :name
