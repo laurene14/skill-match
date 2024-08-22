@@ -15,8 +15,9 @@ Rails.application.routes.draw do
 
   namespace :user_profile do
     resources :user_descriptions, only: %i[new create]
-    resources :user_distance_preferences, only: %i[new create]
     resources :user_skill_categories, only: %i[new]
     resources :form_skills, only: %i[new create]
+    resources :user_wanted_skill_categories, only: %i[new]
+    resources :user_distance_preferences, only: %i[new create]
   end
 end

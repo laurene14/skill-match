@@ -18,7 +18,7 @@ module UserProfile
           wanted: false
         )
       end
-      redirect_to 
+      redirect_to root_path
     end
 
     private
