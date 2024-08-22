@@ -1,32 +1,58 @@
-// Connects to data-controller="address-autocomplete"
 import { Controller } from "@hotwired/stimulus"
-import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder"
 
 // Connects to data-controller="address-autocomplete"
 export default class extends Controller {
-  static values = { apiKey: String }
-
+  static values = { url: String }
   static targets = ["address"]
 
   connect() {
-    this.geocoder = new MapboxGeocoder({
-      accessToken: this.apiKeyValue,
-      types: "country,region,place,postcode,locality,neighborhood,address"
+    this.inputElement = this.addressTarget
+    this.createAutocomplete()
+  }
+
+  createAutocomplete() {
+    this.inputElement.addEventListener('input', (event) => {
+      const query = event.target.value
+      if (query.length < 3) return
+
+      const apiUrl = `${this.urlValue}${encodeURIComponent(query)}&limit=5`
+      fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => this.updateSuggestions(data))
     })
-    this.geocoder.addTo(this.element)
-    this.geocoder.on("result", event => this.#setInputValue(event))
-    this.geocoder.on("clear", () => this.#clearInputValue())
   }
 
-  #setInputValue(event) {
-    this.addressTarget.value = event.result["place_name"]
+  updateSuggestions(data) {
+    this.clearSuggestions()
+
+    const suggestionsContainer = document.createElement('div')
+    suggestionsContainer.classList.add('autocomplete-suggestions')
+
+    data.features.forEach((feature) => {
+      const suggestionItem = document.createElement('div')
+      suggestionItem.classList.add('autocomplete-suggestion')
+      suggestionItem.textContent = feature.properties.label
+      suggestionItem.addEventListener('click', () => this.selectSuggestion(feature))
+
+      suggestionsContainer.appendChild(suggestionItem)
+    })
+
+    this.inputElement.parentNode.appendChild(suggestionsContainer)
   }
 
-  #clearInputValue() {
-    this.addressTarget.value = ""
+  selectSuggestion(feature) {
+    this.inputElement.value = feature.properties.label
+    this.clearSuggestions()
+  }
+
+  clearSuggestions() {
+    const existingSuggestions = this.inputElement.parentNode.querySelector('.autocomplete-suggestions')
+    if (existingSuggestions) {
+      existingSuggestions.remove()
+    }
   }
 
   disconnect() {
-    this.geocoder.onRemove()
+    this.clearSuggestions()
   }
 }
