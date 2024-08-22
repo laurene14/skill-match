@@ -14,7 +14,7 @@ class User < ApplicationRecord
   has_many :skills, through: :user_skills
 
   has_many :likes_as_liker, class_name: 'Like', foreign_key: 'liker_id', dependent: :destroy
-  has_many :likes_as_liked, class_name: 'Like', foreign_key: 'liker_id', dependent: :destroy
+  has_many :likes_as_liked, class_name: 'Like', foreign_key: 'liker_id', dependent: :nullify
 
   has_many :matches_as_user1, class_name: 'Match', foreign_key: 'user1_id', dependent: :destroy
   has_many :matches_as_user2, class_name: 'Match', foreign_key: 'user2_id', dependent: :destroy
