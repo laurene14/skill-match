@@ -182,7 +182,8 @@ ADMINS.each do |key, skills_array|
   admin = User.create(username: name, email: "#{name}@sm.com",
                       password: 123_456, address: "16 villa Gaudelet",
                       latitude: 2.3801, longitude: 48.86495, admin: true)
-  likers = (0..4).to_a.map do |i|
+  likers = []
+  (0..4).to_a.each do |i|
     ind = i % ADDS_PACK.length
     username = rand > 0.5 ? Faker::Name.first_name : Faker::Artist.name
     username += "_"
@@ -192,8 +193,10 @@ ADMINS.each do |key, skills_array|
                         email: "#{username}@#{Faker::Internet.domain_name}",
                         password: 123_456, address: ADDS_PACK[ind][:address],
                         latitude: ADDS_PACK[ind][:latitude], longitude: ADDS_PACK[ind][:longitude])
-    Like.create(liker:, liked: admin, wanted: true)
-    liker
+    if liker.persisted?
+      Like.create(liker:, liked: admin, wanted: true)
+      likers << liker
+    end
   end
   [false, true].each_with_index do |wanted, i|
     skills_array[i].each do |skill|

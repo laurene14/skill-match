@@ -136,13 +136,18 @@ export default class extends Controller {
   }
 
   handleRefuse(card) {
-    const url = '/likes'
-    const body = JSON.stringify({
-      "liker_id": this.currentUserId,
-      "liked_id": card.id,
-      "wanted": false
-    })
-    this.fetchData(url, body)
+    if (card.id === "filtered" && card.id === "all") {
+      // waiting for list
+      window.location.href = '#'
+    } else {
+      const url = '/likes'
+      const body = JSON.stringify({
+        "liker_id": this.currentUserId,
+        "liked_id": card.id,
+        "wanted": false
+      })
+      this.fetchData(url, body)
+    }
   }
 
   handleAccept(card) {
@@ -163,17 +168,14 @@ export default class extends Controller {
   }
 
   handleFollow(card) {
-    if (card.id === "filtered" && card.id === "all") {
-      // waiting for list
-      window.location.href = '#'
-    } else {
-      const url = '/bookmarks'
-      const body = JSON.stringify({
-        "follower_id": this.currentUserId,
-        "following_id": card.id,
-      });
-      this.fetchData(url, body)
-    }
+
+    const url = '/bookmarks'
+    const body = JSON.stringify({
+      "follower_id": this.currentUserId,
+      "following_id": card.id,
+    });
+    this.fetchData(url, body)
+
   }
 
   fetchData(url, body) {
