@@ -6,20 +6,30 @@ export default class extends Controller {
   static targets = ["address"]
 
   connect() {
-    this.inputElement = this.addressTarget
-    this.createAutocomplete()
+    // this.element = this.addressTarget
+    // this.createAutocomplete()
   }
 
-  createAutocomplete() {
-    this.inputElement.addEventListener('input', (event) => {
-      const query = event.target.value
-      if (query.length < 3) return
+  // createAutocomplete() {
+  //   this.element.addEventListener('input', (event) => {
+  //     const query = event.target.value
+  //     if (query.length < 3) return
 
-      const apiUrl = `${this.urlValue}${encodeURIComponent(query)}&limit=5`
-      fetch(apiUrl)
-        .then(response => response.json())
-        .then(data => this.updateSuggestions(data))
-    })
+  //     const apiUrl = `${this.urlValue}${encodeURIComponent(query)}&limit=5`
+  //     fetch(apiUrl)
+  //       .then(response => response.json())
+  //       .then(data => this.updateSuggestions(data))
+  //   })
+  // }
+
+  onInput() {
+    const query = this.element.value
+    if (query.length < 3) return
+
+    const apiUrl = `${this.urlValue}${encodeURIComponent(query)}&limit=5`
+    fetch(apiUrl)
+      .then(response => response.json())
+      .then(data => this.updateSuggestions(data))
   }
 
   updateSuggestions(data) {
@@ -37,16 +47,16 @@ export default class extends Controller {
       suggestionsContainer.appendChild(suggestionItem)
     })
 
-    this.inputElement.parentNode.appendChild(suggestionsContainer)
+    this.element.parentNode.appendChild(suggestionsContainer)
   }
 
   selectSuggestion(feature) {
-    this.inputElement.value = feature.properties.label
+    this.element.value = feature.properties.label
     this.clearSuggestions()
   }
 
   clearSuggestions() {
-    const existingSuggestions = this.inputElement.parentNode.querySelector('.autocomplete-suggestions')
+    const existingSuggestions = this.element.parentNode.querySelector('.autocomplete-suggestions')
     if (existingSuggestions) {
       existingSuggestions.remove()
     }

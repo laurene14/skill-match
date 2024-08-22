@@ -1,49 +1,16 @@
-.subscription-step {
-  max-width: 400px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  text-align: center;
-}
-
-.progress-bar {
-  height: 5px;
-  background-color: #f0f0f0;
-  margin-bottom: 20px;
-  border-radius: 5px;
-}
-
-.progress-bar-fill {
-  height: 100%;
-  background-color: #333333;
-  border-radius: 5px;
-}
-
-.subscription-step h2 {
-  font-weight: bold;
-  font-size: 24px;
-  margin-bottom: 10px;
-}
-
-.subscription-step h3 {
-  font-weight: normal;
-  font-size: 18px;
-  margin-bottom: 20px;
-}
-
 .subscription-step .form-label {
   text-align: left;
   font-weight: bold;
+  padding-left: 3px;
 }
 
 .subscription-step .form-control {
   width: 100%;
   padding: 10px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
+  border-radius: 16px;
+  // border: 1px solid #ccc;
   margin-bottom: 20px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
 .form-navigation {
@@ -55,4 +22,18 @@
   width: 48%;
   padding: 10px;
   font-size: 16px;
+  border-radius: 5px;
+  background-color: $main;
+  color: white;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.user_profile_user_description_address {
+  margin-top: 55px;
+}
+
+.user_profile_user_description_bio {
+  textarea {
+    height: 30vh;
+  }
 }

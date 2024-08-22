@@ -19,5 +19,6 @@ Rails.application.routes.draw do
     resources :user_skills, only: %i[new create]
     resources :user_distance_preferences, only: %i[new create]
     resources :user_congrats, only: %i[show]
+    resources :form_skills, only: %i[new create]
   end
 end
