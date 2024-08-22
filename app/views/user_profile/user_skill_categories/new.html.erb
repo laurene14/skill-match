@@ -1,6 +1,6 @@
 <h1>Categories</h1>
 
-<%= simple_form_for :categories, url: new_user_profile_user_skill_path, method: :get do |f| %>
+<%= simple_form_for :categories, url: new_user_profile_form_skill_path, method: :get do |f| %>
   <%= f.input :name, as: :check_boxes, collection: @categories %>
 
   <%= f.submit "Next Step" %>
