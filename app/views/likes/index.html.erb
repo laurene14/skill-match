@@ -1,4 +1,3 @@
-
 <div class="swipe" data-controller="swiper">
   <div class="swipe__status">
     <i class="swipe__button--refuse fa fa-remove"></i>
@@ -10,7 +9,9 @@
       <div id="<%= user.id %>" class="swipe__card border border-2 shadow" data-swiper-target="card">
         <div class="swipe__card__box">
           <%= render "shared/avatar", user: user %>
-          <button class="shadow" data-swiper-target="follow" data-action="click->swiper#clickFollow"><i class="text-secondary fa-solid fa-bookmark"></i></button>
+          <button class="shadow" data-swiper-target="follow" data-action="click->swiper#clickFollow">
+            <i class="text-secondary fa-solid fa-bookmark"></i>
+          </button>
           <div class="swipe__card__body text-start py-2 px-4">
             <h3 class="text-light fw-bold"><%= user.username %></h3>
             <h2 class="text-light">
@@ -31,29 +32,34 @@
         </div>
       </div>
     <% end %>
+
     <% unless @all == true %>
-      <div class="swipe__card border border-2 shadow" data-swiper-target="card">
-        <div class="swipe__card__box" style="background:center/cover url(https://partyanimals.com/media/museum/media_museum_11.jpg);">
-        <div style="background:rgba(255, 255, 255, 0.5);height:35%">
-            <h3 class="text-primary pt-6 fw-bold">You've finished the card pile!</h3>
-            <h2 class="text-primary-emphasis">See other profils who may interest you?</h2>
+      <div class="swipe__card border border-2 shadow" data-swiper-target="card" id="filtered">
+        <div class="swipe__card__box"
+             style="background:center/cover url(https://partyanimals.com/media/museum/media_museum_11.jpg);">
+          <div style="background:rgba(255, 255, 255, 0.5);height:35%">
+              <h3 class="text-primary pt-6 fw-bold">You've finished the card pile!</h3>
+              <h2 class="text-primary-emphasis">See other profils who may interest you?</h2>
+          </div>
         </div>
-        <div class="m-7"></div>
-            <a href="#" class="btn btn-primary mt-10">check matchlist</a>
-            <a href="/likes?all=" class="btn btn-primary mt-10">See more profils</a>
+        <div style="position:absolute;bottom:40px;left:0;right:0;margin:auto">
+            <a href="#" class="btn btn-primary" style="z-index:2000">Go to matchlist</a>
+            <a href="/likes?all=" class="btn btn-primary">See more profils</a>
         </div>
       </div>
+
     <% else %>
-      <div class="swipe__card border border-2 shadow" data-swiper-target="card">
+      <div class="swipe__card border border-2 shadow" data-swiper-target="card" id="all">
         <div class="swipe__card__box" style="background:center/cover url(https://partyanimals.com/media/museum/media_museum_13.jpg);">
         <div style="background:rgba(255, 255, 255, 0.5);height:35%">
             <h3 class="text-primary pt-6 fw-bold">No more profils for the moment...</h3>
             <h2 class="text-primary-emphasis">You're a real swiper!</h2>
         </div>
-            <a href="#" class="btn btn-primary mt-11">Check matchlist</a>
+            <a href="#" class="btn btn-primary mt-11">Check my matchlist</a>
         </div>
       </div>
     <% end %>
+
   </div>
 
   <div class="swipe__buttons d-none d-lg-block">

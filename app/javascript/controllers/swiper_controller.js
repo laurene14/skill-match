@@ -146,22 +146,34 @@ export default class extends Controller {
   }
 
   handleAccept(card) {
-    const url = '/likes'
-    const body = JSON.stringify({
-      "liker_id": this.currentUserId,
-      "liked_id": card.id,
-      "wanted": true
-    })
-    this.fetchData(url, body)
+    if (card.id === "filtered") {
+      window.location.href = '/likes?all='
+    } else if (card.id === "all") {
+      // waiting for list
+      window.location.href = '#'
+    } else {
+      const url = '/likes'
+      const body = JSON.stringify({
+        "liker_id": this.currentUserId,
+        "liked_id": card.id,
+        "wanted": true
+      })
+      this.fetchData(url, body)
+    }
   }
 
   handleFollow(card) {
-    const url = '/bookmarks'
-    const body = JSON.stringify({
-      "follower_id": this.currentUserId,
-      "following_id": card.id,
-    });
-    this.fetchData(url, body)
+    if (card.id === "filtered" && card.id === "all") {
+      // waiting for list
+      window.location.href = '#'
+    } else {
+      const url = '/bookmarks'
+      const body = JSON.stringify({
+        "follower_id": this.currentUserId,
+        "following_id": card.id,
+      });
+      this.fetchData(url, body)
+    }
   }
 
   fetchData(url, body) {

@@ -48,7 +48,8 @@
 .swipe__cards {
   flex-grow: 1;
   padding-top: 40px;
-  padding-bottom: 160px;
+  height: 100%;
+  padding-bottom: 120px;
   text-align: center;
   display: flex;
   justify-content: center;
@@ -60,7 +61,7 @@
 .swipe__card {
   display: inline-block;
   width: 90vw;
-  max-width: 400px;
+  max-width: 360px;
   aspect-ratio: 10 / 11;
   border-radius: 64px;
   overflow: hidden;
@@ -104,7 +105,7 @@
   height: 35%;
   width: 100%;
   bottom: 0;
-  background-color: rgba(0,0,0,0.5);
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .swipe__card h3 {
@@ -118,7 +119,6 @@
 .swipe__buttons {
   flex: 0 0 100px;
   text-align: center;
-  padding-top: 20px;
 }
 
 .swipe button {
@@ -127,7 +127,7 @@
   height: 48px;
   width: 48px;
   border: 0;
-  background: rgba(255,255,255,0.8);
+  background: rgba(255, 255, 255, 0.8);
   display: inline-block;
   margin: 0 8px;
 }
@@ -147,4 +147,17 @@
 
 .swipe__button--refuse {
   color: #ef4545;
+}
+
+@include media-breakpoint-up(lg) {
+  .swipe__cards {
+    flex-grow: 1;
+    padding-top: 40px;
+    height: 100%;
+    padding-bottom: 40px;
+  }
+
+  .swipe__buttons {
+    flex: 0 0 80px;
+  }
 }
