@@ -12,4 +12,10 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+
+  namespace :user_profile do
+    resources :user_descriptions, only: %i[new create]
+    resources :user_skill_categories, only: %i[new]
+    resources :user_skills, only: %i[new create]
+  end
 end

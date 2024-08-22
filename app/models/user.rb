@@ -27,13 +27,13 @@ class User < ApplicationRecord
 
   has_many :notifications, dependent: :destroy
 
-  validates :username, presence: true, uniqueness: true
-  validate :validate_bio
+  # validates :username, presence: true, uniqueness: true
+  # validate :validate_bio
 
-  validates :address, presence: true
-  validates :distance_preference, presence: true, numericality: {
-    greater_than_or_equal_to: 3, message: "must bigger than 3 km"
-  }
+  # validates :address, presence: true
+  # validates :distance_preference, presence: true, numericality: {
+  #   greater_than_or_equal_to: 3, message: "must bigger than 3 km"
+  # }
 
   def matches_as_user
     # retrieve all matches involving a specific user, regardless of whether they are user1 or user2
@@ -54,7 +54,7 @@ class User < ApplicationRecord
     geocode
   end
 
-  def validate_bio
-    validate_field_cannot_have_only_whitespace(:bio, min_length: 10)
-  end
+  # def validate_bio
+  #   validate_field_cannot_have_only_whitespace(:bio, min_length: 10)
+  # end
 end
