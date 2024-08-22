@@ -1,4 +1,19 @@
 // Specific CSS for your home-page
-body {
-  background-image: url('../../images/homepage.jpg')
+.home-background {
+  background-image: url('homepage.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  height: 100vh;
+  padding: 20px;
+}
+
+.home-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  height: 80vh;
+  justify-content: center;
 }
