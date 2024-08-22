@@ -1,5 +1,20 @@
-<p> Distance max où tu veux trouver tes matchs</p>
+<div class="subscription-step">
+  <div class="progress-bar">
+    <div class="progress-bar-fill" style="width: 100%;"></div>
+  </div>
+
+  <h2>Welcome <%= current_user.username.capitalize %>! <span>👋</span></h2>
+  <h3>Step 6 : What’s your maximum distance?</h3>
+
 <%= simple_form_for @user_distance_preference do |f| %>
-  <%= f.input :distance_preference %>
-  <%= f.button :submit %>
+  <%= f.input :distance_preference , as: :range, input_html: {
+      min: 0,
+      max: 100,
+      step: 1,
+      value: @user_distance_preference || 3,
+      oninput: "this.nextElementSibling.value = this.value"
+    } %>
+    <output><%= @user_distance_preference || 3 %></output> km
+
+  <%= f.submit "Start" %>
 <% end %>
