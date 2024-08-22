@@ -25,12 +25,20 @@ class ApplicationController < ActionController::Base
   #   redirect_to(root_path)
   # end
 
-  def after_sign_up_path(resources)
+  def after_sign_up_path_for(resources)
     # TODO Rediriger vers la premiere étape du form object
     new_user_profile_user_description_path
   end
 
-  def after_sign_in_path(resources)
+  # def after_sign_in_path_for(resource)
+  #   if resource.sign_in_count == 1 # assuming you want this only for the first sign-in
+  #     new_user_profile_user_description_path
+  #   else
+  #     root_path
+  #   end
+  # end
+
+  def after_sign_in_path_for(resources)
     # TODO Rediriger vers la premiere étape du form object
     new_user_profile_user_description_path
   end
