@@ -11,14 +11,21 @@ module UserProfile
     def create
       params[:user_profile_form_skill][:name].delete('')
       @form_skill_ids = params[:user_profile_form_skill][:name]
-      @form_skill_ids.each do |skill_id|
-        UserSkill.create(
-          user: current_user,
-          skill_id: skill_id,
-          wanted: false
-        )
+      # authorize @form_skill_ids
+
+      if @form_skill_ids.present?
+        @form_skill_ids.each do |skill_id|
+          UserSkill.create(
+            user: current_user,
+            skill_id: skill_id,
+            wanted: false
+          )
+        end
+        redirect_to
+      else
+        flash.now[:alert] = 'You must select at least one category.'
+        render :new, status: :unprocessable_entity
       end
-      redirect_to 
     end
 
     private
