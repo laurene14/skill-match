@@ -1,11 +1,11 @@
 
 <div class="swipe" data-controller="swiper">
-
-  <div class="swipe__status">
-    <i class="swipe__button--refuse fa fa-remove"></i>
-    <i class="swipe__button--accept fa fa-heart"></i>
-  </div>
 <%= current_user.username %>
+  <div class="swipe__status">
+    <i class="swipe__button--refuse fa-solid fa-ban"></i>
+    <i class="swipe__button--accept fa-solid fa-circle-check"></i>
+  </div>
+
   <div class="swipe__cards">
   <% @users.each do |user| %>
     <div id="<%= user.id %>" class="swipe__card border border-2 shadow" data-swiper-target="card">
@@ -22,7 +22,7 @@
 
   <div class="swipe__buttons d-none d-lg-block">
     <button data-swiper-target="refuse" data-action="click->swiper#clickRefuse" ><i class="swipe__button--refuse fa fa-remove"></i></button>
-    <button data-swiper-target="accept" data-action="click->swiper#clickAccept" ><i class="swipe__button--accept fa fa-heart"></i></button>
+    <button data-swiper-target="accept" data-action="click->swiper#clickAccept" ><i class="swipe__button--accept fa fa-check"></i></button>
   </div>
 
 </div>

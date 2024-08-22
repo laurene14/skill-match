@@ -36,12 +36,12 @@
 
 // .swipe-accept, .swipe-refuse : classes distributed by js to .swipe when card is dragged
 .swipe--accept .swipe__button--accept {
-  opacity: 0.7;
+  opacity: 0.9;
   transform: scale(1);
 }
 
 .swipe--refuse .swipe__button--refuse {
-  opacity: 0.7;
+  opacity: 0.9;
   transform: scale(1);
 }
 
@@ -127,7 +127,7 @@
   height: 48px;
   width: 48px;
   border: 0;
-  background: #FFFFFF;
+  background: rgba(255,255,255,0.8);
   display: inline-block;
   margin: 0 8px;
 }
@@ -142,9 +142,9 @@
 }
 
 .swipe__button--accept {
-  color: #FFACE4;
+  color: #90ce6b;
 }
 
 .swipe__button--refuse {
-  color: #CDD6DD;
+  color: #ef4545;
 }

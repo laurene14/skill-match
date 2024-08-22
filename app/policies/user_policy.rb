@@ -11,7 +11,11 @@ class UserPolicy < ApplicationPolicy
   class Scope < ApplicationPolicy::Scope
     # NOTE: Be explicit about which records you allow access to!
     def resolve
+      blocked_user_ids = User.joins(:blocks_as_blocker)
+                             .where(blocks: { blocked_id: user.id })
+                             .select(:id)
       scope.where.not(id: user.id)
+           .where.not(id: blocked_user_ids)
     end
   end
 end

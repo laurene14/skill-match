@@ -45,7 +45,7 @@ export default class extends Controller {
       event.preventDefault();
       card.classList.add('moving');
 
-      if (event.daltaX === 0) return;
+      if (event.deltaX === 0) return;
       if (event.center.x === 0 && event.center.y === 0) return;
 
       this.handleToggleStatusClass(event);
