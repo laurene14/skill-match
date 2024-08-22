@@ -6,16 +6,15 @@ class LikesController < ApplicationController
     @users = policy_scope(User)
     @users = @users.where.not(id: set_liked_ids)
                    .where.not(id: set_followed_ids)
+    @users = @users.includes(:wanted_skills, :proposed_skills)
+                   .where(wanted_skills: { id: current_user.proposed_skills.pluck(:id) })
     @all = false
     @current_user_skills_preference = set_current_user_skills_preference
     if params.key?(:all)
-      @users = @users.includes(:wanted_skills, :proposed_skills)
-                     .where(wanted_skills: { id: current_user.proposed_skills.pluck(:id) })
       @all = true
     else
-      @users = @users.includes(:wanted_skills, :proposed_skills)
-                     .where(wanted_skills: { id: current_user.proposed_skills.pluck(:id) })
-                     .where(proposed_skills: { id: current_user.wanted_skills.pluck(:id) })
+      @all = true if @users == []
+      @users = @users.where(proposed_skills: { id: current_user.wanted_skills.pluck(:id) })
     end
   end
 
