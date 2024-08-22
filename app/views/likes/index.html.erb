@@ -1,9 +1,8 @@
 
 <div class="swipe" data-controller="swiper">
-<%= current_user.username %>
   <div class="swipe__status">
-    <i class="swipe__button--refuse fa-solid fa-ban"></i>
-    <i class="swipe__button--accept fa-solid fa-circle-check"></i>
+    <i class="swipe__button--refuse fa fa-remove"></i>
+    <i class="swipe__button--accept fa fa-check"></i>
   </div>
 
   <div class="swipe__cards">
@@ -14,6 +13,10 @@
         <button class="shadow" data-swiper-target="follow" data-action="click->swiper#clickFollow"><i class="text-secondary fa-solid fa-bookmark"></i></button>
         <div class="swipe__card__body text-start py-2 px-4">
           <h3 class="text-light fw-bold"><%= user.username %></h3>
+          <%# <h2 class="text-light">user.proposed_skills[0].name</h2> %>
+          <p class="text-light">
+            <%= user.wanted_skills[0].name %>
+          </p>
         </div>
       </div>
     </div>

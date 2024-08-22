@@ -136,7 +136,8 @@ user_skills.each do |username, skill_names|
   user = User.find_by(username: username)
   skill_names.each do |skill_name|
     skill = Skill.find_by(name: skill_name)
-    UserSkill.create(user: user, skill: skill) if skill
+    wanted = rand > 0.5
+    UserSkill.create(user: user, skill: skill, wanted: wanted) if skill
   end
 end
 

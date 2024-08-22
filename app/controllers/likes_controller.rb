@@ -7,7 +7,7 @@ class LikesController < ApplicationController
     @users = policy_scope(User)
     liked_users_ids = User.joins(:likes_as_liked).where(likes: { liker: current_user }).select(:id)
     followed_users_ids = User.joins(:bookmarks_as_follower).where(bookmarks: { follower: current_user }).select(:id)
-    @users = @users.joins(:wanted_skills).where(skills: { id: current_user.proposed_skills.pluck(&:id) })
+    @users = @users.includes(:wanted_skills, :proposed_skills).where(skills: { id: current_user.proposed_skills.pluck(:id) })
                    .where.not(id: liked_users_ids)
                    .where.not(id: followed_users_ids)
   end
@@ -25,7 +25,7 @@ class LikesController < ApplicationController
   private
 
   def like_params
-    params.require(:like).permit(:wanted)
+    params.require(:like).permit(:wanted, :liker_id, :liked_id)
   end
 
   def set_liker
