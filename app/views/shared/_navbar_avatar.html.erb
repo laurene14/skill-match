@@ -1,10 +1,12 @@
 <div class="navbar-avatar <%= 'd-none' if params[:controller] == 'pages' && params[:action] == 'home'%>" data-bs-toggle="offcanvas" href="#sidbarCanvas" role="button" aria-controls="sidbarCanvas">
-    <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar", alt: "dropdown menu" %>
+
+  <%= render "shared/avatar", user: current_user, class_name:"avatar" %>
 </div>
 
 <div class="offcanvas offcanvas-start offcanvas-sidebar" tabindex="-1" id="sidbarCanvas" aria-labelledby="sidbarCanvasLabel">
   <div class="offcanvas-header">
-  <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar", alt: "dropdown menu" %>
+  <%= render "shared/avatar", user: current_user, class_name:"avatar" %>
+  <%# <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar", alt: "dropdown menu" %>
     <h5 class="offcanvas-title" id="sidbarCanvasLabel"></h5>
     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
