@@ -1,34 +1,29 @@
 module UserProfile
   class FormSkillsController < ApplicationController
+
     def new
       @form_skill = FormSkill.new
-      authorize @form_skill
       @categories = Category.where(id: params[:categories][:name])
+      authorize @form_skill
+
       # @skills = @categories.skills
       # raise
     end
 
     def create
-      params[:user_profile_form_skill][:name].delete('')
-      @form_skill_ids = params[:user_profile_form_skill][:name]
-      # authorize @form_skill_ids
+      @form_skill = FormSkill.new(current_user: current_user, skill_ids: params[:user_profile_form_skill][:skill_ids])
+      @categories = Category.where(id: params[:user_profile_form_skill][:category_ids].split(" "))
+      authorize(@form_skill)
 
-      if @form_skill_ids.present?
-        @form_skill_ids.each do |skill_id|
-          UserSkill.create(
-            user: current_user,
-            skill_id: skill_id,
-            wanted: false
-          )
-        end
-        redirect_to
+      if @form_skill.save
+        redirect_to user_wanted_skill_path
       else
-        flash.now[:alert] = 'You must select at least one category.'
-        render :new, status: :unprocessable_entity
+        render :new, status: :unprocessable_entity, alert: 'You must select at least one category.'
       end
     end
 
     private
+
 
     def form_skill_params
       params.require(:user_profile_form_skill).permit(:name)

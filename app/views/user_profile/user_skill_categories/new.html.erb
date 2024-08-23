@@ -13,7 +13,8 @@
               collection_wrapper_class: 'category-wrapper',
               item_wrapper_class: 'category-item mb-3',
               input_html: {class: 'category-selector'},
-              collection: @categories %>
+              collection: @categories,
+              include_hidden: false %>
 
     <%= f.submit "Next Step" %>
   <% end %>
