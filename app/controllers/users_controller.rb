@@ -7,11 +7,11 @@ class UsersController < ApplicationController
     @users_list = []
     @users_list << @users
                    .joins(:likes_as_liker)
-                   .where(likes: { liked: current_user })
+                   .where(likes: { liked: current_user, wanted: true })
                    .includes(:proposed_skills)
     @users_list << @users
                    .joins(:likes_as_liked)
-                   .where(likes: { liker: current_user })
+                   .where(likes: { liker: current_user, wanted: true })
                    .includes(:proposed_skills)
   end
 
