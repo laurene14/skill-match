@@ -3,6 +3,7 @@ class UsersController < ApplicationController
 
   def index
     @users = policy_scope(User)
+    @users = @users.where.not(id: current_user.matched_user_ids)
     @users_list = []
     @users_list << @users
                    .joins(:likes_as_liker)
@@ -33,5 +34,10 @@ class UsersController < ApplicationController
     @current_user_skills_preference = {
       wanted: current_user.wanted_skills.pluck(:name)
     }
+  end
+
+  def set_matched_ids
+    User.joins(:likes_as_liked).where(likes: { liker: current_user }).select(:id)
+
   end
 end

@@ -50,6 +50,13 @@ class User < ApplicationRecord
     matches_as_user.map(&:chatroom)
   end
 
+  def matched_user_ids
+    user1_matches = matches_as_user1.pluck(:user2_id)
+    user2_matches = matches_as_user2.pluck(:user1_id)
+
+    user1_matches + user2_matches
+  end
+
   private
 
   def conditionally_geocode
