@@ -20,7 +20,7 @@ class User < ApplicationRecord
   has_many :proposed_skills, through: :proposed_user_skills, source: :skill
 
   has_many :likes_as_liker, class_name: 'Like', foreign_key: 'liker_id', dependent: :destroy
-  has_many :likes_as_liked, class_name: 'Like', foreign_key: 'liked_id', dependent: :nullify
+  has_many :likes_as_liked, class_name: 'Like', foreign_key: 'liked_id', dependent: :destroy
 
   has_many :matches_as_user1, class_name: 'Match', foreign_key: 'user1_id', dependent: :destroy
   has_many :matches_as_user2, class_name: 'Match', foreign_key: 'user2_id', dependent: :destroy
@@ -48,6 +48,13 @@ class User < ApplicationRecord
 
   def chatrooms
     matches_as_user.map(&:chatroom)
+  end
+
+  def matched_user_ids
+    user1_matches = matches_as_user1.pluck(:user2_id)
+    user2_matches = matches_as_user2.pluck(:user1_id)
+
+    user1_matches + user2_matches
   end
 
   private

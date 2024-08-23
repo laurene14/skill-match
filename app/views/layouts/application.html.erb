@@ -9,15 +9,23 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
     <script src="<%= asset_path 'hammer.min.js' %>"></script>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="manifest" href="<%= asset_path 'manifest.json' %>">
+    <%= render 'shared/ios_pwa_links' %>
   </head>
 
   <body data-current-user-id="<%= current_user ? current_user.id : "" %>" style="<%= touch_action_style %>">
-    <% if current_page?(root_path) || current_page?(users_path) %>
+    <% if current_page?(notifications_path) || current_page?(categories_path) %>
       <%= render "shared/navbar_avatar" %>
     <% end %>
     <%#= render "shared/flashes" %>
     <%= yield %>
+<<<<<<< HEAD
     <% unless params[:controller].start_with?('user_profile/') || current_page?(new_user_registration_path) || current_page?(edit_user_registration_path) || current_page?(root_path) %>
+=======
+    <% unless params[:controller].start_with?('user_profile/') || current_page?(new_user_registration_path) || current_page?(root_path) %>
+>>>>>>> master
       <%= render "shared/navbar_bottom" %>
     <% end %>
   </body>

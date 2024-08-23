@@ -22,13 +22,13 @@
               <% r1 = @current_user_skills_preference[:wanted] & user.proposed_skills.pluck(:name) %>
               <% if r1 == [] %>
                 <% skill_name = user.proposed_skills[0].name %>
-              <% if skill_name.length > 15 %>
-                <h3 class="text-light">
-                <%= user.proposed_skills[0].name %>
-                </h3>
-              <% else %>
-                <%= user.proposed_skills[0].name %>
-              <% end %>
+                <% if skill_name.length > 15 %>
+                  <h3 class="text-light">
+                  <%= user.proposed_skills[0].name %>
+                  </h3>
+                <% else %>
+                  <%= user.proposed_skills[0].name %>
+                <% end %>
               <% else %>
                 <%= r1[0] %>
                 <% if r1.length > 1 %>
