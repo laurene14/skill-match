@@ -16,6 +16,9 @@
 .form-navigation {
   display: flex;
   justify-content: space-between;
+  position: absolute;
+  bottom: 90px;
+  width: 82vw;
 }
 
 .form-navigation .btn {

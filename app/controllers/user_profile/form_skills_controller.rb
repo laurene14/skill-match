@@ -24,7 +24,6 @@ module UserProfile
 
     private
 
-
     def form_skill_params
       params.require(:user_profile_form_skill).permit(:name)
     end
