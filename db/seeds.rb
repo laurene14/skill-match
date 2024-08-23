@@ -208,7 +208,7 @@ end
 
 puts "create random users in our universe..."
 
-(0...40).tqdm.each do |i|
+(0...30).tqdm.each do |i|
   ind = i % ADDS_PACK.length
   username = Faker::Name.first_name
   user = User.create(username: "#{username.downcase}#{Faker::Name.initials.downcase}",
