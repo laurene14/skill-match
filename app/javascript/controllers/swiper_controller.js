@@ -45,7 +45,7 @@ export default class extends Controller {
       event.preventDefault();
       card.classList.add('moving');
 
-      if (event.daltaX === 0) return;
+      if (event.deltaX === 0) return;
       if (event.center.x === 0 && event.center.y === 0) return;
 
       this.handleToggleStatusClass(event);
@@ -136,32 +136,46 @@ export default class extends Controller {
   }
 
   handleRefuse(card) {
-    const url = '/likes'
-    const body = JSON.stringify({
-      "liker_id": this.currentUserId,
-      "liked_id": card.id,
-      "wanted": false
-    })
-    this.fetchData(url, body)
+    if (card.id === "filtered" && card.id === "all") {
+      // waiting for list
+      window.location.href = '#'
+    } else {
+      const url = '/likes'
+      const body = JSON.stringify({
+        "liker_id": this.currentUserId,
+        "liked_id": card.id,
+        "wanted": false
+      })
+      this.fetchData(url, body)
+    }
   }
 
   handleAccept(card) {
-    const url = '/likes'
-    const body = JSON.stringify({
-      "liker_id": this.currentUserId,
-      "liked_id": card.id,
-      "wanted": true
-    })
-    this.fetchData(url, body)
+    if (card.id === "filtered") {
+      window.location.href = '/likes?all='
+    } else if (card.id === "all") {
+      // waiting for list
+      window.location.href = '#'
+    } else {
+      const url = '/likes'
+      const body = JSON.stringify({
+        "liker_id": this.currentUserId,
+        "liked_id": card.id,
+        "wanted": true
+      })
+      this.fetchData(url, body)
+    }
   }
 
   handleFollow(card) {
+
     const url = '/bookmarks'
     const body = JSON.stringify({
       "follower_id": this.currentUserId,
       "following_id": card.id,
     });
     this.fetchData(url, body)
+
   }
 
   fetchData(url, body) {
