@@ -11,9 +11,15 @@
     <% links.each do |link| %>
       <div class="nav-item text-center">
         <%= link_to link[:path] do %>
-          <img src="<%= asset_path(link[:icon]) %>" alt="Icon" class="navbar-icon">
+          <img src="<%= asset_path(link[:icon]) %>" alt="Icon" class="navbar-icon" id="myIcon">
         <% end %>
       </div>
     <% end %>
   </div>
 </div>
+
+<script>
+  document.getElementById('myIcon').addEventListener('click', function() {
+      this.classList.toggle('clicked-color');
+    });
+</script>
