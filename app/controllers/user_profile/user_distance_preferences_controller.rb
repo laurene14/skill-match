@@ -10,7 +10,7 @@ module UserProfile
       if @user_distance_preference.valid?
         current_user.update(user_distance_preference_params)
         authorize @user_distance_preference
-        redirect_to root_path
+        redirect_to likes_path
       else
         render :new, status: :unprocessable_entity
       end
