@@ -16,7 +16,7 @@ module UserProfile
       authorize(@form_skill)
 
       if @form_skill.save
-        redirect_to user_wanted_skill_path
+        redirect_to new_user_profile_user_wanted_skill_category_path
       else
         render :new, status: :unprocessable_entity, alert: 'You must select at least one category.'
       end
