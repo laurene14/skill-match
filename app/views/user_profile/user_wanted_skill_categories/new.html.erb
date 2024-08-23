@@ -16,6 +16,9 @@
               input_html: {class: 'category-selector'},
               collection: @categories %>
 
-    <%= f.submit "Next Step" %>
+    <div class="form-navigation">
+      <%= link_to '❮ PREVIOUS', "#", class: "btn disabled" %>
+      <%= f.button :submit, 'NEXT ❯', class: "btn" %>
+    </div>
   <% end %>
 </div>

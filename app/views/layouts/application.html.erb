@@ -15,8 +15,10 @@
     <% if current_page?(root_path) || current_page?(users_path) %>
       <%= render "shared/navbar_avatar" %>
     <% end %>
-    <%= render "shared/flashes" %>
+    <%#= render "shared/flashes" %>
     <%= yield %>
+    <% if current_page?(root_path) || current_page?(users_path) %>
     <%= render "shared/navbar_bottom" %>
+    <% end %>
   </body>
 </html>
