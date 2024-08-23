@@ -1,0 +1,54 @@
+<div class="container mt-3 mb-9">
+
+  <ul class="nav nav-pills p-2 bg-primary-subtle rounded-pill d-flex mx-auto justify-content-between w-75" id="match" role="tablist">
+      <li class="nav-item" style="min-width:40%" role="presentation">
+        <button class="nav-link active rounded-pill"
+                id="match-send-tab"
+                data-bs-toggle="pill"
+                data-bs-target="#match-send"
+                type="button"
+                role="tab"
+                aria-controls="match-tab-send"
+                aria-selected="true">
+          Sent
+          <% unless @users_list[1].empty? %>
+            (<%= @users_list[1].length %>)
+          <% end %>
+        </button>
+      </li>
+      <li class="nav-item" style="min-width:40%" role="presentation">
+        <button class="nav-link rounded-pill"
+                id="match-received-tab"
+                data-bs-toggle="pill"
+                data-bs-target="#match-received"
+                type="button"
+                role="tab"
+                aria-controls="match-tab-received"
+                aria-selected="false">
+          Received
+          <% unless @users_list[0].empty? %>
+            (<%= @users_list[0].length %>)
+          <% end %>
+        </button>
+      </li>
+  </ul>
+
+  <div class="my-3"></div>
+
+  <div class="tab-content" id="match-content">
+    <div class="tab-pane fade show active"
+          id="match-send"
+          role="tabpanel"
+          aria-labelledby="match-tab-send"
+          tabindex="0">
+      <%= render 'users/users', user_list: @users_list[1], current_user_wanted_skills: @current_user_skills_preference[:wanted] %>
+    </div>
+    <div class="tab-pane fade"
+          id="match-received"
+          role="tabpanel"
+          aria-labelledby="match-tab-received"
+          tabindex="0">
+      <%= render 'users/users', user_list: @users_list[0], current_user_wanted_skills: @current_user_skills_preference[:wanted] %>
+    </div>
+  </div>
+</div>
