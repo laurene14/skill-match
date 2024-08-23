@@ -1,25 +1,18 @@
-<% links = [
-  {icon: "icons/home-empty.png", path: "#"},
-  {icon: "icons/card-empty.png", path: "#"},
-  {icon: "icons/reverse.png", path: "#"},
-  {icon: "icons/chat-empty.png", path: "#"},
-  {icon: "icons/notif-empty.png", path: "#"},
-] %>
-
+<%=   links = [
+    {icon_inactive: "icons/home-empty.png", icon_active: "icons/home-full.png", path: "/categories"},
+    {icon_inactive: "icons/card-empty.png", icon_active: "icons/card-full.png", path: "/users"},
+    {icon_inactive: "icons/reverse.png", icon_active: "icons/reverse.png", path: "/likes"},
+    {icon_inactive: "icons/chat-empty.png", icon_active: "icons/chat-full.png", path: "/matchs"},
+    {icon_inactive: "icons/notif-empty.png", icon_active: "icons/notif-full.png", path: "/notifications"},
+  ] %>
 <div class="navbar fixed-bottom navbar-bottom bg-white rounded-top-5 shadow-sm bg-body-tertiary rounded">
-  <div class="grid">
+  <div class="grid" data-controller="navbar-bottom">
     <% links.each do |link| %>
       <div class="nav-item text-center">
         <%= link_to link[:path] do %>
-          <img src="<%= asset_path(link[:icon]) %>" alt="Icon" class="navbar-icon" id="myIcon">
+          <img alt="Icon" class="navbar-icon" data-navbar-bottom-target="bottom">
         <% end %>
       </div>
     <% end %>
   </div>
 </div>
-
-<script>
-  document.getElementById('myIcon').addEventListener('click', function() {
-      this.classList.toggle('clicked-color');
-    });
-</script>
