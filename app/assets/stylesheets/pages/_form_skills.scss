@@ -1,17 +1,4 @@
-.top{
-  margin-top: 20px;
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-}
-
-.category-name{
-  font-size: 20px;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-.user_profile_form_skill_name {
+.new_user_profile_form_skill, .new_user_profile_wanted_form_skill {
   legend {
     display: none;
   }

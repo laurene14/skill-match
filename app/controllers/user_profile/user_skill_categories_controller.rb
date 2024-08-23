@@ -1,6 +1,6 @@
 module UserProfile
   class UserSkillCategoriesController < ApplicationController
-  before_action :authorize_user_skill_category, only: %i[new create]
+    before_action :authorize_user_skill_category, only: %i[new create]
 
     def new
       @user_skill_category = UserSkillCategory.new

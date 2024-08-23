@@ -1,20 +1,17 @@
 <div class="subscription-step">
-  <div class="progress-bar">
-    <div class="progress-bar-fill" style="width: 33.33%;"></div>
+   <div class="progress-bar">
+    <div class="progress-bar-fill" style="width: 66.33%;"></div>
   </div>
 
   <h2>Welcome <%= current_user.username.capitalize %>! <span>👋</span></h2>
-  <h3>Step 3: Select your skill(s)</h3>
+  <h3>Step 5: Select your wanted skill(s)</h3>
 
-  <%= simple_form_for @form_skill do |f| %>
+  <%= simple_form_for @wanted_form_skill do |f| %>
     <% @categories.each do |category| %>
       <h4><%= category.name %></h4>
-
-        <% category_ids = params[:categories].present? ? params[:categories][:name] : params[:user_profile_form_skill][:category_ids] %>
-
+        <% category_ids = params[:categories].present? ? params[:categories][:name] : params[:user_profile_wanted_form_skill][:category_ids] %>
         <%= f.hidden_field :category_ids, value: category_ids %>
-
-        <%= f.input :skill_ids,
+        <%= f.input :wanted_skill_ids,
                     as: :check_boxes,
                     collection: category.skills,
                     input_html: { class: "tag-selector" },
