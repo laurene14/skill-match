@@ -5,7 +5,7 @@
     {icon_inactive: "icons/chat-empty.png", icon_active: "icons/chat-full.png", path: "/matchs"},
     {icon_inactive: "icons/notif-empty.png", icon_active: "icons/notif-full.png", path: "/notifications"},
   ] %>
-<div class="navbar fixed-bottom navbar-bottom bg-white rounded-top-5 shadow-sm bg-body-tertiary rounded">
+<div class="navbar fixed-bottom navbar-bottom bg-white rounded-top-5 shadow-sm bg-body-tertiary rounded pb-4">
   <div class="grid" data-controller="navbar-bottom">
     <% links.each do |link| %>
     <% img_path = link[:path].include?(params[:controller]) ? link[:icon_active] : link[:icon_inactive] %>
