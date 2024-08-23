@@ -8,9 +8,10 @@
 <div class="navbar fixed-bottom navbar-bottom bg-white rounded-top-5 shadow-sm bg-body-tertiary rounded">
   <div class="grid" data-controller="navbar-bottom">
     <% links.each do |link| %>
+    <% img_path = link[:path].include?(params[:controller]) ? link[:icon_active] : link[:icon_inactive] %>
       <div class="nav-item text-center">
         <%= link_to link[:path] do %>
-          <img alt="Icon" class="navbar-icon" data-navbar-bottom-target="bottom">
+        <%= image_tag img_path, alt:"Icon", class:"navbar-icon" %>
         <% end %>
       </div>
     <% end %>
