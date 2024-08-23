@@ -17,8 +17,8 @@
     <% end %>
     <%#= render "shared/flashes" %>
     <%= yield %>
-    <% if current_page?(root_path) || current_page?(users_path) %>
-    <%= render "shared/navbar_bottom" %>
+    <% unless params[:controller].start_with?('user_profile/') || current_page?(new_user_registration_path) || current_page?(edit_user_registration_path) || current_page?(user_registration_path) || current_page?(root_path) %>
+      <%= render "shared/navbar_bottom" %>
     <% end %>
   </body>
 </html>

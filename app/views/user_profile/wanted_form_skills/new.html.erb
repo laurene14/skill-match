@@ -1,6 +1,6 @@
 <div class="subscription-step">
    <div class="progress-bar">
-    <div class="progress-bar-fill" style="width: 66.33%;"></div>
+    <div class="progress-bar-fill" style="width: 83.31%;"></div>
   </div>
 
   <h2>Welcome <%= current_user.username.capitalize %>! <span>👋</span></h2>
@@ -19,7 +19,7 @@
                     include_hidden: false %>
       <% end %>
     <div class="form-navigation">
-      <%= link_to '❮ PREVIOUS', "#", class: "btn" %>
+      <%= link_to '❮ PREVIOUS', "#", class: "btn disabled" %>
       <%= f.button :submit, 'NEXT ❯', class: "btn" %>
     </div>
   <% end %>
