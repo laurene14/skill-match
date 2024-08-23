@@ -1,12 +1,12 @@
 <div class="subscription-step">
   <div class="progress-bar">
-    <div class="progress-bar-fill" style="width: 33.33%;"></div>
+    <div class="progress-bar-fill" style="width: 66.66%;"></div>
   </div>
 
   <h2>Welcome <%= current_user.username.capitalize %>! <span>👋</span></h2>
-  <h3>Step 2: Select your skill’s categories</h3>
+  <h3>Step 4: Select your wanted skill’s categories</h3>
 
-  <%= simple_form_for :categories, url: new_user_profile_form_skill_path, method: :get do |f| %>
+  <%= simple_form_for :categories, url: new_user_profile_wanted_form_skill_path, method: :get do |f| %>
     <%= f.input :name,
               label: 'Choose at least one category',
               as: :check_boxes,
@@ -14,12 +14,8 @@
               collection_wrapper_class: 'category-wrapper',
               item_wrapper_class: 'category-item mb-3',
               input_html: {class: 'category-selector'},
-              collection: @categories,
-              include_hidden: false %>
+              collection: @categories %>
 
-    <div class="form-navigation">
-      <%= link_to '❮ PREVIOUS', "#", class: "btn" %>
-      <%= f.button :submit, 'NEXT ❯', class: "btn" %>
-    </div>
+    <%= f.submit "Next Step" %>
   <% end %>
 </div>

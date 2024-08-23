@@ -2,6 +2,10 @@ class Block < ApplicationRecord
   belongs_to :blocker, class_name: "User"
   belongs_to :blocked, class_name: "User"
 
+  validates :blocker, uniqueness: {
+    scope: %i[blocked], message: "Cannot have 2 entries for the same blocker - blocked group"
+  }
+
   after_create :disconnect_with_blocked
 
   private

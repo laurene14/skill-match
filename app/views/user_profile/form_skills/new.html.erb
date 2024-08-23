@@ -1,20 +1,29 @@
-<div class="top">
-  <h4>Step 3: Select your skill(s)</h4>
-  <div class="skills-container">
+<div class="subscription-step">
+  <div class="progress-bar">
+    <div class="progress-bar-fill" style="width: 33.33%;"></div>
+  </div>
+
+  <h2>Welcome <%= current_user.username.capitalize %>! <span>👋</span></h2>
+  <h3>Step 3: Select your skill(s)</h3>
+
   <%= simple_form_for @form_skill do |f| %>
     <% @categories.each do |category| %>
-      <div class="category-name"><%= category.name %></div>
-        <%= f.input :name,
+      <h4><%= category.name %></h4>
+
+        <% category_ids = params[:categories].present? ? params[:categories][:name] : params[:user_profile_form_skill][:category_ids] %>
+
+        <%= f.hidden_field :category_ids, value: category_ids %>
+
+        <%= f.input :skill_ids,
                     as: :check_boxes,
                     collection: category.skills,
                     input_html: { class: "tag-selector" },
-                    item_wrapper_class: 'tag-item' %>
+                    item_wrapper_class: 'tag-item',
+                    include_hidden: false %>
       <% end %>
-      <%= f.submit "Next Step" %>
-    <% end %>
-  </div>
+    <div class="form-navigation">
+      <%= link_to '❮ PREVIOUS', "#", class: "btn" %>
+      <%= f.button :submit, 'NEXT ❯', class: "btn" %>
+    </div>
+  <% end %>
 </div>
-
-<%# <div><% category.skills.each do |skill|</div> %>
-  <%# <div><%= skill.name</div> %>
-<%# <% end %>
