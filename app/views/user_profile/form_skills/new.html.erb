@@ -10,7 +10,7 @@
     <% @categories.each do |category| %>
       <h5><%= category.name %></h5>
 
-        <% category_ids = params[:categories].present? ? params[:categories][:name] : params[:user_profile_form_skill][:category_ids] %>
+        <% category_ids = params[:categories].present? ? params[:categories] : params[:user_profile_form_skill][:category_ids] %>
 
         <%= f.hidden_field :category_ids, value: category_ids %>
 

@@ -3,7 +3,7 @@ module UserProfile
 
     def new
       @form_skill = FormSkill.new
-      @categories = Category.where(id: params[:categories][:name])
+      @categories = Category.where(id: params[:categories])
       authorize @form_skill
 
       # @skills = @categories.skills
