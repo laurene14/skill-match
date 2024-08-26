@@ -4,7 +4,7 @@
   </div>
 
   <h2>Welcome <%= current_user.username.capitalize %>! <span>👋</span></h2>
-  <h3>Step 2: Select your skill’s categories</h3>
+  <h3>Step 2: Select <span>YOUR</span> skill’s categories</h3>
 
   <%= simple_form_for :categories, url: new_user_profile_form_skill_path, method: :get do |f| %>
     <%= f.input :name,
