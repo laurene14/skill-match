@@ -8,7 +8,7 @@
 
   <%= simple_form_for @form_skill do |f| %>
     <% @categories.each do |category| %>
-      <h4><%= category.name %></h4>
+      <h5><%= category.name %></h5>
 
         <% category_ids = params[:categories].present? ? params[:categories][:name] : params[:user_profile_form_skill][:category_ids] %>
 
