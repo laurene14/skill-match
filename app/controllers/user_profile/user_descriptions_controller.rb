@@ -20,7 +20,7 @@ module UserProfile
     private
 
     def user_description_params
-      params.require(:user_profile_user_description).permit(:address, :bio)
+      params.require(:user_profile_user_description).permit(:address, :bio, photos: [])
     end
   end
 end

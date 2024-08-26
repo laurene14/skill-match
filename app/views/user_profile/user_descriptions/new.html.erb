@@ -28,6 +28,12 @@
       input_html: { rows: 3 }
     %>
 
+    <%= f.input :photos,
+      label: "Upload your photo",
+      as: :file,
+      input_html: { multiple: true }
+    %>
+
     <div class="form-navigation">
       <%#= link_to '❮ PREVIOUS', "#", class: "btn disabled" %>
       <%= f.button :submit, 'NEXT ❯', class: "btn" %>

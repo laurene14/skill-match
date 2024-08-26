@@ -1,0 +1,71 @@
+<div class="user-profile-page">
+  <div class="user-profile-header my-6">
+    <div class="user-profile-info d-flex">
+      <div><h2><%= @user.username.capitalize %></h2></div>
+      <div><i class="fa-regular fa-square-caret-up nav-up"></i></div>
+    </div>
+  </div>
+
+  <% if @user.photos.any? %>
+    <div id="profilePhotos" class="carousel slide">
+      <div class="carousel-indicators">
+        <% @user.photos.each_with_index do |photo, index| %>
+          <button type="button" data-bs-target="#profilePhotos" data-bs-slide-to="<%= index %>" class="<%= 'active' if index == 0 %>" aria-current="<%= 'true' if index == 0 %>" aria-label="Slide <%= index + 1 %>"></button>
+        <% end %>
+      </div>
+
+      <div class="carousel-inner rounded-5">
+        <% @user.photos.each_with_index do |photo, index| %>
+          <div class="carousel-item <%= 'active' if index == 0 %>">
+            <%= cl_image_tag photo.key, height: 330, width: 310, gravity: "face", crop: :fill, class: "d-block w-100 object-fit-cover" %>
+          </div>
+        <% end %>
+      </div>
+
+      <button class="carousel-control-prev" type="button" data-bs-target="#profilePhotos" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#profilePhotos" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  <% else %>
+    <p>No photos uploaded yet.</p>
+  <% end %>
+
+  <div class="profile-sections-up mb-3">
+    <div class="profile-section">
+      <h3>Who I Am</h3>
+      <p><%= @user.bio.presence || "Tell us more about yourself!" %></p>
+    </div>
+
+    <div class="profile-section">
+      <h3>My skills</h3>
+      <p>
+        <% @skills.each do |skill| %>
+         <div class="skill-tag"><%= skill.name %></div>
+        <% end %>
+      </p>
+      <%= link_to new_user_profile_form_skill_path, class: "edit-link" do %>
+        <i class="edit-icon"></i>
+      <% end %>
+    </div>
+
+  </div>
+
+</div>
+<div class="user-profile-page-bottom">
+  <div class="profile-sections-bottom">
+    <div class="profile-section">
+      <h3>Wanted skills</h3>
+      <% @wanted_skills.each do |wanted_skill| %>
+         <div class="wanted-skill-tag"><%= wanted_skill.name %></div>
+      <% end %>
+      <%= link_to new_user_profile_wanted_form_skill_path, class: "edit-link" do %>
+        <i class="edit-icon"></i>
+      <% end %>
+    </div>
+  </div>
+</div>
