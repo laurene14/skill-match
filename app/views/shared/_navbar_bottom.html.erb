@@ -1,9 +1,10 @@
 <% links = [
-    {icon_inactive: "icons/home-empty.png", icon_active: "icons/home-full.png", path: "/categories"},
-    {icon_inactive: "icons/card-empty.png", icon_active: "icons/card-full.png", path: "/users"},
+    {icon_inactive: "icons/home-empty.png", icon_active: "icons/home-full.png", path: "/categories", label: "Home"},
+    {icon_inactive: "icons/card-empty.png", icon_active: "icons/card-full.png", path: "/users", label: "Activities"},
     {icon_inactive: "icons/reverse-empty.png", icon_active: "icons/reverse-full.png", path: "/likes"},
-    {icon_inactive: "icons/chat-empty.png", icon_active: "icons/chat-full.png", path: "/matchs"},
-    {icon_inactive: "icons/notif-empty.png", icon_active: "icons/notif-full.png", path: "/notifications"},
+    {icon_inactive: "icons/chat-empty.png", icon_active: "icons/chat-full.png", path: "/matchs", label: "Chats"},
+    {icon_inactive: "icons/notif-empty.png", icon_active: "icons/notif-full.png", path: "/notifications", label: "Notifications
+    "},
   ] %>
 <div class="navbar fixed-bottom navbar-bottom bg-white rounded-top-5 shadow-sm bg-body-tertiary rounded pb-4">
   <div class="grid" data-controller="navbar-bottom">
@@ -12,6 +13,7 @@
       <div class="nav-item text-center">
         <%= link_to link[:path] do %>
         <%= image_tag img_path, alt:"Icon", class:"navbar-icon" %>
+        <div class="navbar-label"><%= link[:label] %></div>
         <% end %>
       </div>
     <% end %>
