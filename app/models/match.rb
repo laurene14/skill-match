@@ -3,6 +3,7 @@ class Match < ApplicationRecord
   belongs_to :user2, class_name: 'User'
 
   has_one :chatroom, dependent: :destroy
+  has_many :messages, dependent: :destroy
 
   after_create :create_chatroom, if: :saved_change_to_id?
 
