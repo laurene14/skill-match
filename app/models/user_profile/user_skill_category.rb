@@ -4,6 +4,7 @@ module UserProfile
 
     attr_accessor :category_ids, :name, :current_user
 
+    # validates :name, uniqueness: true
     validate :category_id_presence
 
     private
