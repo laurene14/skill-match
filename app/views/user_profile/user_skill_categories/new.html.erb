@@ -8,7 +8,7 @@
 
   <%= simple_form_for @user_skill_category do |f| %>
     <%= f.input :name,
-              label: 'Choose at least one category',
+              legend: false,
               as: :check_boxes,
               collection_wrapper_tag: 'div',
               collection_wrapper_class: 'category-wrapper',
