@@ -1,3 +1,4 @@
+<div class="container mt-9 mb-9">
 <h2>Log in</h2>
 
 <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
@@ -9,12 +10,21 @@
     <%= f.input :password,
                 required: false,
                 input_html: { autocomplete: "current-password" } %>
+    <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+      <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
+    <% end %>
     <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
   </div>
 
+
   <div class="form-actions">
-    <%= f.button :submit, "Log in", class: "button-home m-5 "%>
+    <%= f.button :submit, "Log in", class: "button-home m-5 bg-primary text-light"%>
   </div>
 <% end %>
-
-<%= render "devise/shared/links" %>
+<hr class="inscription my-5">
+  <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+    <%= link_to "Sign up",
+                new_registration_path(resource_name),
+                class:"btn button-home btn-outline-primary" %>
+  <% end %>
+</div>
