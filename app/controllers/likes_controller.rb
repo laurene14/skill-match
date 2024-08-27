@@ -20,11 +20,16 @@ class LikesController < ApplicationController
 
   def create
     @like = Like.new(like_params)
-    p @like.liker = User.find(params[:liker_id])
-    p @like.liked = User.find(params[:liked_id])
+    liker_liked_id = [params[:liker_id], params[:liked_id]]
+    @like.liker = User.find(liker_liked_id[0])
     authorize @like
+    @like.liked = User.find(liker_liked_id[1])
     respond_to do |format|
-      @like.save ? format.json { render status: 201 } : format.json { render json: @like.errors, status: 422 }
+      if @like.save
+        Match.where(user1_id: liker_liked_id.min, user2_id: liker_liked_id.max).empty? ? format.json { render status: 201 } : format.json { render json: @like, status: 207 }
+      else
+        format.json { render json: @like.errors, status: 422 }
+      end
     end
   end
 
