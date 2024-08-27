@@ -6,15 +6,6 @@ module UserProfile
 
     validate :category_id_presence
 
-    # def save
-    #   if valid?
-    #     ActiveRecord::Base.transaction do
-    #       category_ids.each do |category_id|
-
-    #       end
-    #     end
-    # end
-
     private
 
     def category_id_presence

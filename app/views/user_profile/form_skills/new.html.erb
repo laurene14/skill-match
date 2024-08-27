@@ -4,11 +4,12 @@
   </div>
 
   <h2>Welcome <%= current_user.username.capitalize %>! <span>👋</span></h2>
-  <h3>Step 3: Select your skill(s)</h3>
+  <h4>Step 3: Select your skill(s)</h4>
+  <div class="step-underline"></div>
 
-  <%= simple_form_for @form_skill do |f| %>
+  <%= simple_form_for @form_skill, html: { class: 'skills-wrapper'} do |f| %>
     <% @categories.each do |category| %>
-      <h4><%= category.name %></h4>
+      <h5><%= category.name %></h5>
 
         <% category_ids = params[:categories].present? ? params[:categories] : params[:user_profile_form_skill][:category_ids] %>
 
@@ -17,8 +18,8 @@
         <%= f.input :skill_ids,
                     as: :check_boxes,
                     collection: category.skills,
-                    input_html: { class: "tag-selector" },
                     item_wrapper_class: 'tag-item',
+                    input_html: { class: "tag-selector" },
                     include_hidden: false %>
       <% end %>
     <div class="form-navigation">

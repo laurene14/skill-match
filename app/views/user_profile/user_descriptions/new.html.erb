@@ -4,7 +4,8 @@
   </div>
 
   <h2>Welcome <%= current_user.username.capitalize %>! <span>👋</span></h2>
-  <h3>Step 1: who are you?</h3>
+  <h4>Step 1: who are you?</h4>
+  <div class="step-underline"></div>
 
   <%= simple_form_for @user_description do |f| %>
     <%= f.input :address,
@@ -26,6 +27,12 @@
       as: :text,
       placeholder: "Tell us more about you and why you’re here!",
       input_html: { rows: 3 }
+    %>
+
+    <%= f.input :photos,
+      label: "Upload your photo",
+      as: :file,
+      input_html: { multiple: true }
     %>
 
     <div class="form-navigation">
