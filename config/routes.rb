@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   # root "posts#index"
 
   namespace :user_profile do
+    get 'profile/show'
     resources :user_descriptions, only: %i[new create]
     resources :user_skill_categories, only: %i[new create]
     resources :user_skills, only: %i[new create]
@@ -26,5 +27,6 @@ Rails.application.routes.draw do
     resources :wanted_form_skills, only: %i[new create]
     resources :user_wanted_skill_categories, only: %i[new create]
     resources :user_distance_preferences, only: %i[new create]
+    resources :profile, only: %i[show]
   end
 end

@@ -1,0 +1,199 @@
+// .user-profile-page-bottom {
+
+// }
+
+
+.user-profile-page {
+  background-color: $main;
+  padding: 0 8vw;
+  display: flex;
+  flex-direction: column;
+  color: white;
+  border-radius: 0 0 30px 30px;
+
+  .carousel-radius {
+    border-radius: 61px;
+  }
+
+
+  .user-profile-header {
+    // display: flex;
+    // justify-content: space-between;
+    // align-items: center;
+
+    .user-profile-info {
+      h2 {
+        font-size: 20px;
+        font-family: montserrat;
+        font-weight: bold;
+        padding-left: 5px;
+      }
+      p {
+        font-size: 16px;
+        margin: 0;
+      }
+      .font-normal {
+        font-weight: 200;
+      }
+
+      align-items: baseline;
+      justify-content: space-between;
+
+      .nav-down {
+        font-size: 27px;
+        color: white
+      }
+    }
+
+    .user-profile-pic {
+      position: relative;
+
+      .profile-avatar {
+        border-radius: 50%;
+        width: 45px;
+        height: 45px;
+      }
+
+      .btn {
+        display: block;
+        background-color: #333;
+        color: #fff;
+        padding: 5px 10px;
+        text-align: center;
+        margin-top: 5px;
+        border-radius: 4px;
+        font-size: 14px;
+      }
+    }
+  }
+
+  .profile-sections-up {
+    margin-top: 20px;
+
+    .profile-section {
+      padding: 15px 0;
+      position: relative;
+
+      h3 {
+        font-size: 18px;
+        font-family: montserrat;
+        font-weight: bold;
+        margin-bottom: 15px;
+      }
+
+      p {
+        font-size: 14px;
+        margin: 0;
+      }
+
+    }
+  }
+  .profile-sections-bottom {
+    margin-top: 20px;
+
+    .profile-section {
+      // border-bottom: 1px solid #ccc;
+      padding: 15px 0;
+      position: relative;
+
+      h3 {
+        font-size: 18px;
+        margin-bottom: 10px;
+      }
+
+      p {
+        font-size: 14px;
+        margin: 0;
+      }
+
+      .edit-link {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        font-size: 16px;
+
+        .edit-icon {
+          font-size: 20px;
+          color: #000;
+        }
+      }
+    }
+  }
+}
+
+.user-profile-page-bottom {
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+
+  .profile-sections-bottom {
+    margin-top: 20px;
+
+    .profile-section {
+      padding: 15px 0;
+      position: relative;
+
+      h3 {
+        font-size: 18px;
+        font-family: montserrat;
+        font-weight: bold;
+      }
+
+      p {
+        font-size: 14px;
+        margin: 0;
+      }
+
+      .edit-link {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        font-size: 16px;
+
+        .edit-icon {
+          font-size: 20px;
+          color: #000;
+        }
+      }
+    }
+  }
+}
+
+
+
+
+.edit-link {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  font-size: 16px;
+
+  .edit-icon {
+    font-size: 20px;
+    color: #000;
+  }
+}
+
+.skill-tag {
+  display: inline-block;
+  font-size: 0.79rem;
+  border-radius: 50rem;
+  padding: 0.1rem 0.5rem;
+  background-color: #ECEAFF;
+  color: #7E73FF;
+  border: 1px solid #7E73FF;
+  margin-right: 0.6rem;
+  margin-bottom: 0.4rem;
+}
+
+.wanted-skill-tag {
+  background-color: #7E73FF;
+  color: white;
+  display: inline-block;
+  font-size: 0.79rem;
+  border-radius: 50rem;
+  padding: 0.1rem 0.5rem;
+  border: 1px solid #7E73FF;
+  margin-right: 0.6rem;
+  margin-bottom: 0.4rem;
+}
