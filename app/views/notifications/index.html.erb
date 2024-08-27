@@ -1,0 +1,21 @@
+<div id="demo" style="width:300px;height:300px;background:#424242;">
+</div>
+
+<script>
+// Pass in the id of an element
+let confetti = new Confetti('demo');
+
+// Edit given parameters
+confetti.setCount(75);
+confetti.setSize(1);
+confetti.setPower(25);
+confetti.setFade(false);
+confetti.destroyTarget(true);
+const con = document.getElementById("demo");
+console.log(con)
+setInterval(() => {
+con.click()
+
+}, 3000);
+
+</script>
