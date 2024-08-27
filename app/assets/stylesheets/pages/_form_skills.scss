@@ -1,14 +1,11 @@
-.new_user_profile_form_skill, .new_user_profile_wanted_form_skill {
+.new_user_profile_form_skill,
+.new_user_profile_wanted_form_skill {
   legend {
     display: none;
   }
 }
 
-.skills-wrapper {
-  margin-top: 20px;
-  overflow: scroll;
-  height: 60vh;
-}
+.skills-wrapper {}
 
 .tag-item {
   display: inline-block;
