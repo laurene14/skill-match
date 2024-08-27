@@ -2,17 +2,15 @@ class UsersController < ApplicationController
   before_action :set_current_user_skills_preference, only: %i[index show]
 
   def index
-    @users = policy_scope(User)
-    @users = @users.where.not(id: current_user.matched_user_ids)
-    @users_list = []
-    @users_list << @users
-                   .joins(:likes_as_liker)
-                   .where(likes: { liked: current_user, wanted: true })
-                   .includes(:proposed_skills)
-    @users_list << @users
-                   .joins(:likes_as_liked)
-                   .where(likes: { liker: current_user, wanted: true })
-                   .includes(:proposed_skills)
+    @likes = policy_scope(Like)
+    @likeds = @likes.where(likes: { liker: current_user, wanted: true })
+                    .joins(:liked)
+                    .includes(liked: :proposed_skills)
+                    .where.not(likes: { liked_id: current_user.matched_user_ids })
+    @likers = @likes.where(likes: { liked: current_user, wanted: true })
+                    .joins(:liker)
+                    .includes(liker: :proposed_skills)
+                    .where.not(likes: { liker_id: current_user.matched_user_ids })
   end
 
   def show

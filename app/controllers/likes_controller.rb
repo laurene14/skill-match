@@ -1,5 +1,5 @@
 class LikesController < ApplicationController
-  before_action :like_params, :set_liker, :set_liked, only: :create
+  before_action :like_params, only: %i[create]
   before_action :set_liked_ids, :set_followed_ids, :set_current_user_skills_preference, only: :index
 
   def index
@@ -20,26 +20,26 @@ class LikesController < ApplicationController
 
   def create
     @like = Like.new(like_params)
-    @like.liker = set_liker
-    @like.liked = set_liked
+    p @like.liker = User.find(params[:liker_id])
+    p @like.liked = User.find(params[:liked_id])
     authorize @like
     respond_to do |format|
       @like.save ? format.json { render status: 201 } : format.json { render json: @like.errors, status: 422 }
     end
   end
 
+  def destroy
+    @like = Like.find(params[:id])
+    authorize @like
+    respond_to do |format|
+      @like.destroy ? format.json { render status: 201 } : format.json { render status: 422 }
+    end
+  end
+
   private
 
   def like_params
-    params.require(:like).permit(:wanted, :liker_id, :liked_id)
-  end
-
-  def set_liker
-    User.find(params[:liker_id])
-  end
-
-  def set_liked
-    User.find(params[:liked_id])
+    params.require(:like).permit(:wanted, :liker_id, :liked_id, :id)
   end
 
   def set_liked_ids
