@@ -1,16 +1,18 @@
 <div class="subscription-step">
-  <div class="progress-bar">
-    <div class="progress-bar-fill" style="width: 16.2%;"></div>
-    <div class="progress-bar-fill" style="width: 16.2%;"></div>
-    <div class="progress-bar-fill" style="width: 16.2%;"></div>
-    <div class="progress-bar-empty" style="width: 16.2%;"></div>
-    <div class="progress-bar-empty" style="width: 16.2%;"></div>
-    <div class="progress-bar-empty" style="width: 16.2%;"></div>
+  <div>
+    <div class="progress-bar">
+      <div class="progress-bar-fill" style="width: 16.2%;"></div>
+      <div class="progress-bar-fill" style="width: 16.2%;"></div>
+      <div class="progress-bar-fill" style="width: 16.2%;"></div>
+      <div class="progress-bar-empty" style="width: 16.2%;"></div>
+      <div class="progress-bar-empty" style="width: 16.2%;"></div>
+      <div class="progress-bar-empty" style="width: 16.2%;"></div>
+    </div>
+    <h2>Welcome <%= current_user.username.capitalize %>! <span>👋</span></h2>
+    <h4>Step 3: Select your skill(s)</h4>
+    <div class="step-underline"></div>
   </div>
-
-  <h2>Welcome <%= current_user.username.capitalize %>! <span>👋</span></h2>
-  <h4>Step 3: Select your skill(s)</h4>
-  <div class="step-underline"></div>
+  <div class="category-container">
 
   <%= simple_form_for @form_skill, html: { class: 'skills-wrapper'} do |f| %>
     <% @categories.each do |category| %>
@@ -27,9 +29,10 @@
                     input_html: { class: "tag-selector" },
                     include_hidden: false %>
       <% end %>
+  </div>
     <div class="form-navigation">
       <%= link_to '❮ PREVIOUS', "#", class: "btn disabled" %>
-      <%= f.button :submit, 'NEXT ❯', class: "btn" %>
+      <%= f.button :submit, 'NEXT ❯' %>
     </div>
   <% end %>
 </div>

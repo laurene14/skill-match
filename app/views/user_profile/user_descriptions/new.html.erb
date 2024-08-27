@@ -1,16 +1,18 @@
 <div class="subscription-step">
-  <div class="progress-bar">
-    <div class="progress-bar-fill" style="width: 16.2%;"></div>
-    <div class="progress-bar-empty" style="width: 16.2%;"></div>
-    <div class="progress-bar-empty" style="width: 16.2%;"></div>
-    <div class="progress-bar-empty" style="width: 16.2%;"></div>
-    <div class="progress-bar-empty" style="width: 16.2%;"></div>
-    <div class="progress-bar-empty" style="width: 16.2%;"></div>
+  <div>
+    <div class="progress-bar">
+      <div class="progress-bar-fill" style="width: 16.2%;"></div>
+      <div class="progress-bar-empty" style="width: 16.2%;"></div>
+      <div class="progress-bar-empty" style="width: 16.2%;"></div>
+      <div class="progress-bar-empty" style="width: 16.2%;"></div>
+      <div class="progress-bar-empty" style="width: 16.2%;"></div>
+      <div class="progress-bar-empty" style="width: 16.2%;"></div>
+    </div>
+    <h2>Welcome <%= current_user.username.capitalize %>! <span>👋</span></h2>
+    <h4>Step 1: who are you?</h4>
+    <div class="step-underline"></div>
   </div>
-
-  <h2>Welcome <%= current_user.username.capitalize %>! <span>👋</span></h2>
-  <h4>Step 1: who are you?</h4>
-  <div class="step-underline"></div>
+  <div class="category-container">
 
   <%= simple_form_for @user_description do |f| %>
     <%= f.input :address,
@@ -31,7 +33,7 @@
       label: "Bio",
       as: :text,
       placeholder: "Tell us more about you and why you’re here!",
-      input_html: { rows: 3 }
+      input_html: { rows: 2 }
     %>
 
     <%= f.input :photos,
@@ -39,10 +41,11 @@
       as: :file,
       input_html: { multiple: true }
     %>
+  </div>
 
     <div class="form-navigation">
       <%#= link_to '❮ PREVIOUS', "#", class: "btn disabled" %>
-      <%= f.button :submit, 'NEXT ❯', class: "btn" %>
+      <%= f.button :submit, 'NEXT ❯', class: "btn", data: { disable_with: false }  %>
     </div>
   <% end %>
 </div>
