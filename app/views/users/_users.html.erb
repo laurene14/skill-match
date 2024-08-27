@@ -2,39 +2,41 @@
   <% like_list.each do |like| %>
   <% is_liker = like.liker == current_user %>
   <% user = is_liker ? like.liked : like.liker %>
-  <li class="shadow-sm mb-1 mx-3 p-3 row rounded liked" style="position:relative" data-controller="like" id="<%= user.id %>" data-like-id-value="<%= like.id %>">
-    <div class="col-auto px-0">
-      <%= render 'shared/avatar', user: user, class_name: "avatar-square rounded" %>
-    </div>
-    <div class="col">
-      <% if is_liker %>
-        <div class="reaction rounded-circle shadow-sm p-3 " data-action="click->like#toggle">
-          <i class="fa-solid fa-thumbs-up"></i>
-          <i class="fa-regular fa-thumbs-up"></i>
-        </div>
-      <% end %>
-      <div class="fw-bold inline">
-        <%= user.username %>
+  <%= link_to users_path(user), class:"no-a-style" do %>
+    <li class="shadow-sm mb-1 mx-3 p-3 row rounded liked" style="position:relative" data-controller="like" id="<%= user.id %>" data-like-id-value="<%= like.id %>">
+      <div class="col-auto px-0">
+        <%= render 'shared/avatar', user: user, class_name: "avatar-square rounded" %>
       </div>
-      <div>
-        <% r1 = current_user_wanted_skills & user.proposed_skills.pluck(:name) %>
-        <% if r1 == [] %>
-          <% skill_name = user.proposed_skills[0].name %>
-          <% if skill_name.length > 15 %>
-            <h3 class="text-light">
-              <%= user.proposed_skills[0].name %>
-            </h3>
-          <% else %>
-            <%= user.proposed_skills[0].name %>
-          <% end %>
-        <% else %>
-          <%= r1[0] %>
-        <% if r1.length > 1 %>
-          <i class="fs-6 fa-solid fa-ellipsis opacity-75"></i>
+      <div class="col">
+        <% if is_liker %>
+          <div class="reaction rounded-circle shadow-sm p-3 " data-action="click->like#toggle">
+            <i class="fa-solid fa-thumbs-up"></i>
+            <i class="fa-regular fa-thumbs-up"></i>
+          </div>
         <% end %>
-      <% end %>
+        <div class="fw-bold inline">
+          <%= user.username %>
+        </div>
+        <div>
+          <% r1 = current_user_wanted_skills & user.proposed_skills.pluck(:name) %>
+          <% if r1 == [] %>
+            <% skill_name = user.proposed_skills[0].name %>
+            <% if skill_name.length > 15 %>
+              <h3 class="text-light">
+                <%= user.proposed_skills[0].name %>
+              </h3>
+            <% else %>
+              <%= user.proposed_skills[0].name %>
+            <% end %>
+          <% else %>
+            <%= r1[0] %>
+          <% if r1.length > 1 %>
+            <i class="fs-6 fa-solid fa-ellipsis opacity-75"></i>
+          <% end %>
+        <% end %>
+        </div>
       </div>
-    </div>
-  </li>
+    </li>
+  <% end %>
   <% end %>
 </ul>
