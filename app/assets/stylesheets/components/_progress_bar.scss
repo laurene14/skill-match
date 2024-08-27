@@ -1,12 +1,20 @@
 .progress-bar {
   height: 5px;
-  background-color: #f0f0f0;
+  // background-color: #f0f0f0;
   margin-bottom: 20px;
   border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
 }
 
 .progress-bar-fill {
   height: 100%;
   background-color: $secondary;
+  border-radius: 5px;
+}
+.progress-bar-empty {
+  height: 100%;
+  background-color: #f0f0f0;
   border-radius: 5px;
 }

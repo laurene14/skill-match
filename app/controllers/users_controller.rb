@@ -14,6 +14,11 @@ class UsersController < ApplicationController
   end
 
   def show
+    @user = User.find(params[:id])
+    @avatar = @user.photos.first
+    authorize @user
+    @skills = @user.skills
+    @wanted_skills = @user.user_skills.where(wanted: true).map(&:skill)
     authorize @user
   end
 
