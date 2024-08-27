@@ -1,11 +1,20 @@
+legend {
+  display: none;
+}
+
 .category-wrapper {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+  overflow: scroll;
+  height: 60vh;
+  margin-top: 20px;
 }
 
 .category-item {
-  flex: 0 0 30%;
+  flex: 0 0 45%;
+  display: inline-grid;
+  position:relative;
 }
 
 .category-selector {
@@ -15,21 +24,445 @@
 }
 
 .category-selector + label {
-  display: block;
+  display: flex;
   cursor: pointer;
   box-sizing: border-box;
   width: 100%;
   font-size: 12px;
   text-align: left;
   padding: 10px 10px 30px 10px;
-  border: 1px solid #EAEAEA;
   border-radius: 4px;
   background-color: white;
+  justify-content: center;
+  margin-bottom: 12px;
 }
 
-.category-selector:checked + label {
-  color: white !important;
-  background-color: $main;
+// .category-selector:checked + label {
+//   color: white !important;
+//   background-color: $main;
+// }
+
+.category-wrapper {
+  /* TECHNOLOGY */
+  .category-item:nth-child(1) label {
+    background-color: #FFF3C6;
+    color: #F9A542;
+    font-weight: bold;
+    letter-spacing: .05rem;
+    height: 150px;
+    text-align:center;
+    border-radius: 25px;
+    display: flex;
+    align-items: flex-end;
+    position: relative;
+  }
+
+  .category-item:nth-child(1) {
+    .category-selector:checked + label{
+      background-color: #F9A542;
+      color: #FFF3C6;
+      font-weight: bold;
+      letter-spacing: .05rem;
+      height: 150px;
+      text-align:center;
+      border-radius: 25px;
+      display: flex;
+      align-items: flex-end;
+      position: relative;
+    }
+  }
+
+  .category-item:nth-child(1)::before {
+    content: "";
+    background-image: asset-url("Technology.png");
+    background-size: cover;
+    height: 70px;
+    width: 70px;
+    display: block;
+    z-index: 13;
+    position: absolute;
+    top: 30px;
+    left: 40px;
+  }
+
+  /* DESIGN */
+  .category-item:nth-child(2) label {
+    background-color: #D7EFFE;
+    color: #369CF7;
+    font-weight: bold;
+    letter-spacing: .05rem;
+    height: 150px;
+    text-align:center;
+    border-radius: 25px;
+    display: flex;
+    align-items: flex-end;
+    position: relative;
+  }
+
+  .category-item:nth-child(2) {
+    .category-selector:checked + label{
+      background-color: #369CF7;
+      color: #D7EFFE;
+      font-weight: bold;
+      letter-spacing: .05rem;
+      height: 150px;
+      text-align:center;
+      border-radius: 25px;
+      display: flex;
+      align-items: flex-end;
+      position: relative;
+    }
+  }
+
+  .category-item:nth-child(2)::before {
+    content: "";
+    background-image: asset-url("Design.png");
+    background-size: cover;
+    height: 70px;
+    width: 70px;
+    display: block;
+    z-index: 13;
+    position: absolute;
+    top: 30px;
+    left: 40px;
+  }
+
+    /* MARKETING */
+    .category-item:nth-child(3) label {
+      background-color: #E0D7FF;
+      color: #7C5CF0;
+      font-weight: bold;
+      letter-spacing: .05rem;
+      height: 150px;
+      text-align:center;
+      border-radius: 25px;
+      display: flex;
+      align-items: flex-end;
+      position: relative;
+    }
+
+    .category-item:nth-child(3) {
+      .category-selector:checked + label{
+        background-color: #7C5CF0;
+        color: #E0D7FF;
+        font-weight: bold;
+        letter-spacing: .05rem;
+        height: 150px;
+        text-align:center;
+        border-radius: 25px;
+        display: flex;
+        align-items: flex-end;
+        position: relative;
+      }
+    }
+
+    .category-item:nth-child(3)::before {
+      content: "";
+      background-image: asset-url("Marketing.png");
+      background-size: cover;
+      height: 70px;
+      width: 70px;
+      display: block;
+      z-index: 13;
+      position: absolute;
+      top: 30px;
+      left: 40px;
+    }
+
+    /* BUSINESS */
+    .category-item:nth-child(4) label {
+      background-color: #FBE1FB;
+      color: #F266C9;
+      font-weight: bold;
+      letter-spacing: .05rem;
+      height: 150px;
+      text-align:center;
+      border-radius: 25px;
+      display: flex;
+      align-items: flex-end;
+      position: relative;
+    }
+
+    .category-item:nth-child(4) {
+      .category-selector:checked + label{
+        background-color: #F266C9;
+        color: #FBE1FB;
+        font-weight: bold;
+        letter-spacing: .05rem;
+        height: 150px;
+        text-align:center;
+        border-radius: 25px;
+        display: flex;
+        align-items: flex-end;
+        position: relative;
+      }
+    }
+
+    .category-item:nth-child(4)::before {
+      content: "";
+      background-image: asset-url("Business.png");
+      background-size: cover;
+      height: 70px;
+      width: 70px;
+      display: block;
+      z-index: 13;
+      position: absolute;
+      top: 30px;
+      left: 40px;
+    }
+
+
+  /* EDUCATION */
+  .category-item:nth-child(5) label {
+    background-color: #B8EEDC;
+    color: #3FA985;
+    font-weight: bold;
+    letter-spacing: .05rem;
+    height: 150px;
+    text-align:center;
+    border-radius: 25px;
+    display: flex;
+    align-items: flex-end;
+    position: relative;
+  }
+
+  .category-item:nth-child(5) {
+    .category-selector:checked + label{
+      background-color: #3FA985;
+      color: #B8EEDC;
+      font-weight: bold;
+      letter-spacing: .05rem;
+      height: 150px;
+      text-align:center;
+      border-radius: 25px;
+      display: flex;
+      align-items: flex-end;
+      position: relative;
+    }
+  }
+
+  .category-item:nth-child(5)::before {
+    content: "";
+    background-image: asset-url("Education.png");
+    background-size: cover;
+    height: 70px;
+    width: 70px;
+    display: block;
+    z-index: 13;
+    position: absolute;
+    top: 30px;
+    left: 40px;
+  }
+
+    /* SPORTS */
+    .category-item:nth-child(6) label {
+      background-color: #FADFCD;
+      color: #FE8E75;
+      font-weight: bold;
+      letter-spacing: .05rem;
+      height: 150px;
+      text-align:center;
+      border-radius: 25px;
+      display: flex;
+      align-items: flex-end;
+      position: relative;
+    }
+
+    .category-item:nth-child(6) {
+      .category-selector:checked + label{
+        background-color: #FE8E75;
+        color: #FADFCD;
+        font-weight: bold;
+        letter-spacing: .05rem;
+        height: 150px;
+        text-align:center;
+        border-radius: 25px;
+        display: flex;
+        align-items: flex-end;
+        position: relative;
+      }
+    }
+
+    .category-item:nth-child(6)::before {
+      content: "";
+      background-image: asset-url("Sports.png");
+      background-size: cover;
+      height: 70px;
+      width: 70px;
+      display: block;
+      z-index: 13;
+      position: absolute;
+      top: 30px;
+      left: 40px;
+    }
+
+    /* MUSIC */
+    .category-item:nth-child(7) label {
+      background-color: #FFF3C6;
+      color: #F9A542;
+      font-weight: bold;
+      letter-spacing: .05rem;
+      height: 150px;
+      text-align:center;
+      border-radius: 25px;
+      display: flex;
+      align-items: flex-end;
+      position: relative;
+    }
+
+    .category-item:nth-child(7) {
+      .category-selector:checked + label{
+        background-color: #F9A542;
+        color: #FFF3C6;
+        font-weight: bold;
+        letter-spacing: .05rem;
+        height: 150px;
+        text-align:center;
+        border-radius: 25px;
+        display: flex;
+        align-items: flex-end;
+        position: relative;
+      }
+    }
+
+    .category-item:nth-child(7)::before {
+      content: "";
+      background-image: asset-url("Music.png");
+      background-size: cover;
+      height: 70px;
+      width: 70px;
+      display: block;
+      z-index: 13;
+      position: absolute;
+      top: 30px;
+      left: 40px;
+    }
+
+    /* DANCE */
+    .category-item:nth-child(8) label {
+      background-color: #D7EFFE;
+      color: #369CF7;
+      font-weight: bold;
+      letter-spacing: .05rem;
+      height: 150px;
+      text-align:center;
+      border-radius: 25px;
+      display: flex;
+      align-items: flex-end;
+      position: relative;
+    }
+
+    .category-item:nth-child(8) {
+      .category-selector:checked + label{
+        background-color: #369CF7;
+        color: #D7EFFE;
+        font-weight: bold;
+        letter-spacing: .05rem;
+        height: 150px;
+        text-align:center;
+        border-radius: 25px;
+        display: flex;
+        align-items: flex-end;
+        position: relative;
+      }
+    }
+
+    .category-item:nth-child(8)::before {
+      content: "";
+      background-image: asset-url("Dance.png");
+      background-size: cover;
+      height: 70px;
+      width: 70px;
+      display: block;
+      z-index: 13;
+      position: absolute;
+      top: 30px;
+      left: 40px;
+    }
+
+    /* ARTS */
+    .category-item:nth-child(9) label {
+      background-color: #E0D7FF;
+      color: #7C5CF0;
+      font-weight: bold;
+      letter-spacing: .05rem;
+      height: 150px;
+      text-align:center;
+      border-radius: 25px;
+      display: flex;
+      align-items: flex-end;
+      position: relative;
+    }
+
+    .category-item:nth-child(9) {
+      .category-selector:checked + label{
+        background-color: #7C5CF0;
+        color: #E0D7FF;
+        font-weight: bold;
+        letter-spacing: .05rem;
+        height: 150px;
+        text-align:center;
+        border-radius: 25px;
+        display: flex;
+        align-items: flex-end;
+        position: relative;
+      }
+    }
+
+    .category-item:nth-child(9)::before {
+      content: "";
+      background-image: asset-url("Art.png");
+      background-size: cover;
+      height: 70px;
+      width: 70px;
+      display: block;
+      z-index: 13;
+      position: absolute;
+      top: 30px;
+      left: 40px;
+    }
+
+    /* DIY */
+    .category-item:nth-child(10) label {
+      background-color: #FBE1FB;
+      color: #F266C9;
+      font-weight: bold;
+      letter-spacing: .05rem;
+      height: 150px;
+      text-align:center;
+      border-radius: 25px;
+      display: flex;
+      align-items: flex-end;
+      position: relative;
+    }
+
+    .category-item:nth-child(10) {
+      .category-selector:checked + label{
+        background-color: #F266C9;
+        color: #FBE1FB;
+        font-weight: bold;
+        letter-spacing: .05rem;
+        height: 150px;
+        text-align:center;
+        border-radius: 25px;
+        display: flex;
+        align-items: flex-end;
+        position: relative;
+      }
+    }
+
+    .category-item:nth-child(10)::before {
+      content: "";
+      background-image: asset-url("DIY.png");
+      background-size: cover;
+      height: 70px;
+      width: 70px;
+      display: block;
+      z-index: 13;
+      position: absolute;
+      top: 30px;
+      left: 40px;
+    }
 }
 
 
