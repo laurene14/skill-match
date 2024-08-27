@@ -41,6 +41,7 @@ legend {
   // les classes "généralisées"
   .category-item::before {
     content: "";
+    pointer-events: none;
     background-size: cover;
     height: 72px;
     width: 72px;
