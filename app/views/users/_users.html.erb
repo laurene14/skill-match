@@ -2,7 +2,7 @@
   <% like_list.each do |like| %>
   <% is_liker = like.liker == current_user %>
   <% user = is_liker ? like.liked : like.liker %>
-  <%= link_to users_path(user), class:"no-a-style" do %>
+  <%= link_to user_path(user), class:"no-a-style" do %>
     <li class="shadow-sm mb-1 mx-3 p-3 row rounded liked" style="position:relative" data-controller="like" id="<%= user.id %>" data-like-id-value="<%= like.id %>">
       <div class="col-auto px-0">
         <%= render 'shared/avatar', user: user, class_name: "avatar-square rounded" %>
@@ -22,9 +22,9 @@
           <% if r1 == [] %>
             <% skill_name = user.proposed_skills[0].name %>
             <% if skill_name.length > 15 %>
-              <h3 class="text-light">
+              <div>
                 <%= user.proposed_skills[0].name %>
-              </h3>
+              </div>
             <% else %>
               <%= user.proposed_skills[0].name %>
             <% end %>
