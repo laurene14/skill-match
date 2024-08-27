@@ -4,7 +4,6 @@ module UserProfile
 
     attr_accessor :wanted_skill_ids, :category_ids, :current_user
 
-    # validates :skill_ids, presence: true
     validate :wanted_skill_id_presence
 
     def save
