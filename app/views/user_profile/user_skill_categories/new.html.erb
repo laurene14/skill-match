@@ -9,11 +9,12 @@
   </div>
 
   <h2>Welcome <%= current_user.username.capitalize %>! <span>👋</span></h2>
-  <h3>Step 2: Select your skill’s categories</h3>
+  <h4>Step 2: Select <span>YOUR</span> skill’s categories</h4>
+  <div class="step-underline"></div>
 
   <%= simple_form_for @user_skill_category do |f| %>
     <%= f.input :name,
-              label: 'Choose at least one category',
+              legend: false,
               as: :check_boxes,
               collection_wrapper_tag: 'div',
               collection_wrapper_class: 'category-wrapper',

@@ -9,11 +9,12 @@
   </div>
 
   <h2>Welcome <%= current_user.username.capitalize %>! <span>👋</span></h2>
-  <h3>Step 5: Select your wanted skill(s)</h3>
+  <h4>Step 5: Select the skill(s) you want to learn.</h4>
+  <div class="step-underline"></div>
 
-  <%= simple_form_for @wanted_form_skill do |f| %>
+  <%= simple_form_for @wanted_form_skill, html: { class:'skills-wrapper' } do |f| %>
     <% @categories.each do |category| %>
-      <h4><%= category.name %></h4>
+      <h5><%= category.name %></h5>
         <% category_ids = params[:categories].present? ? params[:categories][:name] : params[:user_profile_user_skill_category][:name] %>
         <%= f.hidden_field :category_ids, value: category_ids %>
         <%= f.input :wanted_skill_ids,
