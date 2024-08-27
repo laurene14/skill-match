@@ -1,5 +1,5 @@
 class MatchsController < ApplicationController
   def index
-    @users = policy_scope(User)
+    @matches = policy_scope(Match)
   end
 end

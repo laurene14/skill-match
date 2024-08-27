@@ -7,8 +7,8 @@ Rails.application.routes.draw do
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   resources :users, only: %i[index show]
 
-  resources :likes, only: %i[index create]
-  resources :bookmarks, only: %i[create]
+  resources :likes, only: %i[index create destroy]
+  resources :bookmarks, only: %i[create destroy]
   resources :categories, only: %i[index]
   resources :matchs, only: %i[index]
   resources :notifications, only: %i[index]
