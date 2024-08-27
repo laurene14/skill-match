@@ -197,3 +197,14 @@
   margin-right: 0.6rem;
   margin-bottom: 0.4rem;
 }
+
+.headers {
+  a {
+    color: white;
+    font-size: 20px;
+    padding-left: 20px;
+  }
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+}

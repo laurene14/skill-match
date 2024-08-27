@@ -26,7 +26,6 @@ class ApplicationController < ActionController::Base
   # end
 
   def after_sign_up_path_for(resources)
-    # TODO Rediriger vers la premiere étape du form object
     new_user_profile_user_description_path
   end
 
@@ -39,7 +38,6 @@ class ApplicationController < ActionController::Base
   # end
 
   def after_sign_in_path_for(resources)
-    # TODO Rediriger vers la premiere étape du form object
     new_user_profile_user_description_path
   end
 

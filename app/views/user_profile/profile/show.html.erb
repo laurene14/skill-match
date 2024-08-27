@@ -41,12 +41,22 @@
 
   <div class="profile-sections-up mb-3">
     <div class="profile-section">
+      <div class="headers">
       <h3>Who I Am</h3>
+      <%= link_to edit_user_profile_user_description_path do %>
+        <i class="fa-solid fa-pen-to-square"></i>
+      <% end %>
+      </div>
       <p><%= @user.bio.presence || "Tell us more about yourself!" %></p>
     </div>
 
     <div class="profile-section">
-      <h3>My skills</h3>
+      <div class="headers">
+      <h3>My Skills</h3>
+      <%= link_to edit_user_profile_user_skill_category_path do %>
+        <i class="fa-solid fa-pen-to-square"></i>
+      <% end %>
+      </div>
       <p>
         <% @skills.each do |skill| %>
          <div class="skill-tag"><%= skill.name %></div>

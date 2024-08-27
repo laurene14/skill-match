@@ -1,0 +1,27 @@
+<div class="subscription-step">
+
+  <h2>Edit your Skills</h2>
+  <h4>Step 3: Select your skill(s)</h4>
+  <div class="step-underline"></div>
+
+  <%= simple_form_for @form_skill, html: { class: 'skills-wrapper'} do |f| %>
+    <% @categories.each do |category| %>
+      <h5><%= category.name %></h5>
+
+        <% category_ids = params[:categories].present? ? params[:categories] : params[:user_profile_form_skill][:category_ids] %>
+
+        <%= f.hidden_field :category_ids, value: category_ids %>
+
+        <%= f.input :skill_ids,
+                    as: :check_boxes,
+                    collection: category.skills,
+                    item_wrapper_class: 'tag-item',
+                    input_html: { class: "tag-selector" },
+                    include_hidden: false %>
+      <% end %>
+    <div class="form-navigation">
+      <%= link_to '❮ PREVIOUS', "#", class: "btn disabled" %>
+      <%= f.button :submit, 'NEXT ❯', class: "btn" %>
+    </div>
+  <% end %>
+</div>

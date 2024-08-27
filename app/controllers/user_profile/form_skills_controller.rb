@@ -22,6 +22,31 @@ module UserProfile
       end
     end
 
+    def edit
+      @form_skill = FormSkill.new
+      @categories = current_user.skills.joins(:categories).distinct.pluck(:name)
+      authorize @form_skill
+    end
+
+    def update
+      @form_skill = FormSkill.new(form_skill_params)
+      authorize @form_skill
+
+      if current_user.update(user_description_params)
+          redirect_to user_profile_profile_path(current_user)
+      else
+        render :edit, status: :unprocessable_entity
+      end
+    end
+
+    if @form_skill.valid?
+      if current_user.update(form_skill_params)
+        redirect_to user_profile_profile_path(current_user)
+      else
+        render :edit, status: :unprocessable_entity
+      end
+    end
+
     private
 
 
