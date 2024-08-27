@@ -8,77 +8,77 @@ ActiveRecord::Base.transaction do
 end
 
 categories = [
-  { name: 'Technology', description: 'Skills related to technology and programming' },
-  { name: 'Design', description: 'Skills related to design and user experience' },
-  { name: 'Marketing', description: 'Skills related to marketing and business development' },
-  { name: 'Business', description: 'Skills related to business management and strategy' },
-  { name: 'Education', description: 'Skills related to teaching and education' },
-  { name: 'Sports', description: 'Skills related to various sports and fitness activities' },
-  { name: 'Music', description: 'Skills related to music creation, performance, and theory' },
-  { name: 'Dance', description: 'Skills related to various dance styles' },
-  { name: 'Art', description: 'Skills related to visual and performing arts' },
-  { name: 'DIY', description: 'Skills related to do-it-yourself projects and crafts' }
+  { name: 'Technology', description: 'Skills related to technology and programming', color: 'yellow' },
+  { name: 'Design', description: 'Skills related to design and user experience', color: 'blue' },
+  { name: 'Marketing', description: 'Skills related to marketing and business development', color: 'purple' },
+  { name: 'Business', description: 'Skills related to business management and strategy', color: 'pink' },
+  { name: 'Education', description: 'Skills related to teaching and education', color: 'green' },
+  { name: 'Sports', description: 'Skills related to various sports and fitness activities', color: 'orange' },
+  { name: 'Music', description: 'Skills related to music creation, performance, and theory', color: 'yellow' },
+  { name: 'Dance', description: 'Skills related to various dance styles', color: 'blue' },
+  { name: 'Art', description: 'Skills related to visual and performing arts', color: 'purple' },
+  { name: 'DIY', description: 'Skills related to do-it-yourself projects and crafts', color: 'pink' }
 ]
 
 skills = {
   technology: [
-    { name: 'Ruby on Rails', description: 'Web development framework' },
-    { name: 'Python', description: 'Programming language' },
-    { name: 'JavaScript', description: 'Scripting language for web development' }
+    { name: 'Ruby on Rails', description: 'Web development framework', color: 'pink' },
+    { name: 'Python', description: 'Programming language', color: 'orange' },
+    { name: 'JavaScript', description: 'Scripting language for web development', color: 'yellow' }
   ],
   design: [
-    { name: 'UI/UX Design', description: 'User Interface and User Experience design' },
-    { name: 'Graphic Design', description: 'Creating visual content' },
-    { name: 'Adobe Photoshop', description: 'Image editing and design' },
-    { name: 'Fashion Design', description: 'Creating clothing and accessories' }
+    { name: 'UI/UX Design', description: 'User Interface and User Experience design', color: 'green' },
+    { name: 'Graphic Design', description: 'Creating visual content', color: 'purple' },
+    { name: 'Adobe Photoshop', description: 'Image editing and design', color: 'blue' },
+    { name: 'Fashion Design', description: 'Creating clothing and accessories', color: 'pink' }
   ],
   marketing:
   [
-    { name: 'SEO', description: 'Search Engine Optimization' },
-    { name: 'Content Marketing', description: 'Creating and distributing valuable content' },
-    { name: 'Social Media Management', description: 'Managing social media platforms' }
+    { name: 'SEO', description: 'Search Engine Optimization', color: 'blue' },
+    { name: 'Content Marketing', description: 'Creating and distributing valuable content', color: 'orange' },
+    { name: 'Social Media Management', description: 'Managing social media platforms', color: 'green' }
   ],
   business:
   [
-    { name: 'Project Management', description: 'Managing projects and teams' },
-    { name: 'Business Strategy', description: 'Planning and executing business strategies' },
-    { name: 'Entrepreneurship', description: 'Starting and managing new ventures' }
+    { name: 'Project Management', description: 'Managing projects and teams', color: 'purple' },
+    { name: 'Business Strategy', description: 'Planning and executing business strategies', color: 'pink' },
+    { name: 'Entrepreneurship', description: 'Starting and managing new ventures', color: 'yellow' }
   ],
   education:
   [
-    { name: 'Curriculum Development', description: 'Designing educational programs' },
-    { name: 'Tutoring', description: 'Providing individual academic support' },
-    { name: 'Educational Technology', description: 'Using technology to enhance learning' }
+    { name: 'Curriculum Development', description: 'Designing educational programs', color: 'green' },
+    { name: 'Tutoring', description: 'Providing individual academic support', color: 'blue' },
+    { name: 'Educational Technology', description: 'Using technology to enhance learning', color: 'purple' }
   ],
   sports:
   [
-    { name: 'Football', description: 'Playing and coaching soccer' },
-    { name: 'Basketball', description: 'Playing and coaching basketball' },
-    { name: 'Fitness Training', description: 'Personal fitness and training programs' }
+    { name: 'Football', description: 'Playing and coaching soccer', color: 'green' },
+    { name: 'Basketball', description: 'Playing and coaching basketball', color: 'orange' },
+    { name: 'Fitness Training', description: 'Personal fitness and training programs', color: 'yellow' }
   ],
   music:
   [
-    { name: 'Piano', description: 'Playing and teaching Piano' },
-    { name: 'Music Production', description: 'Creating and recording music' },
-    { name: 'Music Theory', description: 'Understanding the fundamentals of music' }
+    { name: 'Piano', description: 'Playing and teaching Piano', color: 'pink' },
+    { name: 'Music Production', description: 'Creating and recording music', color: 'blue' },
+    { name: 'Music Theory', description: 'Understanding the fundamentals of music', color: 'purple' }
   ],
   dance:
   [
-    { name: 'Ballet', description: 'Classical dance form' },
-    { name: 'Hip Hop', description: 'Street dance style' },
-    { name: 'Contemporary Dance', description: 'Modern dance form' }
+    { name: 'Ballet', description: 'Classical dance form', color: 'orange' },
+    { name: 'Hip Hop', description: 'Street dance style', color: 'yellow' },
+    { name: 'Contemporary Dance', description: 'Modern dance form', color: 'blue' }
   ],
   art:
   [
-    { name: 'Watercolor Painting', description: 'Art of painting with watercolors' },
-    { name: 'Sculpture', description: 'Three-dimensional art form' },
-    { name: 'Digital Art', description: 'Art created using digital tools' }
+    { name: 'Watercolor Painting', description: 'Art of painting with watercolors', color: 'green' },
+    { name: 'Sculpture', description: 'Three-dimensional art form', color: 'pink' },
+    { name: 'Digital Art', description: 'Art created using digital tools', color: 'yellow' }
   ],
   diy:
   [
-    { name: 'Woodworking', description: 'Crafting objects from wood' },
-    { name: 'Knitting', description: 'Creating textiles using needles' },
-    { name: 'Home Renovation', description: 'Improving or remodeling homes' }
+    { name: 'Woodworking', description: 'Crafting objects from wood', color: 'orange' },
+    { name: 'Knitting', description: 'Creating textiles using needles', color: 'green' },
+    { name: 'Home Renovation', description: 'Improving or remodeling homes', color: 'blue' }
   ]
 }
 
