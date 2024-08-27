@@ -4,6 +4,7 @@ class Like < ApplicationRecord
 
   after_save :check_for_match
   after_save :check_for_unmatch
+  after_destroy :check_for_unmatch
 
   validates :wanted, inclusion: { in: [true, false], message: "must be true or false" }
 

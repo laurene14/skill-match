@@ -1,0 +1,22 @@
+<div class="container mt-3 mb-9 mx-2">
+<ul class="list-group list-group-flush">
+  <% @matches.each do |match| %>
+  <% user = match.user1 == current_user ? match.user2 : match.user1 %>
+    <%= link_to match_path(match), class:"no-a-style" do %>
+      <li class="list-group-item p-3">
+      <div class="row">
+        <div class="col-auto px-0">
+          <%= render 'shared/avatar', user: user, class_name: "avatar-square rounded" %>
+        </div>
+        <div class="col">
+          <div class="fw-bold inline">
+            <%= user.username %>
+          </div>
+        </div>
+      </div>
+      </li>
+    <% end %>
+  <% end %>
+</ul>
+
+</div>

@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="swipe"
 export default class extends Controller {
-  static targets = ["card"]
+  static targets = ["card", "confetti"]
 
   currentUserId = null;
   csrfToken = null;
@@ -11,10 +11,20 @@ export default class extends Controller {
     console.log("connected");
     this.currentUserId = parseInt(document.body.dataset.currentUserId, 10);
     this.csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    this.initConfetti();
     this.initCards(true);
     this.cardTargets.forEach((card) => {
       this.initCard(card);
     });
+  }
+
+  initConfetti() {
+    let confetti = new Confetti('confetti');
+    confetti.setCount(75);
+    confetti.setSize(2);
+    confetti.setPower(50);
+    confetti.setFade(false);
+    confetti.destroyTarget(false);
   }
 
   initCards(first_init) {
@@ -160,7 +170,7 @@ export default class extends Controller {
       const url = '/likes'
       const body = JSON.stringify({
         "liker_id": this.currentUserId,
-        "liked_id": card.id,
+        "liked_id": parseInt(card.id, 10),
         "wanted": true
       })
       this.fetchData(url, body)
@@ -168,11 +178,10 @@ export default class extends Controller {
   }
 
   handleFollow(card) {
-
     const url = '/bookmarks'
     const body = JSON.stringify({
       "follower_id": this.currentUserId,
-      "following_id": card.id,
+      "following_id": parseInt(card.id, 10),
     });
     this.fetchData(url, body)
 
@@ -194,9 +203,28 @@ export default class extends Controller {
             throw new Error(JSON.stringify(errorData));
           });
         }
-        return response.json();
+        return response;
       })
-      .then(data => console.log('Success:', data))
+      .then(response => {if (response.status == 207) {
+        this.clickInTheMiddle();
+      }})
       .catch(error => console.log(error))
+  }
+
+  clickInTheMiddle() {
+    console.log("confetti")
+    this.confettiTarget.style.display="block";
+    const rect = this.confettiTarget.getBoundingClientRect();
+    const middleX = rect.left + (rect.width / 2);
+    const middleY = rect.top + (rect.height / 2);
+    const event = new MouseEvent('click', {
+      clientX: middleX,
+      clientY: middleY,
+      bubbles: true,
+      cancelable: true,
+      view: window
+    });
+    this.confettiTarget.dispatchEvent(event);
+    this.confettiTarget.style.display="none";
   }
 }

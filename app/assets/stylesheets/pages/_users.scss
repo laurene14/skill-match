@@ -1,0 +1,38 @@
+.list-group .reaction {
+  position:absolute;
+  top:8px;
+  margin:auto;
+  right:24px;
+  width: 3rem;
+  height: 3rem;
+}
+
+.reaction i {
+  position:absolute;
+  font-size:24px;
+  transform: all ease 0.5s;
+}
+
+.reaction i.fa-solid {
+  color: #90ce6b;
+}
+
+.reaction i.fa-regular {
+  color: #999999;
+}
+
+.liked i.fa-solid {
+  opacity: 1;
+}
+
+.disliked i.fa-solid {
+  opacity: 0;
+}
+
+.liked i.fa-regular {
+  opacity: 0;
+}
+
+.disliked i.fa-regular {
+  opacity: 1;
+}

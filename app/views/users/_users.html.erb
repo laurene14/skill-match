@@ -1,10 +1,18 @@
 <ul class="list-group" style="list-style: none;">
-  <% user_list.each do |user| %>
-  <li class="shadow mb-3 mx-3 p-3 row rounded">
+  <% like_list.each do |like| %>
+  <% is_liker = like.liker == current_user %>
+  <% user = is_liker ? like.liked : like.liker %>
+  <li class="shadow-sm mb-1 mx-3 p-3 row rounded liked" style="position:relative" data-controller="like" id="<%= user.id %>" data-like-id-value="<%= like.id %>">
     <div class="col-auto px-0">
       <%= render 'shared/avatar', user: user, class_name: "avatar-square rounded" %>
     </div>
     <div class="col">
+      <% if is_liker %>
+        <div class="reaction rounded-circle shadow-sm p-3 " data-action="click->like#toggle">
+          <i class="fa-solid fa-thumbs-up"></i>
+          <i class="fa-regular fa-thumbs-up"></i>
+        </div>
+      <% end %>
       <div class="fw-bold inline">
         <%= user.username %>
       </div>
