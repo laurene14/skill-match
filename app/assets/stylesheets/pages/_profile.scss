@@ -9,7 +9,11 @@
   display: flex;
   flex-direction: column;
   color: white;
-  border-radius: 0 0 20px 20px;
+  border-radius: 0 0 30px 30px;
+
+  .carousel-radius {
+    border-radius: 61px;
+  }
 
 
   .user-profile-header {
@@ -35,7 +39,7 @@
       align-items: baseline;
       justify-content: space-between;
 
-      .nav-up {
+      .nav-down {
         font-size: 27px;
       }
     }
@@ -73,6 +77,7 @@
         font-size: 18px;
         font-family: montserrat;
         font-weight: bold;
+        margin-bottom: 15px;
       }
 
       p {
