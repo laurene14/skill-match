@@ -1,4 +1,5 @@
 <div class="subscription-step">
+  <div>
   <div class="progress-bar">
     <div class="progress-bar-fill" style="width: 16.2%;"></div>
     <div class="progress-bar-fill" style="width: 16.2%;"></div>
@@ -8,20 +9,24 @@
     <div class="progress-bar-empty" style="width: 16.2%;"></div>
   </div>
 
-  <h2>Welcome <%= current_user.username.capitalize %>! <span>👋</span></h2>
-  <h4>Step 4: Select the categories you <em>WANT</em> to learn</h4>
-  <div class="step-underline"></div>
+    <h2>Welcome <%= current_user.username.capitalize %>! <span>👋</span></h2>
+    <h4>Step 4: Select the categories you <em>WANT</em> to learn</h4>
+    <div class="step-underline"></div>
+  </div>
 
+
+  <div class="category-container" data-controller="category">
   <%= simple_form_for @user_wanted_skill_category, url: new_user_profile_wanted_form_skill_path, method: :get do |f| %>
+    <% categories = @categories.map { |category| [category.name, category.id, {data: {color:category.color}}] } %>
     <%= f.input :name,
               legend: false,
               as: :check_boxes,
               collection_wrapper_tag: 'div',
               collection_wrapper_class: 'category-wrapper',
               item_wrapper_class: 'category-item mb-3',
-              input_html: {class: 'category-selector'},
-              collection: @categories,
+              collection: categories,
               include_hidden: false %>
+  </div>
 
     <div class="form-navigation">
       <%= link_to '❮ PREVIOUS', "#", class: "btn disabled" %>
