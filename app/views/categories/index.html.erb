@@ -26,16 +26,8 @@
     <%# <% @categories.each do |category| %>
       <%# <%= category.name %>
     <%# <% end %>
-    <%= simple_form_for @user_skill_category do |f| %>
-      <%= f.input :name,
-                label: 'Choose at least one category',
-                as: :check_boxes,
-                collection_wrapper_tag: 'div',
-                collection_wrapper_class: 'category-wrapper',
-                item_wrapper_class: 'category-item mb-3',
-                input_html: {class: 'category-selector'},
-                collection: @categories,
-                include_hidden: false %>
-  <% end %>
+    <% simple_form_for @categories do |f| %>
+    
+    <% end %>
   </div>
 </div>
