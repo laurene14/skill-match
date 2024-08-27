@@ -10,7 +10,9 @@ Rails.application.routes.draw do
   resources :likes, only: %i[index create destroy]
   resources :bookmarks, only: %i[create destroy]
   resources :categories, only: %i[index]
-  resources :matchs, only: %i[index]
+  resources :matchs, only: %i[index show] do
+    resources :messages, only: :create
+  end
   resources :notifications, only: %i[index]
 
   # Defines the root path route ("/")

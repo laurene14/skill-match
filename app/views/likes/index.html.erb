@@ -1,4 +1,7 @@
 <div class="swipe" data-controller="swiper">
+  <div class="swipe__confetti" id="confetti" data-swiper-target="confetti" style="z-index:9999;display:none">
+  </div>
+
   <div class="swipe__status">
     <i class="swipe__button--refuse fa-solid fa-thumbs-down"></i>
     <i class="swipe__button--accept fa-solid fa-thumbs-up"></i>
@@ -10,7 +13,7 @@
   </div>
   <div class="swipe__cards">
     <% @users.each do |user| %>
-      <div id="<%= user.id %>" class="swipe__card border border-2 shadow" data-swiper-target="card">
+      <div id=<%= user.id %> class="swipe__card border border-2 shadow" data-swiper-target="card">
         <div class="swipe__card__box">
           <%= render "shared/avatar", user: user %>
           <button class="shadow" data-swiper-target="follow" data-action="click->swiper#clickFollow">

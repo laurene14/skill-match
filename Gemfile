@@ -63,6 +63,8 @@ gem "simple_form", github: "heartcombo/simple_form"
 gem "sassc-rails"
 gem "devise"
 gem 'tqdm'
+gem "actioncable-enhanced-postgresql-adapter"
+
 
 group :development, :test do
   gem "dotenv-rails"
