@@ -1,3 +1,41 @@
-<div style="position: absolute; top: 5px; right: 5px;">
+<%# <div style="position: absolute; top: 5px; right: 5px;">
 <%= link_to 'Go to Profile', user_profile_profile_path(current_user), class: 'btn btn-primary' %>
+<%# </div> %>
+<div class="background">
+  <div class="header-container">
+    <div class="user-header my-6">
+      <div class="user-info d-flex">
+        <div>
+          <h2>Hi <%= current_user.username.capitalize %>! <span>👋</span></h2>
+          <p>So good to see you back</p>
+        </div>
+      </div>
+      <div class="categories-search-wrapper">
+        <div class="categories-search">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="category-title">
+    <p id="cat-title">Category</p>
+    <p id="cat-description">Choose a category</p>
+  </div>
+
+  <div class="categories-container">
+    <%# <% @categories.each do |category| %>
+      <%# <%= category.name %>
+    <%# <% end %>
+    <%= simple_form_for @user_skill_category do |f| %>
+      <%= f.input :name,
+                label: 'Choose at least one category',
+                as: :check_boxes,
+                collection_wrapper_tag: 'div',
+                collection_wrapper_class: 'category-wrapper',
+                item_wrapper_class: 'category-item mb-3',
+                input_html: {class: 'category-selector'},
+                collection: @categories,
+                include_hidden: false %>
+  <% end %>
+  </div>
 </div>
