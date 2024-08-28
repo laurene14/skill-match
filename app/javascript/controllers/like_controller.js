@@ -15,7 +15,7 @@ export default class extends Controller {
   toggle() {
     if (this.element.classList.contains("liked")) {
       console.log("dislike!")
-      this.handleDislike();
+      this.handleUnlike();
     } else {
       console.log("relike!")
       this.handleRelike();
@@ -24,7 +24,7 @@ export default class extends Controller {
     this.element.classList.toggle('disliked')
   }
 
-  handleDislike() {
+  handleUnlike() {
     const url = `/likes/${this.idValue}`;
     const verb = 'DELETE';
     const body = JSON.stringify({ "id": this.idValue })
@@ -33,12 +33,22 @@ export default class extends Controller {
 
   handleRelike() {
     const url = `/likes`;
-
     const verb = 'POST';
     const body = JSON.stringify({
       "liker_id": this.currentUserId,
       "liked_id": this.element.id,
       "wanted": true
+    })
+    this.fetchData(url, verb, body)
+  }
+
+  handleDislike() {
+    const url = `/likes`;
+    const verb = 'POST';
+    const body = JSON.stringify({
+      "liker_id": this.currentUserId,
+      "liked_id": this.element.id,
+      "wanted": false
     })
     this.fetchData(url, verb, body)
   }
