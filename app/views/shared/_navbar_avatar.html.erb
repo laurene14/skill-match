@@ -10,11 +10,22 @@
     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
   <div class="offcanvas-body">
-    <div>
-      <%= link_to "Profile", user_profile_profile_path(current_user) %>
-      <%= link_to "Bookmark", "#" %>
-      <%# <%= link_to "connect", new_user_session_path %>
-      <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete} %>
-    </div>
+    <%# <div> %>
+      <div class="sidebar-element">
+        <i class="fa-regular fa-user icon-sidebar"></i>
+        <%= link_to "Profile", user_profile_profile_path(current_user), class:"sidebar-link" %>
+      </div>
+
+      <div class="sidebar-element">
+        <i class="fa-regular fa-bookmark icon-sidebar"></i>
+        <%= link_to "Bookmark", "#", class:"sidebar-link" %>
+      </div>
+
+      <div class="sidebar-element">
+        <i class="fa-solid fa-arrow-right-from-bracket icon-sidebar"></i>
+        <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class:"sidebar-link" %>
+      </div>
+
+    <%# </div> %>
   </div>
 </div>
