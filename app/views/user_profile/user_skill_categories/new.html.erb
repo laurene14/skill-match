@@ -15,19 +15,19 @@
     <div class="step-underline"></div>
   </div>
 
-  <div class="category-container" data-controller="category">
-    <%= simple_form_for @user_skill_category do |f| %>
-    <% categories = @categories.map { |category| [category.name, category.id, {data: {color:category.color}}] } %>
-      <%= f.input :name,
-                legend: false,
-                as: :check_boxes,
-                collection_wrapper_tag: 'div',
-                collection_wrapper_class: 'category-wrapper',
-                item_wrapper_class: 'category-item mb-3',
-                collection: categories,
-                include_hidden: false
-                %>
-  </div>
+    <%= simple_form_for @user_skill_category  do |f| %>
+    <div class="category-container" data-controller="category">
+      <% categories = @categories.map { |category| [category.name, category.id, {data: {color:category.color}}] } %>
+        <%= f.input :name,
+                  legend: false,
+                  as: :check_boxes,
+                  collection_wrapper_tag: 'div',
+                  collection_wrapper_class: 'category-wrapper',
+                  item_wrapper_class: 'category-item mb-3',
+                  collection: categories,
+                  include_hidden: false
+                  %>
+    </div>
 
     <div class="form-navigation">
       <%= link_to '❮ PREVIOUS', "#", class: "btn disabled" %>

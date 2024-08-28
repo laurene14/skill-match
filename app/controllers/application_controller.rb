@@ -32,17 +32,17 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resources)
     new_user_profile_user_description_path
-    if !current_user&.address
-      new_user_profile_user_description_path
-    elsif !current_user&.proposed_user_skills
-      new_user_profile_user_skill_category_path
-    elsif !current_user&.wanted_user_skills
-      user_profile_user_wanted_skill_categories_path
-    elsif !current_user&.distance_preference
-      new_user_profile_user_distance_preference
-    else
-      likes_path
-    end
+    # if !current_user&.address
+    #   new_user_profile_user_description_path
+    # elsif !current_user&.proposed_user_skills
+    #   new_user_profile_user_skill_category_path
+    # elsif !current_user&.wanted_user_skills
+    #   user_profile_user_wanted_skill_categories_path
+    # elsif !current_user&.distance_preference
+    #   new_user_profile_user_distance_preference
+    # else
+    #   likes_path
+    # end
   end
 
   private
