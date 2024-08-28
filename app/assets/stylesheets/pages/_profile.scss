@@ -214,3 +214,14 @@
   flex-direction: row;
   align-items: baseline;
 }
+
+.headers-bottom {
+  a {
+    color: $main;
+    font-size: 20px;
+    padding-left: 20px;
+  }
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+}
