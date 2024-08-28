@@ -1,0 +1,12 @@
+<%= simple_form_for @user_description, url: user_profile_user_description_path(current_user), method: :patch do |f| %>
+
+    <%= f.input :photos,
+      label: "Upload your photo",
+      as: :file,
+      input_html: { multiple: true }
+    %>
+
+    <div class="form-navigation">
+      <%= f.button :submit, 'UPLOAD ❯', class: "btn" %>
+    </div>
+  <% end %>

@@ -1,0 +1,25 @@
+<div class="subscription-step">
+  <h2>Update your skills</h2>
+  <h4>Step 2: Select <span>YOUR</span> skill’s categories</h4>
+  <div class="step-underline"></div>
+
+  <%= simple_form_for @user_skill_category, url: user_profile_user_skill_category_path(current_user), method: :patch do |f| %>
+    <div class="category-container" data-controller="category">
+      <% categories = @categories.map { |category| [category.name, category.id, {data: {color:category.color}}, { checked: @existing_categories.include?(category) }] } %>
+      <%= f.input :name,
+                legend: false,
+                as: :check_boxes,
+                collection_wrapper_tag: 'div',
+                collection_wrapper_class: 'category-wrapper',
+                item_wrapper_class: 'category-item mb-3',
+                input_html: { class: 'category-selector'},
+                collection: categories,
+                include_hidden: false %>
+    </div>
+
+    <div class="form-navigation">
+      <%#= link_to '❮ PREVIOUS', "#", class: "btn disabled" %>
+<!---->      <%= f.button :submit, 'NEXT ❯', class: "btn" %>
+    </div>
+  <% end %>
+</div>

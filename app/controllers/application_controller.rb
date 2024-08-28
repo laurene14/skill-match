@@ -31,6 +31,7 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resources)
+    new_user_profile_user_description_path
     if !current_user&.address
       new_user_profile_user_description_path
     elsif !current_user&.proposed_user_skills
