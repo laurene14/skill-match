@@ -1,6 +1,4 @@
 .button-home{
-  background-color: #6C60E0;
-  color: white;
   text-decoration: none;
   width: 60%;
   text-align: center;
@@ -8,5 +6,6 @@
   font-size: 17px;
   padding: 10px;
   text-transform: uppercase;
+  z-index: 999;
   box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.3);
 }

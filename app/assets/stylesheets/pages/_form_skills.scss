@@ -4,6 +4,24 @@
   }
 }
 
+.skills-wrapper {
+  margin-top: 20px;
+  height: 60vh;
+  // display: flex;
+  // flex-direction: column;
+
+}
+
+.user-skill-wrapper {
+  height: 60vh;
+  overflow-y: scroll;
+}
+
+.user-distance-wrapper, .user-description-wrapper {
+  height: 60vh;
+}
+
+
 .tag-item {
   display: inline-block;
 }
@@ -16,7 +34,7 @@
 .tag-selector + label {
   cursor: pointer;
   display: inline-block;
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   border-radius: 50rem;
   padding: 0.1rem 0.5rem;
   background-color: #ECEAFF;

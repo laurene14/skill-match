@@ -16,6 +16,7 @@ class ApplicationController < ActionController::Base
       .permit(:account_update, keys: %i[username address latitude longitude bio distance_preference])
   end
 
+
   # Pundit: allow-list approach
 
   # Uncomment when you *really understand* Pundit!
@@ -26,21 +27,22 @@ class ApplicationController < ActionController::Base
   # end
 
   def after_sign_up_path_for(resources)
-    # TODO Rediriger vers la premiere étape du form object
     new_user_profile_user_description_path
   end
 
-  # def after_sign_in_path_for(resource)
-  #   if resource.sign_in_count == 1 # assuming you want this only for the first sign-in
-  #     new_user_profile_user_description_path
-  #   else
-  #     root_path
-  #   end
-  # end
-
   def after_sign_in_path_for(resources)
-    # TODO Rediriger vers la premiere étape du form object
     new_user_profile_user_description_path
+    # if !current_user&.address
+    #   new_user_profile_user_description_path
+    # elsif !current_user&.proposed_user_skills
+    #   new_user_profile_user_skill_category_path
+    # elsif !current_user&.wanted_user_skills
+    #   user_profile_user_wanted_skill_categories_path
+    # elsif !current_user&.distance_preference
+    #   new_user_profile_user_distance_preference
+    # else
+    #   likes_path
+    # end
   end
 
   private

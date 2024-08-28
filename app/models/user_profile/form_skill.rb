@@ -8,6 +8,7 @@ module UserProfile
     validate :skill_id_presence
 
     def save
+      current_user.user_skills.where(wanted: false).destroy_all
       if valid?
         ActiveRecord::Base.transaction do
           skill_ids.each do |skill_id|

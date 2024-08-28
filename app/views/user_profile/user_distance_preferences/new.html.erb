@@ -1,12 +1,19 @@
 <div class="subscription-step">
   <div class="progress-bar">
-    <div class="progress-bar-fill" style="width: 100%;"></div>
+    <div class="progress-bar-fill" style="width: 16.2%;"></div>
+    <div class="progress-bar-fill" style="width: 16.2%;"></div>
+    <div class="progress-bar-fill" style="width: 16.2%;"></div>
+    <div class="progress-bar-fill" style="width: 16.2%;"></div>
+    <div class="progress-bar-fill" style="width: 16.2%;"></div>
+    <div class="progress-bar-fill" style="width: 16.2%;"></div>
   </div>
 
   <h2>Welcome <%= current_user.username.capitalize %> ! <span>👋</span></h2>
-  <h3>Step 6 : What’s your maximum distance?</h3>
+  <h4>Step 6 : What’s your maximum distance?</h4>
+  <div class="step-underline"></div>
+
     <%= simple_form_for @user_distance_preference do |f| %>
-    <div data-controller="distance-preference">
+    <div data-controller="distance-preference" class="user-distance-wrapper">
       <div class="mt-5">
         <%= f.input :distance_preference , as: :range, input_html: {
             min: 0,

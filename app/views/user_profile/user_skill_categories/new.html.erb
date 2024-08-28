@@ -1,25 +1,37 @@
 <div class="subscription-step">
-  <div class="progress-bar">
-    <div class="progress-bar-fill" style="width: 33.33%;"></div>
+<%# We define the subscription page as three block: Top (progress bar, headers), Middle (simple form) and bottom (buttons) %>
+<%# Grid distribution: Auto for top (As height as it will), 50px for button, and 1 fr for middle (All the rest) %>
+  <div>
+    <div class="progress-bar">
+      <div class="progress-bar-fill" style="width: 16.2%;"></div>
+      <div class="progress-bar-fill" style="width: 16.2%;"></div>
+      <div class="progress-bar-empty" style="width: 16.2%;"></div>
+      <div class="progress-bar-empty" style="width: 16.2%;"></div>
+      <div class="progress-bar-empty" style="width: 16.2%;"></div>
+      <div class="progress-bar-empty" style="width: 16.2%;"></div>
+    </div>
+    <h2>Welcome <%= current_user.username.capitalize %>! <span>👋</span></h2>
+    <h4>Step 2: Select <span>YOUR</span> skill’s categories</h4>
+    <div class="step-underline"></div>
   </div>
 
-  <h2>Welcome <%= current_user.username.capitalize %>! <span>👋</span></h2>
-  <h3>Step 2: Select your skill’s categories</h3>
-
-  <%= simple_form_for :categories, url: new_user_profile_form_skill_path, method: :get do |f| %>
-    <%= f.input :name,
-              label: 'Choose at least one category',
-              as: :check_boxes,
-              collection_wrapper_tag: 'div',
-              collection_wrapper_class: 'category-wrapper',
-              item_wrapper_class: 'category-item mb-3',
-              input_html: {class: 'category-selector'},
-              collection: @categories,
-              include_hidden: false %>
+    <%= simple_form_for @user_skill_category  do |f| %>
+    <div class="category-container" data-controller="category">
+      <% categories = @categories.map { |category| [category.name, category.id, {data: {color:category.color}}] } %>
+        <%= f.input :name,
+                  legend: false,
+                  as: :check_boxes,
+                  collection_wrapper_tag: 'div',
+                  collection_wrapper_class: 'category-wrapper',
+                  item_wrapper_class: 'category-item mb-3',
+                  collection: categories,
+                  include_hidden: false
+                  %>
+    </div>
 
     <div class="form-navigation">
       <%= link_to '❮ PREVIOUS', "#", class: "btn disabled" %>
-      <%= f.button :submit, 'NEXT ❯', class: "btn" %>
+      <%= f.button :submit, 'NEXT ❯' %>
     </div>
   <% end %>
 </div>

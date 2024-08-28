@@ -1,6 +1,6 @@
 module UserProfile
   class UserWantedSkillCategoriesController < ApplicationController
-    before_action :authorize_user_wanted_skill_category, only: %i[new create]
+    before_action :authorize_user_wanted_skill_category, only: %i[new create edit update]
 
     def new
       @user_wanted_skill_category = UserSkillCategory.new
@@ -17,6 +17,27 @@ module UserProfile
       else
         flash.now[:alert] = 'You must select at least one category.'
         render :new, status: :unprocessable_entity
+      end
+    end
+
+    def edit
+      @user_wanted_skill_category = UserSkillCategory.new
+      @categories = Category.all
+      @existing_categories = current_user.wanted_skills.map(&:categories).flatten.uniq
+      # >> current_user.proposed_skills.joins(:categories).distinct.map(&:categories).flatten.uniq
+
+      # @categories = current_user.skills.joins(:categories).distinct.pluck(:name)
+      authorize @user_wanted_skill_category
+    end
+
+    def update
+      @user_wanted_skill_category = UserSkillCategory.new(user_wanted_skill_category_params)
+      authorize @user_wanted_skill_category
+
+      if @user_wanted_skill_category.valid?
+        redirect_to edit_user_profile_form_skill_path(categories: @user_wanted_skill_category.name)
+      else
+        render :edit, status: :unprocessable_entity
       end
     end
 

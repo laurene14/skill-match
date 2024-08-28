@@ -7,24 +7,31 @@ Rails.application.routes.draw do
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   resources :users, only: %i[index show]
 
-  resources :likes, only: %i[index create]
-  resources :bookmarks, only: %i[create]
+  resources :likes, only: %i[index create destroy]
+  resources :bookmarks, only: %i[create destroy]
   resources :categories, only: %i[index]
-  resources :matchs, only: %i[index]
+  resources :matchs, only: %i[index show] do
+    resources :messages, only: :create
+  end
   resources :notifications, only: %i[index]
 
   # Defines the root path route ("/")
   # root "posts#index"
 
   namespace :user_profile do
-    resources :user_descriptions, only: %i[new create]
-    resources :user_skill_categories, only: %i[new]
-    resources :user_skills, only: %i[new create]
-    resources :user_distance_preferences, only: %i[new create]
+    get 'profile/show'
+    resources :user_descriptions, only: %i[new create edit update]
+    resources :user_skill_categories, only: %i[new create edit update]
+    resources :user_skills, only: %i[new create edit update]
+    resources :user_distance_preferences, only: %i[new create edit update]
     resources :user_congrats, only: %i[show]
-    resources :form_skills, only: %i[new create]
-    resources :wanted_form_skills, only: %i[new create]
-    resources :user_wanted_skill_categories, only: %i[new]
-    resources :user_distance_preferences, only: %i[new create]
+    resources :form_skills, only: %i[new create edit update]
+    resources :wanted_form_skills, only: %i[new create edit update]
+    resources :user_wanted_skill_categories, only: %i[new create edit update]
+    resources :user_distance_preferences, only: %i[new create edit update]
+    resources :profile, only: %i[show] do
+      patch :update_photos, on: :member
+      delete :destroy_photo, on: :member
+    end
   end
 end

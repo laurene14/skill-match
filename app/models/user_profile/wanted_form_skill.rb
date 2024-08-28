@@ -4,10 +4,10 @@ module UserProfile
 
     attr_accessor :wanted_skill_ids, :category_ids, :current_user
 
-    # validates :skill_ids, presence: true
     validate :wanted_skill_id_presence
 
     def save
+      current_user.user_skills.where(wanted: true).destroy_all
       if valid?
         ActiveRecord::Base.transaction do
           wanted_skill_ids.each do |wanted_skill_id|

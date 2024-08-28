@@ -10,6 +10,15 @@
   transition: opacity 0.1s ease-in-out;
 }
 
+.swipe__confetti {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100px; /* Example width */
+  height: 50px; /* Example height */
+}
+
 .loaded.swipe {
   opacity: 1;
 }
@@ -36,12 +45,12 @@
 
 // .swipe-accept, .swipe-refuse : classes distributed by js to .swipe when card is dragged
 .swipe--accept .swipe__button--accept {
-  opacity: 0.9;
+  opacity: 0.7;
   transform: scale(1);
 }
 
 .swipe--refuse .swipe__button--refuse {
-  opacity: 0.9;
+  opacity: 0.7;
   transform: scale(1);
 }
 
@@ -146,7 +155,7 @@
 }
 
 .swipe__button--refuse {
-  color: #ef4545;
+  color: #ee5050;
 }
 
 @include media-breakpoint-up(lg) {

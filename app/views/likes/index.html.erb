@@ -1,7 +1,10 @@
 <div class="swipe" data-controller="swiper">
+  <div class="swipe__confetti" id="confetti" data-swiper-target="confetti" style="z-index:9999;display:none">
+  </div>
+
   <div class="swipe__status">
-    <i class="swipe__button--refuse fa fa-remove"></i>
-    <i class="swipe__button--accept fa fa-check"></i>
+    <i class="swipe__button--refuse fa-solid fa-thumbs-down"></i>
+    <i class="swipe__button--accept fa-solid fa-thumbs-up"></i>
   </div>
 
   <div class="mx-auto mt-8">
@@ -10,7 +13,7 @@
   </div>
   <div class="swipe__cards">
     <% @users.each do |user| %>
-      <div id="<%= user.id %>" class="swipe__card border border-2 shadow" data-swiper-target="card">
+      <div id=<%= user.id %> class="swipe__card border border-2 shadow" data-swiper-target="card">
         <div class="swipe__card__box">
           <%= render "shared/avatar", user: user %>
           <button class="shadow" data-swiper-target="follow" data-action="click->swiper#clickFollow">
@@ -55,7 +58,7 @@
         </div>
         <div style="position:absolute;bottom:40px;left:0;right:0;margin:auto">
             <a href="#" class="btn btn-primary" style="z-index:2000">Go to matchlist</a>
-            <a href="/likes?all=" class="btn btn-primary">See more profils</a>
+            <a href="/likes?all=" class="btn btn-primary">See more profiles</a>
         </div>
       </div>
 
@@ -74,8 +77,8 @@
   </div>
 
   <div class="swipe__buttons d-none d-lg-block">
-    <button data-swiper-target="refuse" data-action="click->swiper#clickRefuse" ><i class="swipe__button--refuse fa fa-remove"></i></button>
-    <button data-swiper-target="accept" data-action="click->swiper#clickAccept" ><i class="swipe__button--accept fa fa-check"></i></button>
+    <button data-swiper-target="refuse" data-action="click->swiper#clickRefuse" ><i class="swipe__button--refuse fa-solid fa-thumbs-down"></i></button>
+    <button data-swiper-target="accept" data-action="click->swiper#clickAccept" ><i class="swipe__button--accept fa-solid fa-thumbs-up"></i></button>
   </div>
 
 </div>

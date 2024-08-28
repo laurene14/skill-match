@@ -3,7 +3,7 @@ module UserProfile
 
     def new
       @form_skill = FormSkill.new
-      @categories = Category.where(id: params[:categories][:name])
+      @categories = Category.where(id: params[:categories])
       authorize @form_skill
 
       # @skills = @categories.skills
@@ -22,11 +22,32 @@ module UserProfile
       end
     end
 
+    def edit
+      @form_skill = FormSkill.new
+      @categories = Category.where(id: params[:categories])
+      @existing_skills = current_user.proposed_skills
+      authorize @form_skill
+    end
+
+    def update
+      @form_skill = FormSkill.new(current_user: current_user, skill_ids: params[:user_profile_form_skill][:skill_ids])
+      @categories = Category.where(id: params[:user_profile_form_skill][:category_ids].split(" "))
+
+      authorize @form_skill
+
+      if @form_skill.valid?
+        if @form_skill.save
+          redirect_to user_profile_profile_path(current_user)
+        else
+          render :edit, status: :unprocessable_entity
+        end
+      end
+    end
+
     private
 
-
     def form_skill_params
-      params.require(:user_profile_form_skill).permit(:name)
+      params.require(:user_profile_form_skill).permit(:name, skill_ids: [])
     end
   end
 end

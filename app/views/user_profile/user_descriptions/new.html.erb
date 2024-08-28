@@ -1,32 +1,46 @@
 <div class="subscription-step">
   <div class="progress-bar">
-    <div class="progress-bar-fill" style="width: 16.66%;"></div>
+    <div class="progress-bar-fill" style="width: 16.2%;"></div>
+    <div class="progress-bar-empty" style="width: 16.2%;"></div>
+    <div class="progress-bar-empty" style="width: 16.2%;"></div>
+    <div class="progress-bar-empty" style="width: 16.2%;"></div>
+    <div class="progress-bar-empty" style="width: 16.2%;"></div>
+    <div class="progress-bar-empty" style="width: 16.2%;"></div>
   </div>
 
   <h2>Welcome <%= current_user.username.capitalize %>! <span>👋</span></h2>
-  <h3>Step 1: who are you?</h3>
+  <h4>Step 1: who are you?</h4>
+  <div class="step-underline"></div>
 
   <%= simple_form_for @user_description do |f| %>
-    <%= f.input :address,
-      label: "Address",
-      placeholder: "Where do you live?",
-      input_html: {
-        data: {
-          controller: "address-autocomplete",
-          address_autocomplete_target: "address",
-          address_autocomplete_url_value: "https://api-adresse.data.gouv.fr/search/?q=",
-          action: 'input->address-autocomplete#onInput'
-        },
-        class: "form-control"
-      }
-    %>
+    <div class="user-description-wrapper">
+      <%= f.input :address,
+        label: "Address",
+        placeholder: "Where do you live?",
+        input_html: {
+          data: {
+            controller: "address-autocomplete",
+            address_autocomplete_target: "address",
+            address_autocomplete_url_value: "https://api-adresse.data.gouv.fr/search/?q=",
+            action: 'input->address-autocomplete#onInput'
+          },
+          class: "form-control"
+        }
+      %>
 
-    <%= f.input :bio,
-      label: "Bio",
-      as: :text,
-      placeholder: "Tell us more about you and why you’re here!",
-      input_html: { rows: 3 }
-    %>
+      <%= f.input :bio,
+        label: "Bio",
+        as: :text,
+        placeholder: "Tell us more about you and why you’re here!",
+        input_html: { rows: 3 }
+      %>
+
+      <%= f.input :photos,
+        label: "Upload your photo",
+        as: :file,
+        input_html: { multiple: true }
+      %>
+    </div>
 
     <div class="form-navigation">
       <%#= link_to '❮ PREVIOUS', "#", class: "btn disabled" %>

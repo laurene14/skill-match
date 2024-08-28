@@ -11,8 +11,8 @@
                 aria-controls="match-tab-send"
                 aria-selected="true">
           Sent
-          <% unless @users_list[1].empty? %>
-            (<%= @users_list[1].length %>)
+          <% unless @likeds.empty? %>
+            (<%= @likeds.length %>)
           <% end %>
         </button>
       </li>
@@ -26,8 +26,8 @@
                 aria-controls="match-tab-received"
                 aria-selected="false">
           Received
-          <% unless @users_list[0].empty? %>
-            (<%= @users_list[0].length %>)
+          <% unless @likers.empty? %>
+            (<%= @likers.length %>)
           <% end %>
         </button>
       </li>
@@ -41,14 +41,15 @@
           role="tabpanel"
           aria-labelledby="match-tab-send"
           tabindex="0">
-      <%= render 'users/users', user_list: @users_list[1], current_user_wanted_skills: @current_user_skills_preference[:wanted] %>
+      <%= render 'users/users', like_list: @likeds, current_user_wanted_skills: @current_user_skills_preference[:wanted], status: "sent" %>
+
     </div>
     <div class="tab-pane fade"
           id="match-received"
           role="tabpanel"
           aria-labelledby="match-tab-received"
           tabindex="0">
-      <%= render 'users/users', user_list: @users_list[0], current_user_wanted_skills: @current_user_skills_preference[:wanted] %>
+      <%= render 'users/users', like_list: @likers, current_user_wanted_skills: @current_user_skills_preference[:wanted], status: "received" %>
     </div>
   </div>
 </div>
