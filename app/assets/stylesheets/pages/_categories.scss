@@ -40,13 +40,63 @@
         color: white
       }
     }
+  }
+  .category-search-wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 30px 0 0;
+  }
 
-    .categories-search-wrapper {
-      display: flex;
-      position: absolute;
-      background-color: white;
-      color: black;
-    }
+  .search-container {
+    width: 100%;
+    max-width: 500px;
+  }
+
+  .search-form {
+    width: 100%;
+  }
+
+  .search-input-wrapper {
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+
+  .search-input {
+    width: 100%;
+    padding: 5px 40px 5px 15px; /* Hauteur réduite */
+    border: 2px solid #7C5CF0; /* Bordure de l'input */
+    border-radius: 25px; /* Coins arrondis */
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+    background-color: #E0D7FF; /* Couleur de fond de l'input */
+    color: #7C5CF0; /* Couleur du texte de l'input */
+  }
+
+  .search-input::placeholder {
+    font-size: 12px; /* Ajustez la taille de la police */
+    color: #888; /* Vous pouvez également ajuster la couleur du placeholder */
+    opacity: 1; /* Optionnel : Opacité du placeholder */
+  }
+
+  .search-button {
+    position: absolute;
+    right: 10px;
+    background: none;
+    border: none;
+    color: #7C5CF0;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.3s ease;
+  }
+
+  .search-input:focus {
+    border-color: #7C5CF0; /* Couleur de la bordure au focus */
+    outline: none;
   }
 }
 
@@ -58,81 +108,96 @@
   display: flex;
   justify-content: space-between;
   align-items: baseline;
+
   #cat-title {
     font-weight: bold;
   }
+
   #cat-description {
     font-style: italic;
     color: #888888;
     font-size: 12px;
   }
 }
-.category-wrapper {
-  padding: 0 8vw;
+
+.category-container {
   display: flex;
-  justify-content: center;
   flex-wrap: wrap;
-  row-gap: 16px;
-  column-gap: 28px;
+  justify-content: space-between;
+
 }
 
 .category-wrapper {
+
+  .category {
+    border-radius: 24px;
+    font-weight: bold;
+    letter-spacing: .05rem;
+    min-height: 160px;
+    min-width: 160px;
+    text-align: center;
+  }
+
   .category-item {
-    flex: 0 0 45%;
-    max-width: 160px;
-    max-height: 160px;
-    display: inline-grid;
+    width: 32%;
+    padding-bottom: 32%;
+    margin-bottom:18% ;
     position: relative;
+
+    img {
+      height: 70px;
+      width: 70px;
+    }
   }
 
   .category-item_technology {
     background-color: #FFF3C6;
     color: #F9A542;
+    // background-image: asset-url("Technology.png");
   }
 
   .category-item_design {
     background-color: #D7EFFE;
     color: #369CF7;
   }
-}
 
+  .category-item_marketing {
+    background-color: #FBE1FB;
+    color: #F266C9;
+  }
 
+  .category-item_business {
+    background-color: #B8EEDC;
+    color: #3FA985;
+  }
 
-.category-item_marketing {
-  background-color: #E0D7FF;
-  color: #7C5CF0;
-  font-weight: bold;
-  letter-spacing: .05rem;
-  height: 150px;
-  text-align:center;
-  border-radius: 25px;
-  display: flex;
-  align-items: flex-end;
-  position: relative;
-}
+  .category-item_education {
+    background-color: #FADFCD;
+    color: #FE8E75;
+  }
 
-.category-item_business {
-  background-color: #FBE1FB;
-  color: #F266C9;
-  font-weight: bold;
-  letter-spacing: .05rem;
-  height: 150px;
-  text-align:center;
-  border-radius: 25px;
-  display: flex;
-  align-items: flex-end;
-  position: relative;
-}
+  .category-item_sports {
+    background-color: #E0D7FF;
+    color: #7C5CF0;
+  }
 
-.category-item_education {
-  background-color: #B8EEDC;
-  color: #3FA985;
-  font-weight: bold;
-  letter-spacing: .05rem;
-  height: 150px;
-  text-align:center;
-  border-radius: 25px;
-  display: flex;
-  align-items: flex-end;
-  position: relative;
+  .category-item_music {
+    background-color: #FFF3C6;
+    color: #F9A542;
+  }
+
+  .category-item_dance {
+    background-color: #D7EFFE;
+    color: #369CF7;
+  }
+
+  .category-item_art {
+    background-color: #FBE1FB;
+    color: #F266C9;
+  }
+
+  .category-item_diy {
+    background-color: #B8EEDC;
+    color: #3FA985;
+  }
 }

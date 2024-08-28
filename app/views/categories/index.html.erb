@@ -10,9 +10,23 @@
           <p>So good to see you back</p>
         </div>
       </div>
-      <div class="categories-search-wrapper">
-        <div class="categories-search">
-        </div>
+      <div class="category-search-wrapper">
+          <div class="search-container">
+            <div class="col-sm-8 my-3">
+              <%= form_with url: categories_path, method: :get, class: "category-search" do |f| %>
+                <div class="search-input-wrapper">
+                  <%= text_field_tag :query,
+                    params[:query],
+                    placeholder: "Type the skill you search",
+                    class: "search-input"
+                  %>
+                  <button type="submit" class="search-button">
+                    <i class="fas fa-search"></i>
+                  </button>
+                </div>
+              <% end %>
+            </div>
+          </div>
       </div>
     </div>
   </div>
@@ -26,12 +40,11 @@
     <% if @categories.any? %>
       <div class="category-wrapper">
         <% @categories.each do |category| %>
-          <div class="category-item_<%= category.name.downcase%>">
-            <%=  %>
+          <div class="category category-item_<%= category.name.downcase%>">
             <%= category.name %>
           </div>
-      </div>
       <% end %>
+      </div>
     <% else %>
       <em>Sorry, no categories found.</em>
     <% end %>
