@@ -1,3 +1,49 @@
-<%# <div style="position: absolute; top: 5px; right: 5px;">
-<%= link_to 'Go to Profile', user_profile_profile_path(current_user), class: 'btn btn-primary' %>
-<%# </div> %>
+<div class="background">
+  <div class="header-container">
+    <div class="user-header my-6">
+      <div class="user-info d-flex">
+        <div>
+          <h2>Hi <%= current_user.username.capitalize %>! <span>👋</span></h2>
+          <p>So good to see you back</p>
+        </div>
+      </div>
+      <div class="category-search-wrapper">
+          <div class="search-container">
+            <div class="col-sm-8 my-3">
+              <%= form_with url: categories_path, method: :get, class: "category-search" do |f| %>
+                <div class="search-input-wrapper">
+                  <%= text_field_tag :query,
+                    params[:query],
+                    placeholder: "Type the skill you search",
+                    class: "search-input"
+                  %>
+                  <button type="submit" class="search-button">
+                    <i class="fas fa-search"></i>
+                  </button>
+                </div>
+              <% end %>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="category-title">
+    <p id="cat-title">Categories</p>
+    <p id="cat-description">Choose a category</p>
+  </div>
+
+  <div class="category-container">
+    <% if @categories.any? %>
+      <div class="category-wrapper">
+        <% @categories.each do |category| %>
+          <div class="category category-item_<%= category.name.downcase%>">
+            <%= category.name %>
+          </div>
+      <% end %>
+      </div>
+    <% else %>
+      <em>Sorry, no categories found.</em>
+    <% end %>
+  </div>
+</div>

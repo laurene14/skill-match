@@ -1,6 +1,6 @@
 module UserProfile
   class UserWantedSkillCategoriesController < ApplicationController
-    before_action :authorize_user_wanted_skill_category, only: %i[new create edit update]
+    before_action :authorize_user_wanted_skill_category, only: %i[new create]
 
     def new
       @user_wanted_skill_category = UserSkillCategory.new
@@ -23,7 +23,7 @@ module UserProfile
     def edit
       @user_wanted_skill_category = UserSkillCategory.new
       @categories = Category.all
-      @existing_categories = current_user.wanted_skills.map(&:categories).flatten.uniq
+      @existing_categories = current_user.proposed_skills.map(&:categories).flatten.uniq
       # >> current_user.proposed_skills.joins(:categories).distinct.map(&:categories).flatten.uniq
 
       # @categories = current_user.skills.joins(:categories).distinct.pluck(:name)
@@ -44,7 +44,7 @@ module UserProfile
     private
 
     def user_wanted_skill_category_params
-      params.require(:user_profile_user_wanted_skill_category).permit(category_ids: [])
+      params.require(:user_profile_user_wanted_skill_category).permit(name: [], category_ids: [])
     end
 
     def authorize_user_wanted_skill_category
