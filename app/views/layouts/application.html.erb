@@ -14,6 +14,10 @@
     <meta name="mobile-web-app-capable" content="yes">
     <link rel="manifest" href="<%= asset_path 'manifest.json' %>">
     <%= render 'shared/ios_pwa_links' %>
+    <% if current_page?(root_path) %>
+      <meta name="turbo-visit-control" content="reload">
+    <% end %>
+
   </head>
 
   <body data-current-user-id="<%= current_user ? current_user.id : "" %>" style="<%= touch_action_style %>">
