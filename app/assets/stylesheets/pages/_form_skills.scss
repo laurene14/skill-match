@@ -6,9 +6,21 @@
 
 .skills-wrapper {
   margin-top: 20px;
-  overflow: scroll;
+  height: 60vh;
+  // display: flex;
+  // flex-direction: column;
+
+}
+
+.user-skill-wrapper {
+  height: 60vh;
+  overflow-y: scroll;
+}
+
+.user-distance-wrapper, .user-description-wrapper {
   height: 60vh;
 }
+
 
 .tag-item {
   display: inline-block;

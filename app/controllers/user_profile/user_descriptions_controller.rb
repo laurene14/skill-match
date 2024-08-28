@@ -17,6 +17,23 @@ module UserProfile
       end
     end
 
+    def edit
+      @user_description = UserDescription.new(address: current_user.address, bio: current_user.bio)
+      authorize @user_description
+    end
+
+    def update
+      @user_description = UserDescription.new(user_description_params)
+      authorize @user_description
+      if @user_description.valid?
+        if current_user.update(user_description_params)
+          redirect_to user_profile_profile_path(current_user)
+        else
+          render :edit, status: :unprocessable_entity
+        end
+      end
+    end
+
     private
 
     def user_description_params

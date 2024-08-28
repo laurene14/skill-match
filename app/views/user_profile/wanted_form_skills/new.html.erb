@@ -13,17 +13,19 @@
   <div class="step-underline"></div>
 
   <%= simple_form_for @wanted_form_skill, html: { class:'skills-wrapper' } do |f| %>
-    <% @categories.each do |category| %>
-      <h5><%= category.name %></h5>
-        <% category_ids = params[:categories].present? ? params[:categories][:name] : params[:user_profile_user_skill_category][:name] %>
-        <%= f.hidden_field :category_ids, value: category_ids %>
-        <%= f.input :wanted_skill_ids,
-                    as: :check_boxes,
-                    collection: category.skills,
-                    input_html: { class: "tag-selector" },
-                    item_wrapper_class: 'tag-item',
-                    include_hidden: false %>
-      <% end %>
+    <div class="user-skill-wrapper">
+      <% @categories.each do |category| %>
+        <h5><%= category.name %></h5>
+          <% category_ids = params[:categories].present? ? params[:categories][:name] : params[:user_profile_user_skill_category][:name] %>
+          <%= f.hidden_field :category_ids, value: category_ids %>
+          <%= f.input :wanted_skill_ids,
+                      as: :check_boxes,
+                      collection: category.skills,
+                      input_html: { class: "tag-selector" },
+                      item_wrapper_class: 'tag-item',
+                      include_hidden: false %>
+        <% end %>
+    </div>
     <div class="form-navigation">
       <%= link_to '❮ PREVIOUS', "#", class: "btn disabled" %>
       <%= f.button :submit, 'NEXT ❯', class: "btn" %>
