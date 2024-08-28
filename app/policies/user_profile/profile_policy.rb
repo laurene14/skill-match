@@ -9,6 +9,10 @@ class UserProfile::ProfilePolicy < ApplicationPolicy
     true
   end
 
+  # def update_photos?
+  #   true
+  # end
+
   class Scope < ApplicationPolicy::Scope
     # NOTE: Be explicit about which records you allow access to!
     # def resolve
