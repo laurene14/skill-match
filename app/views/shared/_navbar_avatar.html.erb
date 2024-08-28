@@ -1,5 +1,4 @@
 <div class="navbar-avatar <%= 'd-none' if params[:controller] == 'pages' && params[:action] == 'home'%>" data-bs-toggle="offcanvas" href="#sidbarCanvas" role="button" aria-controls="sidbarCanvas">
-
   <%= render "shared/avatar", user: current_user, class_name:"avatar" %>
 </div>
 
