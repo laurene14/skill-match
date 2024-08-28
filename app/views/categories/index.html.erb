@@ -18,16 +18,22 @@
   </div>
 
   <div class="category-title">
-    <p id="cat-title">Category</p>
+    <p id="cat-title">Categories</p>
     <p id="cat-description">Choose a category</p>
   </div>
 
   <div class="categories-container">
-    <%# <% @categories.each do |category| %>
-      <%# <%= category.name %>
-    <%# <% end %>
-    <% simple_form_for @categories do |f| %>
-    
+    <% if @categories.any? %>
+      <div class="category-wrapper">
+        <% @categories.each do |category| %>
+          <div class="category category-item_<%= category.name.downcase%>">
+            <%=  %>
+            <%= category.name %>
+          </div>
+      </div>
+      <% end %>
+    <% else %>
+      <em>Sorry, no categories found.</em>
     <% end %>
   </div>
 </div>

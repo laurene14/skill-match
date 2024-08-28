@@ -67,6 +67,73 @@
   }
 }
 
-.categories-container {
+.categories-wrapper {
   padding: 0 8vw;
+}
+
+.category {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-weight: bold;
+  letter-spacing: .05rem;
+  height: 150px;
+  border-radius: 25px;
+  text-align:center;
+}
+
+.category-item_technology {
+  background-color: #FFF3C6;
+  color: #F9A542;
+}
+
+.category-item_design {
+  background-color: #D7EFFE;
+  color: #369CF7;
+  font-weight: bold;
+  letter-spacing: .05rem;
+  height: 150px;
+  text-align:center;
+  border-radius: 25px;
+  display: flex;
+  align-items: flex-end;
+}
+
+.category-item_marketing {
+  background-color: #E0D7FF;
+  color: #7C5CF0;
+  font-weight: bold;
+  letter-spacing: .05rem;
+  height: 150px;
+  text-align:center;
+  border-radius: 25px;
+  display: flex;
+  align-items: flex-end;
+  position: relative;
+}
+
+.category-item_business {
+  background-color: #FBE1FB;
+  color: #F266C9;
+  font-weight: bold;
+  letter-spacing: .05rem;
+  height: 150px;
+  text-align:center;
+  border-radius: 25px;
+  display: flex;
+  align-items: flex-end;
+  position: relative;
+}
+
+.category-item_education {
+  background-color: #B8EEDC;
+  color: #3FA985;
+  font-weight: bold;
+  letter-spacing: .05rem;
+  height: 150px;
+  text-align:center;
+  border-radius: 25px;
+  display: flex;
+  align-items: flex-end;
+  position: relative;
 }
