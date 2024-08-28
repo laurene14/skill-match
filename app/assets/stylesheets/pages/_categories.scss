@@ -1,0 +1,203 @@
+.background {
+  background-color: white;
+  color: black;
+  height: 100vh;
+}
+
+.header-container {
+  background-color: $main;
+  color: white;
+  display: flex;
+  padding: 0 8vw;
+  flex-direction: column;
+  border-radius: 0 0 30px 30px;
+  min-height: 25vh;
+
+  .user-header {
+    .user-info {
+      align-items: baseline;
+      justify-content: space-between;
+      text-align: right;
+
+      h2 {
+        font-size: 20px;
+        font-family: montserrat;
+        font-weight: bold;
+        padding-left: 5px;
+      }
+
+      p {
+        font-size: 16px;
+        margin: 0;
+      }
+
+      .font-normal {
+        font-weight: 200;
+      }
+
+      .nav-down {
+        font-size: 27px;
+        color: white
+      }
+    }
+  }
+  .category-search-wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 30px 0 0;
+  }
+
+  .search-container {
+    width: 100%;
+    max-width: 500px;
+  }
+
+  .search-form {
+    width: 100%;
+  }
+
+  .search-input-wrapper {
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+
+  .search-input {
+    width: 100%;
+    padding: 5px 40px 5px 15px; /* Hauteur réduite */
+    border: 2px solid #7C5CF0; /* Bordure de l'input */
+    border-radius: 25px; /* Coins arrondis */
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+    background-color: #E0D7FF; /* Couleur de fond de l'input */
+    color: #7C5CF0; /* Couleur du texte de l'input */
+  }
+
+  .search-input::placeholder {
+    font-size: 12px; /* Ajustez la taille de la police */
+    color: #888; /* Vous pouvez également ajuster la couleur du placeholder */
+    opacity: 1; /* Optionnel : Opacité du placeholder */
+  }
+
+  .search-button {
+    position: absolute;
+    right: 10px;
+    background: none;
+    border: none;
+    color: #7C5CF0;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.3s ease;
+  }
+
+  .search-input:focus {
+    border-color: #7C5CF0; /* Couleur de la bordure au focus */
+    outline: none;
+  }
+}
+
+.category-title {
+  padding: 0 8vw;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-top: 10px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+
+  #cat-title {
+    font-weight: bold;
+  }
+
+  #cat-description {
+    font-style: italic;
+    color: #888888;
+    font-size: 12px;
+  }
+}
+
+.category-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+}
+
+.category-wrapper {
+
+  .category {
+    border-radius: 24px;
+    font-weight: bold;
+    letter-spacing: .05rem;
+    min-height: 160px;
+    min-width: 160px;
+    text-align: center;
+  }
+
+  .category-item {
+    width: 32%;
+    padding-bottom: 32%;
+    margin-bottom:18% ;
+    position: relative;
+
+    img {
+      height: 70px;
+      width: 70px;
+    }
+  }
+
+  .category-item_technology {
+    background-color: #FFF3C6;
+    color: #F9A542;
+    // background-image: asset-url("Technology.png");
+  }
+
+  .category-item_design {
+    background-color: #D7EFFE;
+    color: #369CF7;
+  }
+
+  .category-item_marketing {
+    background-color: #FBE1FB;
+    color: #F266C9;
+  }
+
+  .category-item_business {
+    background-color: #B8EEDC;
+    color: #3FA985;
+  }
+
+  .category-item_education {
+    background-color: #FADFCD;
+    color: #FE8E75;
+  }
+
+  .category-item_sports {
+    background-color: #E0D7FF;
+    color: #7C5CF0;
+  }
+
+  .category-item_music {
+    background-color: #FFF3C6;
+    color: #F9A542;
+  }
+
+  .category-item_dance {
+    background-color: #D7EFFE;
+    color: #369CF7;
+  }
+
+  .category-item_art {
+    background-color: #FBE1FB;
+    color: #F266C9;
+  }
+
+  .category-item_diy {
+    background-color: #B8EEDC;
+    color: #3FA985;
+  }
+}
