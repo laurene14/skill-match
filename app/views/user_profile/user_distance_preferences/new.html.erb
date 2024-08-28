@@ -13,7 +13,7 @@
   <div class="step-underline"></div>
 
     <%= simple_form_for @user_distance_preference do |f| %>
-    <div data-controller="distance-preference">
+    <div data-controller="distance-preference" class="user-distance-wrapper">
       <div class="mt-5">
         <%= f.input :distance_preference , as: :range, input_html: {
             min: 0,

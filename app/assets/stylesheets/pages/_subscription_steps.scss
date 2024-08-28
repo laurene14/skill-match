@@ -6,13 +6,15 @@
   margin: 0 auto;
   padding: 48px 24px;
   text-align: left;
-  display: grid;
-  grid-template-rows: auto 1fr 50px;
-  row-gap: 2rem;
+
 }
 
 .subscription-step .category-container {
-  overflow-y: auto;
+  overflow-y: scroll;
+}
+
+.category-container {
+  height: 60vh;
 }
 
 .subscription-step h2 {
@@ -39,5 +41,6 @@
   height: 1px;
   background-color: lightgrey;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-  margin-top: 10px;
+  margin-top: 40px;
+  margin-bottom: 55px;
 }

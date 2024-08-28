@@ -20,15 +20,18 @@ Rails.application.routes.draw do
 
   namespace :user_profile do
     get 'profile/show'
-    resources :user_descriptions, only: %i[new create]
-    resources :user_skill_categories, only: %i[new create]
-    resources :user_skills, only: %i[new create]
-    resources :user_distance_preferences, only: %i[new create]
+    resources :user_descriptions, only: %i[new create edit update]
+    resources :user_skill_categories, only: %i[new create edit update]
+    resources :user_skills, only: %i[new create edit update]
+    resources :user_distance_preferences, only: %i[new create edit update]
     resources :user_congrats, only: %i[show]
-    resources :form_skills, only: %i[new create]
-    resources :wanted_form_skills, only: %i[new create]
-    resources :user_wanted_skill_categories, only: %i[new create]
-    resources :user_distance_preferences, only: %i[new create]
-    resources :profile, only: %i[show]
+    resources :form_skills, only: %i[new create edit update]
+    resources :wanted_form_skills, only: %i[new create edit update]
+    resources :user_wanted_skill_categories, only: %i[new create edit update]
+    resources :user_distance_preferences, only: %i[new create edit update]
+    resources :profile, only: %i[show] do
+      patch :update_photos, on: :member
+      delete :destroy_photo, on: :member
+    end
   end
 end
