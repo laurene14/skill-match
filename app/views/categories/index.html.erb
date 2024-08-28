@@ -22,11 +22,11 @@
     <p id="cat-description">Choose a category</p>
   </div>
 
-  <div class="categories-container">
+  <div class="category-container">
     <% if @categories.any? %>
       <div class="category-wrapper">
         <% @categories.each do |category| %>
-          <div class="category category-item_<%= category.name.downcase%>">
+          <div class="category-item_<%= category.name.downcase%>">
             <%=  %>
             <%= category.name %>
           </div>
