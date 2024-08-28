@@ -82,7 +82,12 @@
 <div class="user-profile-page-bottom">
   <div class="profile-sections-bottom">
     <div class="profile-section">
+    <div class="headers">
       <h3>Wanted skills</h3>
+      <%= link_to edit_user_profile_user_wanted_skill_category_path do %>
+        <i class="fa-solid fa-pen-to-square"></i>
+      <% end %>
+    </div>
       <% @wanted_skills.each do |wanted_skill| %>
          <div class="wanted-skill-tag"><%= wanted_skill.name %></div>
       <% end %>
