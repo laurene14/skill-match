@@ -41,6 +41,5 @@ class UsersController < ApplicationController
 
   def set_matched_ids
     User.joins(:likes_as_liked).where(likes: { liker: current_user }).select(:id)
-
   end
 end
