@@ -10,8 +10,8 @@
               collection_wrapper_tag: 'div',
               collection_wrapper_class: 'category-wrapper',
               item_wrapper_class: 'category-item mb-3',
-              input_html: {class: 'category-selector'},
-              collection: @categories,
+              input_html: { class: 'category-selector'},
+              collection: @categories.map { |cat| [cat.name, cat.id, { checked: @existing_categories.include?(cat) }] },
               include_hidden: false %>
 
     <div class="form-navigation">

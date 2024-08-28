@@ -24,34 +24,30 @@ module UserProfile
 
     def edit
       @form_skill = FormSkill.new
-      @categories = current_user.skills.joins(:categories).distinct.pluck(:name)
+      @categories = Category.where(id: params[:categories])
+      @existing_skills = current_user.proposed_skills
       authorize @form_skill
     end
 
     def update
-      @form_skill = FormSkill.new(form_skill_params)
+      @form_skill = FormSkill.new(current_user: current_user, skill_ids: params[:user_profile_form_skill][:skill_ids])
+      @categories = Category.where(id: params[:user_profile_form_skill][:category_ids].split(" "))
+
       authorize @form_skill
 
-      if current_user.update(user_description_params)
+      if @form_skill.valid?
+        if @form_skill.save
           redirect_to user_profile_profile_path(current_user)
-      else
-        render :edit, status: :unprocessable_entity
-      end
-    end
-
-    if @form_skill.valid?
-      if current_user.update(form_skill_params)
-        redirect_to user_profile_profile_path(current_user)
-      else
-        render :edit, status: :unprocessable_entity
+        else
+          render :edit, status: :unprocessable_entity
+        end
       end
     end
 
     private
 
-
     def form_skill_params
-      params.require(:user_profile_form_skill).permit(:name)
+      params.require(:user_profile_form_skill).permit(:name, skill_ids: [])
     end
   end
 end

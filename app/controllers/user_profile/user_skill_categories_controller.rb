@@ -21,7 +21,11 @@ module UserProfile
 
     def edit
       @user_skill_category = UserSkillCategory.new
-      @categories = current_user.skills.joins(:categories).distinct.pluck(:name)
+      @categories = Category.all
+      @existing_categories = current_user.proposed_skills.map(&:categories).flatten.uniq
+      # >> current_user.proposed_skills.joins(:categories).distinct.map(&:categories).flatten.uniq
+
+      # @categories = current_user.skills.joins(:categories).distinct.pluck(:name)
       authorize @user_skill_category
     end
 
@@ -30,7 +34,7 @@ module UserProfile
       authorize @user_skill_category
 
       if @user_skill_category.valid?
-        redirect_to edit_form_skill_path(categories: @user_skill_category.name)
+        redirect_to edit_user_profile_form_skill_path(categories: @user_skill_category.name)
       else
         render :edit, status: :unprocessable_entity
       end

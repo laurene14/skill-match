@@ -17,8 +17,8 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @avatar = @user.photos.first
     authorize @user
-    @skills = @user.skills
-    @wanted_skills = @user.user_skills.where(wanted: true).map(&:skill)
+    @skills = @user.proposed_skills
+    @wanted_skills = @user.wanted_skills
     authorize @user
   end
 

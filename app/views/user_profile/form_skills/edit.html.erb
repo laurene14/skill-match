@@ -4,7 +4,7 @@
   <h4>Step 3: Select your skill(s)</h4>
   <div class="step-underline"></div>
 
-  <%= simple_form_for @form_skill, html: { class: 'skills-wrapper'} do |f| %>
+  <%= simple_form_for @form_skill, html: { class: 'skills-wrapper'}, url: user_profile_form_skill_path(current_user), method: :patch do |f| %>
     <% @categories.each do |category| %>
       <h5><%= category.name %></h5>
 
@@ -14,14 +14,15 @@
 
         <%= f.input :skill_ids,
                     as: :check_boxes,
-                    collection: category.skills,
+                    collection: category.skills.map { |skill| [skill.name, skill.id, { checked: @existing_skills.include?(skill) }] },
                     item_wrapper_class: 'tag-item',
                     input_html: { class: "tag-selector" },
+
                     include_hidden: false %>
       <% end %>
     <div class="form-navigation">
-      <%= link_to '❮ PREVIOUS', "#", class: "btn disabled" %>
-      <%= f.button :submit, 'NEXT ❯', class: "btn" %>
+      <%= link_to '❮ PREVIOUS', edit_user_profile_user_skill_category_path, class: "btn" %>
+      <%= f.button :submit, 'SAVE ❯', class: "btn" %>
     </div>
   <% end %>
 </div>
