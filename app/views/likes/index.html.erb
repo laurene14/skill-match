@@ -13,13 +13,16 @@
   </div>
   <div class="swipe__cards">
     <% @users.each do |user| %>
-      <div id=<%= user.id %> class="swipe__card border border-2 shadow" data-swiper-target="card">
+      <div id=<%= user.id %> class="swipe__card border border-3 shadow" data-swiper-target="card">
         <div class="swipe__card__box">
           <%= render "shared/avatar", user: user %>
           <button class="shadow" data-swiper-target="follow" data-action="click->swiper#clickFollow">
             <i class="text-secondary fa-solid fa-bookmark"></i>
           </button>
-          <div class="swipe__card__body text-start py-2 px-4">
+          <div class="swipe__card__body text-start py-2 px-6">
+          <%= button_to user_path(user), method: :get, class: "shadow" do %>
+            <i class="fa-solid fa-angle-down"></i>
+          <% end %>
             <h3 class="text-light"><%= user.username %></h3>
             <h2 class="text-light fw-bold">
               <% r1 = @current_user_skills_preference[:wanted] & user.proposed_skills.pluck(:name) %>

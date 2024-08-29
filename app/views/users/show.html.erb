@@ -1,9 +1,10 @@
+<div class="mb-9" style="overflow-y:auto;">
 <div class="user-profile-page">
   <div class="user-profile-header my-6">
     <div class="user-profile-info d-flex">
       <div><h2><%= @user.username.capitalize %></h2></div>
       <div>
-        <%= link_to users_path do %>
+        <%= link_to request.referrer do %>
           <i class="fa-solid fa-xmark nav-down"></i>
         <% end %>
       </div>
@@ -73,4 +74,5 @@
     </div>
     <%= render "shared/interaction_buttons" %>
   </div>
+</div>
 </div>
