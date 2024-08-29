@@ -1,0 +1,26 @@
+  <div class="header-container">
+    <div class="user-header my-6">
+      <div class="user-info">
+        <div>
+          <h2>Hi <%= current_user.username.capitalize %>! <span>👋</span></h2>
+          <p>So good to see you back</p>
+        </div>
+      </div>
+      <div class="category-search-wrapper">
+        <div class="search-container">
+          <%= form_with url: categories_path, method: :get, class: "category-search" do |f| %>
+            <div class="search-input-wrapper">
+              <%= text_field_tag :query,
+                params[:query],
+                placeholder: "Type the skill you search",
+                class: "search-input"
+              %>
+              <button type="submit" class="search-button">
+                <i class="fas fa-search"></i>
+              </button>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="swipe"
 export default class extends Controller {
-  static targets = ["card", "confetti"]
+  static targets = ["card", "confetti", "popup"]
 
   currentUserId = null;
   csrfToken = null;
@@ -203,15 +203,16 @@ export default class extends Controller {
             throw new Error(JSON.stringify(errorData));
           });
         }
-        return response;
+        return response.json();
       })
       .then(response => {if (response.status == 207) {
-        this.clickInTheMiddle();
-      }})
+        this.clickInTheMiddle(response.partial);
+      }
+    })
       .catch(error => console.log(error))
   }
 
-  clickInTheMiddle() {
+  clickInTheMiddle(partial) {
     console.log("confetti")
     this.confettiTarget.style.display="block";
     const rect = this.confettiTarget.getBoundingClientRect();
@@ -226,5 +227,7 @@ export default class extends Controller {
     });
     this.confettiTarget.dispatchEvent(event);
     this.confettiTarget.style.display="none";
+    this.popupTarget.innerHTML = partial
   }
 }
+
