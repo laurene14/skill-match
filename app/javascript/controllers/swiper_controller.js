@@ -11,7 +11,6 @@ export default class extends Controller {
     console.log("connected");
     this.currentUserId = parseInt(document.body.dataset.currentUserId, 10);
     this.csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-    this.initConfetti();
     this.initCards(true);
     this.cardTargets.forEach((card) => {
       this.initCard(card);
@@ -19,6 +18,7 @@ export default class extends Controller {
   }
 
   initConfetti() {
+    console.log("coucou")
     let confetti = new Confetti('confetti');
     confetti.setCount(75);
     confetti.setSize(2);
@@ -161,6 +161,7 @@ export default class extends Controller {
   }
 
   handleAccept(card) {
+    this.initConfetti();
     if (card.id === "filtered") {
       window.location.href = '/likes?all='
     } else if (card.id === "all") {
@@ -230,4 +231,3 @@ export default class extends Controller {
     this.popupTarget.innerHTML = partial
   }
 }
-

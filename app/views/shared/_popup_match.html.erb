@@ -1,4 +1,4 @@
-<div class="popup-container">
+<div class="popup-container" data-controller="toggle">
   <%# <i class="fa-solid fa-x close-popup"></i> %>
   <h1>It's a Match!</h1>
   <div class="profile-images mb-5">
@@ -12,7 +12,7 @@
       <%= link_to 'Send a Message', matchs_path, class: 'button-swipe' %>
     </div>
     <div class="col-12">
-      <%= link_to 'Keep Swiping', likes_path, class: 'button-message' %>
+      <%= link_to 'Keep Swiping', likes_path, class: 'button-message', data: { turbo: false, toggle_target: "button", action: "click->toggle#closePopup" } %>
     </div>
   </div>
 </div>
