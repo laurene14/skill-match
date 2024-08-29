@@ -2,6 +2,10 @@ require 'tqdm'
 
 puts "clear existing data"
 ActiveRecord::Base.transaction do
+  Message.destroy_all
+  Chatroom.destroy_all
+  Like.destroy_all
+  Match.destroy_all
   User.destroy_all
   Category.destroy_all
   Skill.destroy_all

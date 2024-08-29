@@ -1,4 +1,18 @@
-.button-home{
+.button-home {
+  text-decoration: none;
+  width: 60%;
+  text-align: center;
+  border-radius: 10px;
+  font-size: 17px;
+  padding: 10px;
+  text-transform: uppercase;
+  z-index: 999;
+  box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.button-full {
+  background-color: #6C60E0;
+  color: white;
   text-decoration: none;
   width: 60%;
   text-align: center;
@@ -33,4 +47,3 @@
   background-color: #6C60E0;
   color: white;
 }
-

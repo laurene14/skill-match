@@ -26,7 +26,8 @@ class LikesController < ApplicationController
     @like.liked = User.find(liker_liked_id[1])
     respond_to do |format|
       if @like.save
-        Match.where(user1_id: liker_liked_id.min, user2_id: liker_liked_id.max).empty? ? format.json { render status: 201 } : format.json { render json: @like, status: 207 }
+        @html_content = render_to_string partial: "shared/popup_match", locals: { liker: @like.liker, liked: @like.liked }, formats: [:html]
+        Match.where(user1_id: liker_liked_id.min, user2_id: liker_liked_id.max).empty? ? format.json { render status: 201 } : format.json { render json: { partial: @html_content, status: 207} }
       else
         format.json { render json: @like.errors, status: 422 }
       end
