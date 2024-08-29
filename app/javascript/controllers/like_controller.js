@@ -12,7 +12,8 @@ export default class extends Controller {
     this.csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
   }
 
-  toggle() {
+  toggle(event) {
+    event.preventDefault();
     if (this.element.classList.contains("liked")) {
       console.log("dislike!")
       this.handleUnlike();
