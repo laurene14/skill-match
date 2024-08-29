@@ -1,7 +1,11 @@
-<div id="message-<%= message.id %>">
-  <small>
+<div id="message-<%= message.id %>",
+      class="message <%= message.user === user ? 'sent' : 'received' %>">
+  <div class="message-info fs-7">
     <strong><%= message.user.username %></strong>
     <i><%= message.created_at.strftime("%a %b %e at %l:%M %p") %></i>
-  </small>
-  <p><%= message.content %></p>
+  </div>
+
+  <p class="message-content" style="position:relative">
+    <i class="fa-solid fa-moon fs-4"></i>
+    <%= message.content %></p>
 </div>
