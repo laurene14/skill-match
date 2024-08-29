@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="swipe"
 export default class extends Controller {
-  static targets = ["card", "confetti"]
+  static targets = ["card", "confetti", "popup"]
 
   currentUserId = null;
   csrfToken = null;
@@ -35,7 +35,7 @@ export default class extends Controller {
       // card.style.transform = 'scale(' + (20 - index) / 20 + ') translateY(-' + 24 * index + 'px)';
       card.style.opacity = (10 - index) / 10;
       if (first_init && index !== 0) {
-        const randomRotation = (Math.random() * 12) - 6;
+        const randomRotation = (Math.random() * 18) - 9;
         card.style.transform = ` rotate(${randomRotation}deg)`;
       } else if (!first_init && index == 0) {
         card.style.transform = 'rotate(0deg)'
@@ -203,15 +203,16 @@ export default class extends Controller {
             throw new Error(JSON.stringify(errorData));
           });
         }
-        return response;
+        return response.json();
       })
       .then(response => {if (response.status == 207) {
-        this.clickInTheMiddle();
-      }})
+        this.clickInTheMiddle(response.partial);
+      }
+    })
       .catch(error => console.log(error))
   }
 
-  clickInTheMiddle() {
+  clickInTheMiddle(partial) {
     console.log("confetti")
     this.confettiTarget.style.display="block";
     const rect = this.confettiTarget.getBoundingClientRect();
@@ -226,5 +227,7 @@ export default class extends Controller {
     });
     this.confettiTarget.dispatchEvent(event);
     this.confettiTarget.style.display="none";
+    this.popupTarget.innerHTML = partial
   }
 }
+

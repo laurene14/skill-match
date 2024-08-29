@@ -1,0 +1,83 @@
+.popup-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) !important;
+  z-index: 1000;
+  background-color: #fff;
+  border-radius: 20px;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+  width: 90vw;
+  height: 50vh;
+  text-align: center;
+  padding: 20px;
+
+  h1 {
+      color: #6C60E0;
+      font-size: 24px;
+      margin-top: 20px;
+      margin-bottom: 20px;
+  }
+
+  p {
+      font-size: 18px;
+      color: #333;
+      margin-bottom: 30px;
+  }
+
+  i {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+  }
+}
+
+.profile-images {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+
+  img {
+      border-radius: 50%;
+      width: 100px;
+      height: 100px;
+      margin: 0 10px;
+      border: 3px solid #6C60E0;
+  }
+
+  .popup-logo{
+    border: none;
+    width: 60px;
+    height: 60px;
+    justify-content: center;
+  }
+}
+
+.button-container {
+  display: block;
+}
+
+.button-swipe {
+  background-color: #6C60E0;
+  color: white;
+  text-decoration: none;
+  text-align: center;
+  border-radius: 10px;
+  font-size: 17px;
+  padding: 10px;
+  text-transform: uppercase;
+  z-index: 999;
+  box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.button-message {
+  text-decoration: none;
+  text-align: center;
+  border-radius: 10px;
+  font-size: 17px;
+  padding: 10px;
+  text-transform: uppercase;
+  z-index: 999;
+  box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.3);
+}
