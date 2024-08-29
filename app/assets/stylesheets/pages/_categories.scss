@@ -11,8 +11,6 @@
   padding: 0 8vw;
   flex-direction: column;
   border-radius: 0 0 30px 30px;
-  min-height: 25vh;
-  position: sticky;
 
   .user-header {
     .user-info {
@@ -148,7 +146,6 @@
 }
 
 .category-wrapper {
-
   .category {
     border-radius: 24px;
     font-weight: bold;

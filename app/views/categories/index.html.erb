@@ -10,7 +10,7 @@
     <% if @categories.any? %>
       <div class="category-wrapper">
         <% @categories.each do |category| %>
-          <%= link_to category_path(category), class: "category-link" do %>
+          <%= link_to category_path(category), class: "category-link no-a-style" do %>
             <div class="category category-item_<%= category.name.downcase%>">
               <%= image_tag "#{category.name}.png", alt: "#{category.name} icon", class: "category-image" %>
               <div class="category-name"><%= category.name %></div>

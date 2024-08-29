@@ -1,4 +1,3 @@
-<div class="background">
   <%= render 'header_container' %>
 
   <div class="category-title">
@@ -9,4 +8,25 @@
     <div id="skill-title">Skills</div>
     <div id="skill-description">Discover all skills of <%= @category.name %> </div>
   </div>
-</div>
+
+  <div class="skill-container mb-9">
+    <% if @skills.any? %>
+      <div class="skill-wrapper">
+        <ul class="list-group">
+          <% @skills.each do |skill| %>
+            <li class="row rounded mb-3 p-3 mx-3">
+              <div class="col-auto">
+                <i class="fa-brands fa-python" style="font-size: 64px;"></i>
+              </div>
+              <div class="col skill-item">
+                <div class="fw-bold">
+                  <%= skill.name %>
+                </div>
+                  <%= skill.description %>
+              </div>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </div>
