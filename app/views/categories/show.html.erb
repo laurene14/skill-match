@@ -1,0 +1,12 @@
+<div class="background">
+  <%= render 'header_container' %>
+
+  <div class="category-title">
+    <p id="cat-title"><%= @category.name %></p>
+    <p id="cat-description"><%= link_to "Return to categories", root_path %></p>
+  </div>
+  <div class="skill-title">
+    <div id="skill-title">Skills</div>
+    <div id="skill-description">Discover all skills of <%= @category.name %> </div>
+  </div>
+</div>
