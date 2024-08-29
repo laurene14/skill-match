@@ -29,9 +29,8 @@ module UserProfile
     end
 
     def update
-      @wanted_form_skill = WantedFormSkill.new(current_user: current_user, skill_ids: params[:user_profile_form_skill][:skill_ids])
-      @categories = Category.where(id: params[:user_profile_form_skill][:category_ids].split(" "))
-
+      @wanted_form_skill = WantedFormSkill.new(current_user: current_user, wanted_skill_ids: params[:user_profile_wanted_form_skill][:skill_ids])
+      @categories = Category.where(id: params[:user_profile_wanted_form_skill][:category_ids].split(" "))
       authorize @wanted_form_skill
 
       if @wanted_form_skill.valid?
