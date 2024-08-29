@@ -33,7 +33,7 @@ class User < ApplicationRecord
 
   has_many :notifications, dependent: :destroy
 
-  # validates :username, presence: true, uniqueness: true
+  validates :username, presence: true, uniqueness: true
   # validate :validate_bio
 
   # validates :address, presence: true
