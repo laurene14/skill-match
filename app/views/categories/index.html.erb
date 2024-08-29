@@ -1,29 +1,27 @@
 <div class="background">
   <div class="header-container">
     <div class="user-header my-6">
-      <div class="user-info d-flex">
+      <div class="user-info">
         <div>
           <h2>Hi <%= current_user.username.capitalize %>! <span>👋</span></h2>
           <p>So good to see you back</p>
         </div>
       </div>
       <div class="category-search-wrapper">
-          <div class="search-container">
-            <div class="col-sm-8 my-3">
-              <%= form_with url: categories_path, method: :get, class: "category-search" do |f| %>
-                <div class="search-input-wrapper">
-                  <%= text_field_tag :query,
-                    params[:query],
-                    placeholder: "Type the skill you search",
-                    class: "search-input"
-                  %>
-                  <button type="submit" class="search-button">
-                    <i class="fas fa-search"></i>
-                  </button>
-                </div>
-              <% end %>
+        <div class="search-container">
+          <%= form_with url: categories_path, method: :get, class: "category-search" do |f| %>
+            <div class="search-input-wrapper">
+              <%= text_field_tag :query,
+                params[:query],
+                placeholder: "Type the skill you search",
+                class: "search-input"
+              %>
+              <button type="submit" class="search-button">
+                <i class="fas fa-search"></i>
+              </button>
             </div>
-          </div>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
@@ -38,7 +36,8 @@
       <div class="category-wrapper">
         <% @categories.each do |category| %>
           <div class="category category-item_<%= category.name.downcase%>">
-            <%= category.name %>
+            <%= image_tag "#{category.name}.png", alt: "#{category.name} icon", class: "category-image" %>
+            <div class="category-name"><%= category.name %></div>
           </div>
       <% end %>
       </div>
