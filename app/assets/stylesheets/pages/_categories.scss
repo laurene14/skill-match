@@ -1,7 +1,7 @@
 .background {
   background-color: white;
   color: black;
-  height: 100vh;
+  height: 100%;
 }
 
 .header-container {
@@ -12,6 +12,7 @@
   flex-direction: column;
   border-radius: 0 0 30px 30px;
   min-height: 25vh;
+  position: sticky;
 
   .user-header {
     .user-info {
@@ -64,19 +65,18 @@
 
   .search-input {
     width: 100%;
-    padding: 5px 40px 5px 15px; /* Hauteur réduite */
-    border: 2px solid #7C5CF0; /* Bordure de l'input */
-    border-radius: 25px; /* Coins arrondis */
+    padding: 5px 40px 5px 15px;
+    border: 2px solid #7C5CF0;
+    border-radius: 25px;
     font-size: 16px;
-    transition: border-color 0.3s ease;
-    background-color: #E0D7FF; /* Couleur de fond de l'input */
-    color: #7C5CF0; /* Couleur du texte de l'input */
+    background-color: #E0D7FF;
+    color: #7C5CF0;
   }
 
   .search-input::placeholder {
-    font-size: 12px; /* Ajustez la taille de la police */
-    color: #888; /* Vous pouvez également ajuster la couleur du placeholder */
-    opacity: 1; /* Optionnel : Opacité du placeholder */
+    font-size: 12px;
+    color: #7C5CF0;
+    opacity: 1;
   }
 
   .search-button {
@@ -95,7 +95,7 @@
   }
 
   .search-input:focus {
-    border-color: #7C5CF0; /* Couleur de la bordure au focus */
+    border-color: #7C5CF0;
     outline: none;
   }
 }
@@ -124,7 +124,8 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-
+  overflow-y: auto;
+  max-height: calc(100vh - 25vh - 30px);
 }
 
 .category-wrapper {
@@ -133,9 +134,10 @@
     border-radius: 24px;
     font-weight: bold;
     letter-spacing: .05rem;
-    min-height: 160px;
-    min-width: 160px;
+    min-height: 150px;
+    min-width: 150px;
     text-align: center;
+    padding: 20px;
   }
 
   .category-item {
@@ -143,17 +145,26 @@
     padding-bottom: 32%;
     margin-bottom:18% ;
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-    img {
-      height: 70px;
-      width: 70px;
-    }
   }
+  .category-image {
+    width: 70px;
+    height: 70px;
+    margin-bottom: 10px; 
+  }
+
+  .category-name {
+    font-size: 12px;
+    margin-top: 10px; 
+  }
+
 
   .category-item_technology {
     background-color: #FFF3C6;
     color: #F9A542;
-    // background-image: asset-url("Technology.png");
   }
 
   .category-item_design {
@@ -162,23 +173,23 @@
   }
 
   .category-item_marketing {
+    background-color: #E0D7FF;
+    color: #7C5CF0;
+  }
+
+  .category-item_business {
     background-color: #FBE1FB;
     color: #F266C9;
   }
 
-  .category-item_business {
+  .category-item_education {
     background-color: #B8EEDC;
     color: #3FA985;
   }
 
-  .category-item_education {
+  .category-item_sports {
     background-color: #FADFCD;
     color: #FE8E75;
-  }
-
-  .category-item_sports {
-    background-color: #E0D7FF;
-    color: #7C5CF0;
   }
 
   .category-item_music {
@@ -192,12 +203,12 @@
   }
 
   .category-item_art {
-    background-color: #FBE1FB;
-    color: #F266C9;
+    background-color: #E0D7FF;
+    color: #7C5CF0;
   }
 
   .category-item_diy {
-    background-color: #B8EEDC;
-    color: #3FA985;
+    background-color: #FBE1FB;
+    color: #F266C9;
   }
 }
