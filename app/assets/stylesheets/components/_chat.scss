@@ -57,12 +57,19 @@
     max-width: 70%;
     width: fit-content;
     word-wrap: break-word;
+
+    div {
+      position:absolute ;
+      bottom: -20px;
+      font-style: italic;
+    }
   }
 
   .message.sent .message-content {
     align-self: flex-end;
     background: $primary;
     color: $light-gray;
+    position: relative;
 
     i {
       position:absolute;
@@ -71,11 +78,17 @@
       transform:rotate(15deg);
       color: $primary;
     }
+
+    div {
+      right: 4px;
+      color: $primary;
+    }
   }
 
   .message.received .message-content {
     align-self: flex-start;
     background: $gray-200;
+    position: relative;
 
     i {
       position:absolute;
@@ -88,6 +101,11 @@
       -ms-transform: scale(-1, 1);
       transform: scale(-1, 1);
       color: $gray-200;
+    }
+
+    div {
+      left: 4px;
+      color: $gray;
     }
   }
 }
