@@ -11,8 +11,6 @@
   padding: 0 8vw;
   flex-direction: column;
   border-radius: 0 0 30px 30px;
-  min-height: 25vh;
-  position: sticky;
 
   .user-header {
     .user-info {
@@ -66,16 +64,16 @@
   .search-input {
     width: 100%;
     padding: 5px 40px 5px 15px;
-    border: 2px solid #7C5CF0;
+    border: 1px solid #A6A0EC;
     border-radius: 25px;
     font-size: 16px;
-    background-color: #E0D7FF;
-    color: #7C5CF0;
+    background-color: #A6A0EC;
+    color: #fff;
   }
 
   .search-input::placeholder {
     font-size: 12px;
-    color: #7C5CF0;
+    color: #fff;
     opacity: 1;
   }
 
@@ -84,14 +82,13 @@
     right: 10px;
     background: none;
     border: none;
-    color: #7C5CF0;
+    color: #fff;
     font-size: 20px;
     cursor: pointer;
     padding: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: color 0.3s ease;
   }
 
   .search-input:focus {
@@ -102,7 +99,7 @@
 
 .category-title {
   padding: 0 8vw;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px  rgba(0, 0, 0, 0.1);
   margin-top: 10px;
   margin-bottom: 20px;
   display: flex;
@@ -120,6 +117,26 @@
   }
 }
 
+.skill-title {
+  padding: 0 8vw;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-top: 10px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+
+  #skill-title {
+    font-weight: bold;
+  }
+
+  #skill-description {
+    font-style: italic;
+    color: #888888;
+    font-size: 12px;
+  }
+}
+
 .category-container {
   display: flex;
   flex-wrap: wrap;
@@ -129,7 +146,6 @@
 }
 
 .category-wrapper {
-
   .category {
     border-radius: 24px;
     font-weight: bold;
@@ -153,12 +169,12 @@
   .category-image {
     width: 70px;
     height: 70px;
-    margin-bottom: 10px; 
+    margin-bottom: 10px;
   }
 
   .category-name {
     font-size: 12px;
-    margin-top: 10px; 
+    margin-top: 10px;
   }
 
 
