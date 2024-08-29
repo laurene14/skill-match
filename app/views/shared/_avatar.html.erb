@@ -7,13 +7,13 @@
 <% style = style || "" %>
 <% class_name = class_name || "" %>
 <%# waiting for replace false by user.photo.attached? when active storge is implemented %>
-<% if @user.photos.any? %>
-  <%= cl_image_tag @user.photos.first.key,
+<% if user.photos.any? %>
+  <%= cl_image_tag user.photos.first.key,
                   gravity: "face", crop: :fill,
-                  class: "profile-avatar object-fit-cover #{class}",
+                  class: "profile-avatar object-fit-cover #{class_name}",
                   alt: "#{user.username}'s avatar",
                   style: style %>
-`<% else %>
+<% else %>
   <%= image_tag "https://partyanimals.com/media/avatars/avatars-#{user.id % 24 + 1}.png",
                 class: class_name,
                 alt: "#{user.username}'s avatar",
