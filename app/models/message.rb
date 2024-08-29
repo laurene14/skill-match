@@ -8,7 +8,8 @@ class Message < ApplicationRecord
   def broadcast_message
     broadcast_append_to "match_#{match.id}_messages",
                         partial: "messages/message",
-                        locals: { message: self }
+                        locals: { message: self, user: user },
+                        target: "messages"
   end
 
 end

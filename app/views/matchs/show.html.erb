@@ -1,18 +1,31 @@
-<div class="container">
+<div class="chat">
+  <% other_user = current_user == @match.user1 ? @match.user2 : @match.user1 %>
+
+<div class="row border-bottom py-3 mx-3">
+  <div class="col-auto">
+    <%= link_to matchs_path, class: "no-a-style" do %>
+    <i class="fa-solid fa-angle-left"></i> Return
+    <% end %>
+  </div>
+  <div class="col fs-5 fw-bold"><%= other_user.username %></div>
+  <div class="col-auto">
+    <%= render "shared/avatar", user: other_user, class_name: "avatar" %>
+  </div>
+</div>
 
 <%= turbo_stream_from "match_#{@match.id}_messages" %>
 <div id="messages" class="messages">
   <% @match.messages.each do |message| %>
-    <%= render "messages/message", message: message %>
+    <%= render "messages/message", message: message, user: current_user %>
   <% end %>
 </div>
 <%= simple_form_for [@match, @message],
   html: {class: "d-flex"} do |f|
 %>
-  <% other_user = current_user == @match.user1 ? @match.user2 : @match.user1 %>
   <%= f.input :content,
     label: false,
-    placeholder: "Message #{other_user.username}",
+    # placeholder: "Message #{other_user.username}",
+    placeholder: "SkillMatch",
     wrapper_html: {class: "flex-grow-1"}
   %>
   <%= f.submit "Send", class: "btn btn-primary mb-3" %>

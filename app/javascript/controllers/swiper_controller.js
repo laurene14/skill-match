@@ -35,7 +35,7 @@ export default class extends Controller {
       // card.style.transform = 'scale(' + (20 - index) / 20 + ') translateY(-' + 24 * index + 'px)';
       card.style.opacity = (10 - index) / 10;
       if (first_init && index !== 0) {
-        const randomRotation = (Math.random() * 12) - 6;
+        const randomRotation = (Math.random() * 18) - 9;
         card.style.transform = ` rotate(${randomRotation}deg)`;
       } else if (!first_init && index == 0) {
         card.style.transform = 'rotate(0deg)'
